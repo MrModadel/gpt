@@ -1,0 +1,86 @@
+    <!-- ===== ПОДВАЛ ===== -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <i class="fas fa-snowflake"></i> 
+                        <?php bloginfo( 'name' ); ?>
+                    </div>
+                    <p><?php echo get_theme_mod( 'termoservis_footer_text', 'Производство и комплексное внедрение промышленных холодильных систем. Надежные решения для вашего бизнеса с 2010 года.' ); ?></p>
+                    
+                    <div class="social-links">
+                        <?php
+                        $telegram = get_theme_mod( 'termoservis_telegram', '#' );
+                        $whatsapp = get_theme_mod( 'termoservis_whatsapp', '#' );
+                        $vk = get_theme_mod( 'termoservis_vk', '#' );
+                        $youtube = get_theme_mod( 'termoservis_youtube', '#' );
+                        
+                        if ( $telegram !== '#' ) {
+                            echo '<a href="' . esc_url( $telegram ) . '" title="Telegram"><i class="fab fa-telegram"></i></a>';
+                        }
+                        if ( $whatsapp !== '#' ) {
+                            echo '<a href="' . esc_url( $whatsapp ) . '" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>';
+                        }
+                        if ( $vk !== '#' ) {
+                            echo '<a href="' . esc_url( $vk ) . '" title="ВКонтакте"><i class="fab fa-vk"></i></a>';
+                        }
+                        if ( $youtube !== '#' ) {
+                            echo '<a href="' . esc_url( $youtube ) . '" title="YouTube"><i class="fab fa-youtube"></i></a>';
+                        }
+                        ?>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Разделы сайта</h4>
+                    <?php
+                    wp_nav_menu( array(
+                        'theme_location' => 'footer',
+                        'menu_class'     => '',
+                        'container'      => false,
+                        'fallback_cb'    => false,
+                        'depth'          => 1,
+                    ) );
+                    ?>
+                </div>
+                
+                <div class="footer-contacts">
+                    <h4>Контакты</h4>
+                    <p>
+                        <i class="fas fa-map-marker-alt"></i>
+                        <?php echo get_theme_mod( 'termoservis_address', 'г. Самара, ул. Заводская, 42' ); ?>
+                    </p>
+                    <p>
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:<?php echo get_theme_mod( 'termoservis_phone', '+79270013885' ); ?>">
+                            <?php echo get_theme_mod( 'termoservis_phone', '+7 (927) 001-38-85' ); ?>
+                        </a>
+                    </p>
+                    <p>
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:<?php echo get_theme_mod( 'termoservis_email', 'info@termoservice63.ru' ); ?>">
+                            <?php echo get_theme_mod( 'termoservis_email', 'info@termoservice63.ru' ); ?>
+                        </a>
+                    </p>
+                    <p>
+                        <i class="far fa-clock"></i>
+                        <?php echo get_theme_mod( 'termoservis_work_time', 'Пн-Пт: 9:00-18:00, Сб-Вс: выходной' ); ?>
+                    </p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; <?php echo date( 'Y' ); ?> «<?php bloginfo( 'name' ); ?>». Все права защищены.</p>
+                <p style="margin-top:10px;">
+                    <a href="#">Политика конфиденциальности</a> | 
+                    <a href="#">Пользовательское соглашение</a> | 
+                    <a href="#">Декларации о соответствии</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+    
+    <?php wp_footer(); ?>
+</body>
+</html>
