@@ -1,0 +1,504 @@
+<!-- ПРИМЕРЫ ФОРМ -->
+
+<!-- 
+  ПРИМЕР 1: Простая форма "Заказ звонка" 
+  Используется класс form-tel для автоматической обработки
+-->
+<form class="form-tel" style="max-width: 500px; margin: 20px auto;">
+  <h3>Заказать звонок</h3>
+  
+  <div style="margin-bottom: 15px;">
+    <label for="order-name" style="display: block; margin-bottom: 5px; font-weight: 600;">
+      Ваше имя *
+    </label>
+    <input 
+      type="text" 
+      id="order-name" 
+      name="name" 
+      class="form-control" 
+      placeholder="Иван Петров" 
+      required
+    >
+  </div>
+
+  <div style="margin-bottom: 15px;">
+    <label for="order-phone" style="display: block; margin-bottom: 5px; font-weight: 600;">
+      Телефон *
+    </label>
+    <input 
+      type="tel" 
+      id="order-phone" 
+      name="phone" 
+      class="form-control" 
+      placeholder="+7 (999) 123-45-67" 
+      required
+    >
+  </div>
+
+  <div style="margin-bottom: 15px;">
+    <label for="order-email" style="display: block; margin-bottom: 5px; font-weight: 600;">
+      Email
+    </label>
+    <input 
+      type="email" 
+      id="order-email" 
+      name="email" 
+      class="form-control" 
+      placeholder="your@email.com"
+    >
+  </div>
+
+  <div style="margin-bottom: 15px;">
+    <label for="order-message" style="display: block; margin-bottom: 5px; font-weight: 600;">
+      Сообщение
+    </label>
+    <textarea 
+      id="order-message" 
+      name="message" 
+      class="form-control" 
+      placeholder="Ваши вопросы..." 
+      rows="4"
+    ></textarea>
+  </div>
+
+  <button type="submit" class="btn" style="width: 100%;">
+    Заказать звонок
+  </button>
+</form>
+
+<!-- 
+  ПРИМЕР 2: Форма с файловой загрузкой
+-->
+<form class="form-tel" style="max-width: 500px; margin: 20px auto;">
+  <h3>Отправить спецификацию</h3>
+  
+  <div style="margin-bottom: 15px;">
+    <label for="spec-name" style="display: block; margin-bottom: 5px; font-weight: 600;">
+      Контактное лицо *
+    </label>
+    <input 
+      type="text" 
+      id="spec-name" 
+      name="contactName" 
+      class="form-control" 
+      required
+    >
+  </div>
+
+  <div style="margin-bottom: 15px;">
+    <label for="spec-phone" style="display: block; margin-bottom: 5px; font-weight: 600;">
+      Телефон *
+    </label>
+    <input 
+      type="tel" 
+      id="spec-phone" 
+      name="contactPhone" 
+      class="form-control" 
+      required
+    >
+  </div>
+
+  <div style="margin-bottom: 15px;">
+    <label for="spec-file" style="display: block; margin-bottom: 5px; font-weight: 600;">
+      Спецификация (PDF, DOC, XLS)
+    </label>
+    <input 
+      type="file" 
+      id="spec-file" 
+      name="specificationFile" 
+      class="form-control" 
+      accept=".pdf,.doc,.docx,.xls,.xlsx"
+    >
+  </div>
+
+  <div style="margin-bottom: 15px;">
+    <label for="spec-drawings" style="display: block; margin-bottom: 5px; font-weight: 600;">
+      Чертежи (DWG, PDF, JPG, PNG) - можно выбрать несколько
+    </label>
+    <input 
+      type="file" 
+      id="spec-drawings" 
+      name="drawingFiles" 
+      class="form-control" 
+      accept=".dwg,.pdf,.jpg,.png" 
+      multiple
+    >
+  </div>
+
+  <button type="submit" class="btn" style="width: 100%;">
+    Отправить документы
+  </button>
+</form>
+
+<!-- 
+  ПРИМЕР 3: Форма с выбором опций (checkbox)
+-->
+<form class="form-tel" style="max-width: 600px; margin: 20px auto;">
+  <h3>Выберите параметры оборудования</h3>
+  
+  <div style="margin-bottom: 15px;">
+    <label for="param-name" style="display: block; margin-bottom: 5px; font-weight: 600;">
+      Ваше имя *
+    </label>
+    <input 
+      type="text" 
+      id="param-name" 
+      name="customerName" 
+      class="form-control" 
+      required
+    >
+  </div>
+
+  <div style="margin-bottom: 20px;">
+    <label style="display: block; margin-bottom: 10px; font-weight: 600;">
+      Требуемые опции:
+    </label>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+      <label style="display: flex; align-items: center; gap: 8px;">
+        <input type="checkbox" name="options" value="explosion-proof">
+        <span>Взрывозащита</span>
+      </label>
+      <label style="display: flex; align-items: center; gap: 8px;">
+        <input type="checkbox" name="options" value="corrosion-resistant">
+        <span>Антикоррозионная защита</span>
+      </label>
+      <label style="display: flex; align-items: center; gap: 8px;">
+        <input type="checkbox" name="options" value="high-precision">
+        <span>Высокая точность (±0.1°C)</span>
+      </label>
+      <label style="display: flex; align-items: center; gap: 8px;">
+        <input type="checkbox" name="options" value="automation">
+        <span>Автоматизация</span>
+      </label>
+    </div>
+  </div>
+
+  <div style="margin-bottom: 15px;">
+    <label for="param-comment" style="display: block; margin-bottom: 5px; font-weight: 600;">
+      Дополнительные требования
+    </label>
+    <textarea 
+      id="param-comment" 
+      name="additionalRequirements" 
+      class="form-control" 
+      rows="3" 
+      placeholder="Опишите ваши требования..."
+    ></textarea>
+  </div>
+
+  <button type="submit" class="btn" style="width: 100%;">
+    Отправить требования
+  </button>
+</form>
+
+<!-- 
+  ПРИМЕР 4: Форма с выбором из списка (select)
+-->
+<form class="form-tel" style="max-width: 500px; margin: 20px auto;">
+  <h3>Консультация по выбору модели</h3>
+  
+  <div style="margin-bottom: 15px;">
+    <label for="consult-name" style="display: block; margin-bottom: 5px; font-weight: 600;">
+      Ваше имя *
+    </label>
+    <input 
+      type="text" 
+      id="consult-name" 
+      name="consultName" 
+      class="form-control" 
+      required
+    >
+  </div>
+
+  <div style="margin-bottom: 15px;">
+    <label for="consult-application" style="display: block; margin-bottom: 5px; font-weight: 600;">
+      Область применения *
+    </label>
+    <select 
+      id="consult-application" 
+      name="applicationArea" 
+      class="form-control" 
+      required
+    >
+      <option value="">-- Выберите область --</option>
+      <option value="food-industry">Пищевая промышленность</option>
+      <option value="pharma">Фармацевтика</option>
+      <option value="chemical">Химическая промышленность</option>
+      <option value="datacenter">Дата-центры</option>
+      <option value="medical">Медицина</option>
+      <option value="other">Другое</option>
+    </select>
+  </div>
+
+  <div style="margin-bottom: 15px;">
+    <label for="consult-budget" style="display: block; margin-bottom: 5px; font-weight: 600;">
+      Ориентировочный бюджет, руб *
+    </label>
+    <select 
+      id="consult-budget" 
+      name="budgetRange" 
+      class="form-control" 
+      required
+    >
+      <option value="">-- Выберите диапазон --</option>
+      <option value="100k">До 100 000</option>
+      <option value="100k-500k">100 000 - 500 000</option>
+      <option value="500k-1m">500 000 - 1 000 000</option>
+      <option value="1m-5m">1 - 5 млн</option>
+      <option value="5m+">Более 5 млн</option>
+    </select>
+  </div>
+
+  <div style="margin-bottom: 15px;">
+    <label for="consult-phone" style="display: block; margin-bottom: 5px; font-weight: 600;">
+      Телефон *
+    </label>
+    <input 
+      type="tel" 
+      id="consult-phone" 
+      name="consultPhone" 
+      class="form-control" 
+      required
+    >
+  </div>
+
+  <button type="submit" class="btn" style="width: 100%;">
+    Получить консультацию
+  </button>
+</form>
+
+<!-- 
+  ПРИМЕР 5: Сложная форма с несколькими типами полей
+-->
+<form class="form-tel" style="max-width: 700px; margin: 20px auto;">
+  <h3>Отправить техническое задание</h3>
+  
+  <!-- Контактная информация -->
+  <fieldset style="border: 1px solid #ddd; padding: 20px; margin-bottom: 20px; border-radius: 8px;">
+    <legend style="font-weight: 600; font-size: 1.1rem;">Контактная информация</legend>
+    
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+      <div>
+        <label for="tz-name" style="display: block; margin-bottom: 5px; font-weight: 600;">
+          Имя *
+        </label>
+        <input 
+          type="text" 
+          id="tz-name" 
+          name="tzName" 
+          class="form-control" 
+          required
+        >
+      </div>
+      
+      <div>
+        <label for="tz-position" style="display: block; margin-bottom: 5px; font-weight: 600;">
+          Должность
+        </label>
+        <input 
+          type="text" 
+          id="tz-position" 
+          name="tzPosition" 
+          class="form-control"
+        >
+      </div>
+
+      <div>
+        <label for="tz-phone" style="display: block; margin-bottom: 5px; font-weight: 600;">
+          Телефон *
+        </label>
+        <input 
+          type="tel" 
+          id="tz-phone" 
+          name="tzPhone" 
+          class="form-control" 
+          required
+        >
+      </div>
+
+      <div>
+        <label for="tz-email" style="display: block; margin-bottom: 5px; font-weight: 600;">
+          Email *
+        </label>
+        <input 
+          type="email" 
+          id="tz-email" 
+          name="tzEmail" 
+          class="form-control" 
+          required
+        >
+      </div>
+    </div>
+
+    <div style="margin-top: 15px;">
+      <label for="tz-company" style="display: block; margin-bottom: 5px; font-weight: 600;">
+        Компания *
+      </label>
+      <input 
+        type="text" 
+        id="tz-company" 
+        name="tzCompany" 
+        class="form-control" 
+        required
+      >
+    </div>
+  </fieldset>
+
+  <!-- Технические параметры -->
+  <fieldset style="border: 1px solid #ddd; padding: 20px; margin-bottom: 20px; border-radius: 8px;">
+    <legend style="font-weight: 600; font-size: 1.1rem;">Технические параметры</legend>
+    
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+      <div>
+        <label for="tz-temp" style="display: block; margin-bottom: 5px; font-weight: 600;">
+          Температура на входе/выходе *
+        </label>
+        <input 
+          type="text" 
+          id="tz-temp" 
+          name="tzTemperature" 
+          class="form-control" 
+          placeholder="+25°C / +5°C" 
+          required
+        >
+      </div>
+
+      <div>
+        <label for="tz-flow" style="display: block; margin-bottom: 5px; font-weight: 600;">
+          Расход теплоносителя, м³/ч *
+        </label>
+        <input 
+          type="number" 
+          id="tz-flow" 
+          name="tzFlow" 
+          class="form-control" 
+          placeholder="10" 
+          min="0" 
+          step="0.1" 
+          required
+        >
+      </div>
+
+      <div>
+        <label for="tz-power" style="display: block; margin-bottom: 5px; font-weight: 600;">
+          Мощность охлаждения, кВт
+        </label>
+        <input 
+          type="number" 
+          id="tz-power" 
+          name="tzPower" 
+          class="form-control" 
+          placeholder="100" 
+          min="0"
+        >
+      </div>
+
+      <div>
+        <label for="tz-media" style="display: block; margin-bottom: 5px; font-weight: 600;">
+          Среда/теплоноситель *
+        </label>
+        <select 
+          id="tz-media" 
+          name="tzMedia" 
+          class="form-control" 
+          required
+        >
+          <option value="">-- Выберите --</option>
+          <option value="water">Вода</option>
+          <option value="brine">Рассол</option>
+          <option value="glycol">Этиленгликоль</option>
+          <option value="oil">Масло</option>
+        </select>
+      </div>
+    </div>
+  </fieldset>
+
+  <!-- Документы -->
+  <fieldset style="border: 1px solid #ddd; padding: 20px; margin-bottom: 20px; border-radius: 8px;">
+    <legend style="font-weight: 600; font-size: 1.1rem;">Документы</legend>
+    
+    <div style="margin-bottom: 15px;">
+      <label for="tz-spec" style="display: block; margin-bottom: 5px; font-weight: 600;">
+        Техническое задание (PDF, DOC, XLS)
+      </label>
+      <input 
+        type="file" 
+        id="tz-spec" 
+        name="tzSpecFile" 
+        class="form-control" 
+        accept=".pdf,.doc,.docx,.xls,.xlsx"
+      >
+    </div>
+
+    <div style="margin-bottom: 15px;">
+      <label for="tz-drawings" style="display: block; margin-bottom: 5px; font-weight: 600;">
+        Чертежи и схемы (можно выбрать несколько)
+      </label>
+      <input 
+        type="file" 
+        id="tz-drawings" 
+        name="tzDrawingsFiles" 
+        class="form-control" 
+        accept=".dwg,.pdf,.jpg,.png" 
+        multiple
+      >
+    </div>
+  </fieldset>
+
+  <!-- Особые требования -->
+  <fieldset style="border: 1px solid #ddd; padding: 20px; margin-bottom: 20px; border-radius: 8px;">
+    <legend style="font-weight: 600; font-size: 1.1rem;">Особые требования</legend>
+    
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px;">
+      <label style="display: flex; align-items: center; gap: 8px;">
+        <input type="checkbox" name="tzRequirements" value="explosion">
+        <span>Взрывозащита</span>
+      </label>
+      <label style="display: flex; align-items: center; gap: 8px;">
+        <input type="checkbox" name="tzRequirements" value="corrosion">
+        <span>Антикоррозионная защита</span>
+      </label>
+      <label style="display: flex; align-items: center; gap: 8px;">
+        <input type="checkbox" name="tzRequirements" value="frost">
+        <span>Морозостойкость</span>
+      </label>
+      <label style="display: flex; align-items: center; gap: 8px;">
+        <input type="checkbox" name="tzRequirements" value="precision">
+        <span>Высокая точность</span>
+      </label>
+    </div>
+
+    <div>
+      <label for="tz-notes" style="display: block; margin-bottom: 5px; font-weight: 600;">
+        Дополнительные требования и пожелания
+      </label>
+      <textarea 
+        id="tz-notes" 
+        name="tzNotes" 
+        class="form-control" 
+        rows="4" 
+        placeholder="Опишите все требования..."
+      ></textarea>
+    </div>
+  </fieldset>
+
+  <button type="submit" class="btn" style="width: 100%;">
+    Отправить техническое задание
+  </button>
+</form>
+
+<!-- 
+  ПРИМЕЧАНИЯ:
+  
+  1. Все эти формы требуют класса "form-tel" для работы
+  2. Каждое поле должно иметь уникальный атрибут "name"
+  3. Обязательные поля отмечаются аттрибутом "required"
+  4. main.js будет автоматически обрабатывать отправку
+  5. Данные передаются в telegram-send.php
+  6. PHP автоматически форматирует вывод в Telegram
+  
+  Для тестирования:
+  - Откройте консоль браузера (F12)
+  - Отправьте форму
+  - Проверьте сообщение в Telegram
+-->

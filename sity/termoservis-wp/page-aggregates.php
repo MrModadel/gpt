@@ -763,7 +763,7 @@ get_header();
         </div>
 
         <div class="text-center">
-            <a href="#cta" class="btn" style="margin-right: 15px;">
+            <a href="#cta" class="btn" style="">
                 <i class="fas fa-calculator"></i> Подобрать агрегат
             </a>
             <a href="#cta" class="btn btn-outline">

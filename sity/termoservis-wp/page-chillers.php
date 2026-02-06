@@ -1024,6 +1024,13 @@ get_header();
         }
     }
 
+    @media (max-width: 360px) {
+
+        .cases-grid {
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        }
+    }
+
     .ts-title::after {
         left: 0 !important;
         transform: none !important;
@@ -1072,7 +1079,7 @@ get_header();
         </div>
 
         <div class="text-center">
-            <a href="#cta" class="btn" style="margin-right: 15px;">
+            <a href="#cta" class="btn" style="">
                 <i class="fas fa-calculator"></i> Рассчитать стоимость
             </a>
             <a href="#cta" class="btn btn-outline">
@@ -1092,7 +1099,7 @@ get_header();
             <?php
             // Показываем только три конкретные категории по slug
             $category_slugs = array('condenser-cooling-types', 'specialized-chillers', 'chiller-components');
-        
+
 
             foreach ($category_slugs as $index => $slug) {
                 $category = get_term_by('slug', $slug, 'product_cat');
@@ -1149,7 +1156,7 @@ get_header();
                         <?php
                         } else {
                         ?>
-                            <a href="/<?php echo  $slug?>" class="btn">
+                            <a href="/<?php echo  $slug ?>" class="btn">
                                 Смотреть все
                             </a>
 
@@ -1444,43 +1451,6 @@ get_header();
     </div>
 </section>
 
-<!-- 6. СТИКИ-ВИДЖЕТ
-<div class="sticky-widget" id="stickyWidget">
-    <button class="widget-close" id="closeWidget">
-        <i class="fas fa-times"></i>
-    </button>
-    <div class="widget-header">
-        <h4>Нужен точный расчет?</h4>
-        <p>Ответим за 24 часа с готовым КП</p>
-    </div>
-    <div class="widget-content">
-        <div class="widget-features">
-            <div class="widget-feature">
-                <i class="fas fa-check-circle"></i>
-                <span>Предложим 2-3 варианта решения</span>
-            </div>
-            <div class="widget-feature">
-                <i class="fas fa-check-circle"></i>
-                <span>Подготовим чертежи и спецификацию</span>
-            </div>
-            <div class="widget-feature">
-                <i class="fas fa-check-circle"></i>
-                <span>Рассчитаем экономию энергии</span>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <input type="text" class="form-control" id="widgetName" placeholder="Ваше имя">
-        </div>
-        <div class="form-group">
-            <input type="tel" class="form-control" id="widgetPhone" placeholder="Телефон *" required>
-        </div>
-        <button class="btn" style="width:100%;" id="widgetSubmit">
-            <i class="fas fa-paper-plane"></i> Получить КП
-        </button>
-    </div>
-</div> -->
-
 <!-- 7. FAQ -->
 <section id="faq" class="faq-section fade-in">
     <div class="container">
@@ -1675,16 +1645,6 @@ get_header();
                 answer.classList.toggle('active');
                 this.classList.toggle('active');
             });
-        });
-
-        // Sticky Navigation
-        const stickyNav = document.getElementById('stickyNav');
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 300) {
-                stickyNav.classList.add('active');
-            } else {
-                stickyNav.classList.remove('active');
-            }
         });
 
         // Sticky Widget

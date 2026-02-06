@@ -188,7 +188,12 @@ get_header();
     .advantage-item i {
         font-size: 1.3rem;
     }
-
+.comparison{
+    background-color: transparent;
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+}
     .comparison-table {
         width: 100%;
         border-collapse: collapse;
@@ -925,6 +930,21 @@ get_header();
             padding: 20px;
         }
     }
+
+    @media (max-width: 400px) {
+        .comparison-section {
+            padding: 10px 0 0;
+        }
+
+        .comparison-grid {
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        }
+
+        .type-advantages {
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        }
+
+    }
 </style>
 <!-- ХЛЕБНЫЕ КРОШКИ -->
 <div class="breadcrumbs">
@@ -966,10 +986,10 @@ get_header();
         </div>
 
         <div class="text-center">
-            <a href="#selector" class="btn" style="margin-right: 15px;">
+            <a href="#selector" class="btn">
                 <i class="fas fa-sliders-h"></i> Подобрать тип охлаждения
             </a>
-            <a href="/#cta" class="btn btn-outline" id="requestCall">
+            <a href="/#cta" class="btn btn-outline" id="requestCall" style="padding: 13px 35px">
                 <i class="fas fa-phone"></i> Консультация инженера
             </a>
         </div>
@@ -1033,39 +1053,41 @@ get_header();
             </div>
 
             <h3 style="margin-top: 40px;">Технические характеристики</h3>
-            <table class="comparison-table">
-                <thead>
-                    <tr>
-                        <th>Параметр</th>
-                        <th>Значение</th>
-                        <th>Особенности</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Холодопроизводительность</strong></td>
-                        <td>10-2000 кВт</td>
-                        <td>Стандартный диапазон для промышленных применений</td>
-                    </tr>
-                    <tr class="highlight">
-                        <td><strong>Температура конденсации</strong></td>
-                        <td>35-50°C</td>
-                        <td>Зависит от температуры окружающего воздуха</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Энергоэффективность (COP)</strong></td>
-                        <td>3.0-4.5</td>
-                        <td>Выше при низких температурах окружающей среды</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Требования к размещению</strong></td>
-                        <td>Вентилируемое помещение или улица</td>
-                        <td>Минимальное расстояние до стен 1-1.5 м</td>
-                    </tr>
-                </tbody>
-            </table>
+            
         </div>
-
+<div class="comparison">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Параметр</th>
+                            <th>Значение</th>
+                            <th>Особенности</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Холодопроизводительность</strong></td>
+                            <td>10-2000 кВт</td>
+                            <td>Стандартный диапазон для промышленных применений</td>
+                        </tr>
+                        <tr class="highlight">
+                            <td><strong>Температура конденсации</strong></td>
+                            <td>35-50°C</td>
+                            <td>Зависит от температуры окружающего воздуха</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Энергоэффективность (COP)</strong></td>
+                            <td>3.0-4.5</td>
+                            <td>Выше при низких температурах окружающей среды</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Требования к размещению</strong></td>
+                            <td>Вентилируемое помещение или улица</td>
+                            <td>Минимальное расстояние до стен 1-1.5 м</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         <!-- Водяное охлаждение -->
         <div class="type-content" id="waterContent">
             <div class="type-description">
@@ -1476,7 +1498,7 @@ get_header();
 
                     <div class="form-group">
                         <label>Ваши контактные данные для отправки результата</label>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 15px;">
+                        <div style="display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 15px;">
                             <input type="text" class="form-control" id="selectorName" placeholder="Ваше имя" name="name" required>
                             <input type="tel" class="form-control" id="selectorPhone" placeholder="Телефон" name="phone" required>
                         </div>

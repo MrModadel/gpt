@@ -327,32 +327,70 @@
             box-shadow: 0 0 0 3px rgba(0, 86, 184, 0.1);
         }
         .diagnostic-result {
-            background: linear-gradient(135deg, #0056b8 0%, #004494 100%);
-            color: white;
-            padding: 30px;
-            border-radius: 15px;
+            background: linear-gradient(135deg, #023a7d 0%, #003a66 100%);
+            color: #fff;
+            padding: 32px;
+            border-radius: 14px;
             margin-top: 40px;
             display: none;
+            box-shadow: 0 8px 30px rgba(2, 58, 125, 0.25);
+            border: 1px solid rgba(255,255,255,0.08);
+            backdrop-filter: blur(4px);
         }
         .diagnostic-result h3 {
-            color: white;
-            margin-bottom: 15px;
+            color: #fff;
+            margin-bottom: 12px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .diagnostic-result h3 i {
+            color: #bfe1ff;
+            font-size: 1.2rem;
         }
         .result-details {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin: 20px 0;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin: 18px 0;
         }
         .result-item {
-            background: rgba(255,255,255,0.1);
-            padding: 15px;
-            border-radius: 8px;
+            background: rgba(255,255,255,0.06);
+            padding: 18px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.04);
         }
         .result-item h4 {
-            color: white;
-            margin-bottom: 5px;
-            font-size: 1rem;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+        .result-item p {
+            color: #fff;
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin: 0;
+            word-break: break-word;
+        }
+        .diagnostic-result .btn-outline {
+            color: #fff;
+            border-color: rgba(255,255,255,0.8);
+            background: transparent;
+            padding: 10px 18px;
+        }
+        .diagnostic-result .btn-outline:hover {
+            background: rgba(255,255,255,0.08);
+            color: #fff;
+            transform: none;
+        }
+        @media (max-width: 480px) {
+            .result-details { grid-template-columns: 1fr; gap: 12px; }
+            .diagnostic-result { padding: 20px; }
+            .diagnostic-result h3 { font-size: 1.05rem; }
+            .result-item p { font-size: 1rem; }
         }
         .diagnostic-actions {
             text-align: center;
@@ -736,6 +774,9 @@
             color: #333;
             font-size: 1rem;
         }
+        .form-group label::after {
+            content: attr(data-required);
+        }
         .form-control {
             width: 100%;
             padding: 15px;
@@ -743,11 +784,25 @@
             border-radius: 8px;
             font-size: 1rem;
             transition: all 0.3s;
+            font-family: inherit;
+        }
+        .form-control[required] {
+            border-color: #ddd;
         }
         .form-control:focus {
             outline: none;
             border-color: #0056b8;
             box-shadow: 0 0 0 3px rgba(0, 86, 184, 0.1);
+        }
+        .form-control:invalid {
+            border-color: #dc3545;
+        }
+        select.form-control {
+            cursor: pointer;
+        }
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
         }
         .checkbox-grid {
             display: grid;
@@ -1195,64 +1250,7 @@
             color: #0056b8;
         }
 
-        /* ===== МОДАЛЬНОЕ ОКНО ===== */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.7);
-            z-index: 1001;
-            align-items: center;
-            justify-content: center;
-        }
-        .modal.active {
-            display: flex;
-            animation: fadeIn 0.3s ease;
-        }
-        .modal-content {
-            background: white;
-            border-radius: 20px;
-            max-width: 600px;
-            width: 90%;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-            animation: slideUp 0.5s ease;
-        }
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        .modal-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #666;
-            z-index: 10;
-        }
-        .modal-header {
-            padding: 30px;
-            background: linear-gradient(135deg, #0056b8 0%, #004494 100%);
-            color: white;
-            text-align: center;
-            border-radius: 20px 20px 0 0;
-        }
-        .modal-body {
-            padding: 30px;
-        }
+
 
         /* ===== ЧАТ-БОТ ===== */
         .chat-bot {
@@ -1414,9 +1412,7 @@
                 <a href="#diagnostic" class="btn">
                     <i class="fas fa-stethoscope"></i> Диагностика задачи
                 </a>
-                <button class="btn btn-outline" id="viewCasesBtn">
-                    <i class="fas fa-briefcase"></i> Смотреть кейсы
-                </button>
+
                 <button class="btn btn-outline" id="engineerCallBtn">
                     <i class="fas fa-phone-alt"></i> Вызвать инженера
                 </button>
@@ -1532,9 +1528,7 @@
                     </div>
                 </div>
                 <p style="margin: 20px 0; opacity: 0.9;">Наш инженер свяжется с вами в течение 1 часа для уточнения деталей и подготовки технико-коммерческого предложения.</p>
-                <button class="btn btn-outline" style="background: rgba(255,255,255,0.2); border-color: white;">
-                    <i class="fas fa-download"></i> Скачать шаблон ТЗ
-                </button>
+               
             </div>
         </div>
     </section>
@@ -1611,127 +1605,6 @@
             </div>
             
             <p class="solutions-note">* Срок реализации указан от момента утверждения технического задания до отгрузки оборудования</p>
-        </div>
-    </section>
-
-    <!-- 4. ПОРТФОЛИО ПРОЕКТОВ -->
-    <section class="portfolio-section fade-in">
-        <div class="container">
-            <h2 class="text-center">Сложные проекты, которые мы реализовали</h2>
-            <p class="text-center mb-40" style="color:#666;">Более 150 специализированных проектов в различных отраслях промышленности</p>
-            
-            <div class="portfolio-slider">
-                <div class="project-slide">
-                    <div class="project-image">
-                        <img src="https://images.iimg.live/images/amazing-shot-8342.webp&auto=format&fit=crop&w=800&q=80" alt="Чиллер для химического производства">
-                        <div class="project-logo">
-                            <i class="fas fa-industry"></i>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <div class="project-header">
-                            <h3>Чиллер для охлаждения хлорсодержащих газов</h3>
-                            <p><strong>Заказчик:</strong> Химический комбинат "ХИМПРОМ"</p>
-                        </div>
-                        <div class="project-params">
-                            <div class="project-param">
-                                <div class="param-label">Температура</div>
-                                <div class="param-value">-35°C</div>
-                            </div>
-                            <div class="project-param">
-                                <div class="param-label">Среда</div>
-                                <div class="param-value">Хлор + хлористый водород</div>
-                            </div>
-                            <div class="project-param">
-                                <div class="param-label">Давление</div>
-                                <div class="param-value">12 бар</div>
-                            </div>
-                            <div class="project-param">
-                                <div class="param-label">Исполнение</div>
-                                <div class="param-value">Exd, антикоррозионное</div>
-                            </div>
-                        </div>
-                        <div class="project-result">
-                            <strong>Результат:</strong> Стабильная работа в агрессивной среде, экономия 1,2 млн руб/год за счет отказа от импортного оборудования
-                        </div>
-                        <button class="btn-small discuss-project" data-type="chemical">Обсудить похожий проект</button>
-                    </div>
-                </div>
-                
-                <div class="project-slide">
-                    <div class="project-image">
-                        <img src="https://images.iimg.live/images/amazing-shot-8342.webp&auto=format&fit=crop&w=800&q=80" alt="Криогенная система">
-                        <div class="project-logo">
-                            <i class="fas fa-prescription-bottle"></i>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <div class="project-header">
-                            <h3>Криогенная система для фармпроизводства</h3>
-                            <p><strong>Заказчик:</strong> Фармацевтический завод "БИОТЕХ"</p>
-                        </div>
-                        <div class="project-params">
-                            <div class="project-param">
-                                <div class="param-label">Температура</div>
-                                <div class="param-value">-55°C</div>
-                            </div>
-                            <div class="project-param">
-                                <div class="param-label">Среда</div>
-                                <div class="param-value">Этиленгликоль 40%</div>
-                            </div>
-                            <div class="project-param">
-                                <div class="param-label">Точность</div>
-                                <div class="param-value">±0.3°C</div>
-                            </div>
-                            <div class="project-param">
-                                <div class="param-label">Стандарт</div>
-                                <div class="param-value">GMP, стерильное исполнение</div>
-                            </div>
-                        </div>
-                        <div class="project-result">
-                            <strong>Результат:</strong> Соответствие международным стандартам GMP, повышение выхода продукта на 15%
-                        </div>
-                        <button class="btn-small discuss-project" data-type="pharma">Обсудить похожий проект</button>
-                    </div>
-                </div>
-                
-                <div class="project-slide">
-                    <div class="project-image">
-                        <img src="https://images.iimg.live/images/amazing-shot-8342.webp&auto=format&fit=crop&w=800&q=80" alt="Морозостойкий чиллер">
-                        <div class="project-logo">
-                            <i class="fas fa-snowflake"></i>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <div class="project-header">
-                            <h3>Морозостойкий чиллер для нефтебазы</h3>
-                            <p><strong>Заказчик:</strong> НК "АрктикНефть"</p>
-                        </div>
-                        <div class="project-params">
-                            <div class="project-param">
-                                <div class="param-label">Температура среды</div>
-                                <div class="param-value">-45°C...+25°C</div>
-                            </div>
-                            <div class="project-param">
-                                <div class="param-label">Рабочая температура</div>
-                                <div class="param-value">-25°C</div>
-                            </div>
-                            <div class="project-param">
-                                <div class="param-label">Исполнение</div>
-                                <div class="param-value">Арктическое, уличное</div>
-                            </div>
-                            <div class="project-param">
-                                <div class="param-label">Мощность</div>
-                                <div class="param-value">250 кВт</div>
-                            </div>
-                        </div>
-                        <div class="project-result">
-                            <strong>Результат:</strong> Безаварийная работа при -45°C, снижение энергозатрат на 30% за счет рекуперации тепла
-                        </div>
-                        <button class="btn-small discuss-project" data-type="arctic">Обсудить похожий проект</button>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -1828,26 +1701,26 @@
                             <div class="form-row">
                                 <div class="form-group">
                                     <label>Ваше имя *</label>
-                                    <input type="text" class="form-control" id="requestName" placeholder="Иванов Иван Иванович" required>
+                                    <input type="text" class="form-control" id="requestName" name="requestName" placeholder="Иванов Иван Иванович" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Должность</label>
-                                    <input type="text" class="form-control" id="requestPosition" placeholder="Технический директор">
+                                    <input type="text" class="form-control" id="requestPosition" name="requestPosition" placeholder="Технический директор">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group">
                                     <label>Телефон *</label>
-                                    <input type="tel" class="form-control" id="requestPhone" placeholder="+7 (___) ___-__-__" required>
+                                    <input type="tel" class="form-control" id="requestPhone" name="requestPhone" placeholder="+7 (___) ___-__-__" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Email *</label>
-                                    <input type="email" class="form-control" id="requestEmail" placeholder="ivanov@company.ru" required>
+                                    <input type="email" class="form-control" id="requestEmail" name="requestEmail" placeholder="ivanov@company.ru" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label>Компания *</label>
-                                <input type="text" class="form-control" id="requestCompany" placeholder="ООО 'Ваша компания'" required>
+                                <input type="text" class="form-control" id="requestCompany" name="requestCompany" placeholder="ООО 'Ваша компания'" required>
                             </div>
                             <div class="form-actions">
                                 <button type="button" class="btn btn-outline" disabled>Назад</button>
@@ -1859,21 +1732,21 @@
                         <div class="form-step-content" id="formStepContent2">
                             <div class="form-group">
                                 <label>Температура теплоносителя на входе/выходе *</label>
-                                <input type="text" class="form-control" id="requestTemp" placeholder="Пример: +25°C / +5°C" required>
+                                <input type="text" class="form-control" id="requestTemp" name="requestTemp" placeholder="Пример: +25°C / +5°C" required>
                             </div>
                             <div class="form-row">
                                 <div class="form-group">
                                     <label>Расход теплоносителя, м³/ч *</label>
-                                    <input type="number" class="form-control" id="requestFlow" placeholder="10" min="0" step="0.1" required>
+                                    <input type="number" class="form-control" id="requestFlow" name="requestFlow" placeholder="10" min="0" step="0.1" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Мощность охлаждения, кВт</label>
-                                    <input type="number" class="form-control" id="requestPower" placeholder="100" min="0">
+                                    <input type="number" class="form-control" id="requestPower" name="requestPower" placeholder="100" min="0">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label>Среда (теплоноситель) *</label>
-                                <select class="form-control" id="requestMedia" required>
+                                <select class="form-control" id="requestMedia" name="requestMedia" required>
                                     <option value="">-- Выберите среду --</option>
                                     <option value="water">Вода</option>
                                     <option value="brine">Рассол (пропиленгликоль)</option>
@@ -1917,7 +1790,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Дополнительные условия и пожелания</label>
-                                <textarea class="form-control" id="requestNotes" rows="4" placeholder="Особые условия эксплуатации, ограничения по габаритам, требования к материалам..."></textarea>
+                                <textarea class="form-control" id="requestNotes" name="requestNotes" rows="4" placeholder="Особые условия эксплуатации, ограничения по габаритам, требования к материалам..."></textarea>
                             </div>
                             <div class="form-actions">
                                 <button type="button" class="btn btn-outline" id="backToStep2">Назад</button>
@@ -1930,7 +1803,7 @@
                             <div class="form-group">
                                 <label>Загрузить техническое задание (до 20 МБ)</label>
                                 <div class="file-upload">
-                                    <input type="file" id="tzFile" accept=".pdf,.doc,.docx,.xls,.xlsx">
+                                    <input type="file" id="tzFile" name="tzFile" accept=".pdf,.doc,.docx,.xls,.xlsx">
                                     <div class="file-label">
                                         <i class="fas fa-file-alt"></i>
                                         <span id="tzFileName">Выберите файл ТЗ...</span>
@@ -1940,7 +1813,7 @@
                             <div class="form-group">
                                 <label>Загрузить чертежи и схемы (до 50 МБ)</label>
                                 <div class="file-upload">
-                                    <input type="file" id="drawingsFile" accept=".dwg,.dxf,.pdf,.jpg,.png" multiple>
+                                    <input type="file" id="drawingsFile" name="drawingsFile" accept=".dwg,.dxf,.pdf,.jpg,.png" multiple>
                                     <div class="file-label">
                                         <i class="fas fa-drafting-compass"></i>
                                         <span id="drawingsFileName">Выберите файлы чертежей...</span>
@@ -1950,7 +1823,7 @@
                             <div class="form-group">
                                 <label>Загрузить спецификацию оборудования (если есть)</label>
                                 <div class="file-upload">
-                                    <input type="file" id="specFile" accept=".pdf,.doc,.docx,.xls,.xlsx">
+                                    <input type="file" id="specFile" name="specFile" accept=".pdf,.doc,.docx,.xls,.xlsx">
                                     <div class="file-label">
                                         <i class="fas fa-list-alt"></i>
                                         <span id="specFileName">Выберите файл спецификации...</span>
@@ -1968,7 +1841,7 @@
                             <div class="form-row">
                                 <div class="form-group">
                                     <label>Желаемые сроки реализации</label>
-                                    <select class="form-control" id="requestTimeline">
+                                    <select class="form-control" id="requestTimeline" name="requestTimeline">
                                         <option value="">-- Выберите срок --</option>
                                         <option value="urgent">Срочно (до 30 дней)</option>
                                         <option value="normal">Нормальные (30-60 дней)</option>
@@ -1977,12 +1850,12 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Ориентировочный бюджет, руб</label>
-                                    <input type="text" class="form-control" id="requestBudget" placeholder="1 000 000">
+                                    <input type="text" class="form-control" id="requestBudget" name="requestBudget" placeholder="1 000 000">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label>Источник финансирования</label>
-                                <select class="form-control" id="requestFunding">
+                                <select class="form-control" id="requestFunding" name="requestFunding">
                                     <option value="">-- Выберите источник --</option>
                                     <option value="own">Собственные средства</option>
                                     <option value="leasing">Лизинг</option>
@@ -1993,7 +1866,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Дополнительные комментарии</label>
-                                <textarea class="form-control" id="finalNotes" rows="3" placeholder="Информация о тендере, конкурсе, особых условиях оплаты..."></textarea>
+                                <textarea class="form-control" id="finalNotes" name="finalNotes" rows="3" placeholder="Информация о тендере, конкурсе, особых условиях оплаты..."></textarea>
                             </div>
                             <div class="guarantee-note">
                                 <i class="fas fa-shield-alt"></i>
@@ -2121,102 +1994,6 @@
         </div>
     </section>
 
-    <!-- 8. КОМПЕТЕНЦИИ И СЕРТИФИКАТЫ -->
-    <section class="competencies-section fade-in">
-        <div class="container">
-            <h2 class="text-center">Наши компетенции и сертификаты</h2>
-            <p class="text-center mb-40" style="color:#666;">Работаем с мировыми лидерами и соответствуем международным стандартам</p>
-            
-            <div class="partners-grid">
-                <div class="partner-logo">
-                    <i class="fab fa-siemens"></i>
-                </div>
-                <div class="partner-logo">
-                    <i class="fas fa-cog"></i>
-                    <span style="font-weight:700; color:#0056b8;">DANFOSS</span>
-                </div>
-                <div class="partner-logo">
-                    <i class="fas fa-compress-arrows-alt"></i>
-                    <span style="font-weight:700; color:#0056b8;">BITZER</span>
-                </div>
-                <div class="partner-logo">
-                    <i class="fas fa-bolt"></i>
-                    <span style="font-weight:700; color:#0056b8;">Schneider Electric</span>
-                </div>
-                <div class="partner-logo">
-                    <i class="fas fa-microchip"></i>
-                    <span style="font-weight:700; color:#0056b8;">SIEMENS</span>
-                </div>
-                <div class="partner-logo">
-                    <i class="fas fa-industry"></i>
-                    <span style="font-weight:700; color:#0056b8;">ABB</span>
-                </div>
-            </div>
-            
-            <div class="certificates-slider">
-                <div class="certificate-slide">
-                    <div class="certificate-card">
-                        <i class="fas fa-award"></i>
-                        <h4>ISO 9001:2015</h4>
-                        <p>Система менеджмента качества</p>
-                    </div>
-                </div>
-                <div class="certificate-slide">
-                    <div class="certificate-card">
-                        <i class="fas fa-file-certificate"></i>
-                        <h4>АТТЕСТАТ НАКС</h4>
-                        <p>Сварка особо ответственных конструкций</p>
-                    </div>
-                </div>
-                <div class="certificate-slide">
-                    <div class="certificate-card">
-                        <i class="fas fa-shield-alt"></i>
-                        <h4>Лицензия МЧС</h4>
-                        <p>Взрывозащищенное оборудование</p>
-                    </div>
-                </div>
-                <div class="certificate-slide">
-                    <div class="certificate-card">
-                        <i class="fas fa-clipboard-check"></i>
-                        <h4>ГОСТ Р</h4>
-                        <p>Соответствие российским стандартам</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="expertise-grid">
-                <div class="expertise-item">
-                    <h3>Фармацевтические стандарты</h3>
-                    <ul class="expertise-list">
-                        <li>GMP (Good Manufacturing Practice)</li>
-                        <li>Валидация и квалификация</li>
-                        <li>Стерильные исполнения</li>
-                        <li>Документация по FDA требованиям</li>
-                    </ul>
-                </div>
-                
-                <div class="expertise-item">
-                    <h3>Нефтегазовые спецификации</h3>
-                    <ul class="expertise-list">
-                        <li>API (American Petroleum Institute)</li>
-                        <li>ASME (American Society of Mechanical Engineers)</li>
-                        <li>NACE коррозионная стойкость</li>
-                        <li>ATEX взрывозащита</li>
-                    </ul>
-                </div>
-                
-                <div class="expertise-item">
-                    <h3>Пищевые и гигиенические нормы</h3>
-                    <ul class="expertise-list">
-                        <li>EHEDG (European Hygienic Engineering)</li>
-                        <li>3-A Sanitary Standards</li>
-                        <li>Материалы для контакта с пищевыми продуктами</li>
-                        <li>Легкая очистка и дезинфекция</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- SEO-ГЛОССАРИЙ -->
     <section class="seo-glossary fade-in">
@@ -2777,162 +2554,8 @@
                 // });
             });
             
-            // ===== МОДАЛЬНЫЕ ОКНА =====
-            const projectModal = document.getElementById('projectModal');
-            const closeProjectModal = document.getElementById('closeProjectModal');
-            const viewCasesBtn = document.getElementById('viewCasesBtn');
-            const engineerCallBtn = document.getElementById('engineerCallBtn');
-            const discussProjectBtns = document.querySelectorAll('.discuss-project');
-            
-            // Обсуждение проекта из таблицы
-            discussProjectBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const projectType = this.dataset.type;
-                    const typeNames = {
-                        'cryogenic': 'Криогенный чиллер',
-                        'high-temp': 'Высокотемпературный чиллер',
-                        'explosion': 'Взрывозащищенный чиллер',
-                        'frost': 'Морозостойкий чиллер',
-                        'corrosion': 'Коррозионностойкий чиллер',
-                        'pressure': 'Чиллер высокого давления',
-                        'chemical': 'Для химической промышленности',
-                        'pharma': 'Для фармацевтики',
-                        'arctic': 'Для арктических условий'
-                    };
-                    
-                    document.getElementById('modalProjectType').value = typeNames[projectType] || 'Специализированный чиллер';
-                    projectModal.classList.add('active');
-                });
-            });
-            
-            // Просмотр кейсов
-            viewCasesBtn.addEventListener('click', function() {
-                document.querySelector('.portfolio-section').scrollIntoView({ 
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            });
-            
-            // Вызов инженера
-            engineerCallBtn.addEventListener('click', function() {
-                document.getElementById('modalProjectType').value = 'Консультация инженера';
-                projectModal.classList.add('active');
-            });
-            
-            // Закрытие модального окна
-            closeProjectModal.addEventListener('click', function() {
-                projectModal.classList.remove('active');
-            });
-            
-            // Отправка запроса из модального окна
-            document.getElementById('submitProjectRequest').addEventListener('click', function() {
-                const name = document.getElementById('modalProjectName').value;
-                const phone = document.getElementById('modalProjectPhone').value;
-                const email = document.getElementById('modalProjectEmail').value;
-                const type = document.getElementById('modalProjectType').value;
-                const comment = document.getElementById('modalProjectComment').value;
-                
-                if (!name || !phone) {
-                    alert('Пожалуйста, заполните обязательные поля');
-                    return;
-                }
-                
-                // Отправка данных
-                console.log('Запрос проекта отправлен:', { name, phone, email, type, comment });
-                
-                alert('Спасибо! Наш инженер свяжется с вами в течение 1 часа.');
-                projectModal.classList.remove('active');
-                
-                // Очистка формы
-                document.getElementById('modalProjectName').value = '';
-                document.getElementById('modalProjectPhone').value = '';
-                document.getElementById('modalProjectEmail').value = '';
-                document.getElementById('modalProjectComment').value = '';
-            });
-            
-            // Закрытие модального окна при клике вне его
-            window.addEventListener('click', function(e) {
-                if (e.target === projectModal) {
-                    projectModal.classList.remove('active');
-                }
-            });
-            
-            // ===== ЧАТ-БОТ =====
-            const chatButton = document.getElementById('chatButton');
-            const chatWindow = document.getElementById('chatWindow');
-            const chatInput = document.getElementById('chatInput');
-            const sendChatMessage = document.getElementById('sendChatMessage');
-            const chatMessages = document.getElementById('chatMessages');
-            
-            chatButton.addEventListener('click', function() {
-                chatWindow.classList.toggle('active');
-            });
-            
-            function addMessage(text, isBot = true) {
-                const messageDiv = document.createElement('div');
-                messageDiv.className = `message ${isBot ? 'bot' : 'user'}`;
-                messageDiv.innerHTML = `<p>${text}</p>`;
-                chatMessages.appendChild(messageDiv);
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-            }
-            
-            sendChatMessage.addEventListener('click', function() {
-                const message = chatInput.value.trim();
-                if (!message) return;
-                
-                addMessage(message, false);
-                chatInput.value = '';
-                
-                // Имитация ответа бота
-                setTimeout(() => {
-                    const responses = [
-                        "Понял вашу задачу. Для предварительной оценки мне нужно уточнить: какая требуется температура охлаждения?",
-                        "Спасибо за информацию! Какой теплоноситель планируется использовать?",
-                        "Я записал ваши требования. Для подготовки точного предложения нашему инженеру понадобятся дополнительные данные. Хотите, чтобы он связался с вами?",
-                        "Это сложная задача! Рекомендую заполнить форму диагностики выше, чтобы получить предварительный расчет стоимости и сроков."
-                    ];
-                    
-                    const randomResponse = responses[Math.floor(Math.random() * responses.length)];
-                    addMessage(randomResponse, true);
-                }, 1000);
-            });
-            
-            chatInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    sendChatMessage.click();
-                }
-            });
-            
-            // ===== ДОПОЛНИТЕЛЬНЫЙ ФУНКЦИОНАЛ =====
-            // Таймер акции
-            function updatePromoTimer() {
-                const now = new Date();
-                const endOfDay = new Date();
-                endOfDay.setHours(23, 59, 59, 999);
-                
-                const diff = endOfDay - now;
-                const hours = Math.floor(diff / (1000 * 60 * 60));
-                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-                
-                // Можно добавить отображение таймера на странице
-                if (hours < 24) {
-                    console.log(`Акция: проектирование в подарок! Осталось: ${hours}:${minutes}:${seconds}`);
-                }
-            }
-            
-            setInterval(updatePromoTimer, 1000);
-            
-            // Скачивание шаблона ТЗ
-            document.querySelectorAll('.btn-outline').forEach(btn => {
-                if (btn.textContent.includes('Скачать шаблон ТЗ')) {
-                    btn.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        alert('Шаблон ТЗ будет загружен. В реальной версии здесь будет ссылка на PDF файл.');
-                        // window.open('/downloads/tz-template.pdf', '_blank');
-                    });
-                }
-            });
+
+         
             
             // Адаптация таймлайна для мобильных
             function adjustTimeline() {
@@ -2947,5 +2570,8 @@
             adjustTimeline();
         });
     </script>
+    
+    <!-- Подключение основного скрипта для работы форм -->
+    <script src="/wp-content/themes/termo/js/main.js"></script>
 </body>
 </html>

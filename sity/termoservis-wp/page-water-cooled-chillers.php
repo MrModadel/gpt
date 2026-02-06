@@ -128,7 +128,7 @@ get_header();
 
     .subcategory-card.--active {
         transform: translateY(-6px);
-        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
         background: linear-gradient(135deg, #e9f0fb 0%, #e0e9f6 100%);
     }
 
@@ -194,46 +194,6 @@ get_header();
         font-size: 0.95rem;
     }
 
-    /* Сравнение */
-    .comparison {
-        background-color: #f1f5f9;
-        border-radius: 10px;
-        padding: 30px;
-        margin-top: 30px;
-    }
-
-    .comparison-table {
-        width: 100%;
-        border-collapse: collapse;
-        background-color: white;
-        border-radius: 8px;
-        overflow: hidden;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    }
-
-    .comparison-table th {
-        background-color: #1a5fb4;
-        color: white;
-        padding: 12px;
-        text-align: center;
-    }
-
-    .comparison-table td {
-        padding: 12px;
-        border-bottom: 1px solid #eee;
-    }
-
-    .comparison-table .feature-name {
-        font-weight: 600;
-        color: #333;
-        width: 40%;
-    }
-
-    .comparison-table .air-cooling,
-    .comparison-table .water-cooling {
-        color: #1a5fb4;
-        font-weight: 600;
-    }
 
     /* Применение */
     .applications {
@@ -252,7 +212,7 @@ get_header();
         padding: 18px;
         border-radius: 8px;
         text-align: center;
-        box-shadow: 0 5px 12px rgba(0,0,0,0.04);
+        box-shadow: 0 5px 12px rgba(0, 0, 0, 0.04);
     }
 
     .application-icon {
@@ -329,7 +289,7 @@ get_header();
     .fade-in {
         opacity: 0;
         transform: translateY(20px);
-        transition: all 0.7s cubic-bezier(.2,.9,.2,1);
+        transition: all 0.7s cubic-bezier(.2, .9, .2, 1);
     }
 
     .fade-in.visible {
@@ -338,15 +298,31 @@ get_header();
     }
 
     @media (max-width: 768px) {
-        .hero { padding: 60px 0; }
-        .hero h1 { font-size: 1.9rem; }
-        .ts-media { height: 180px; }
+        .hero {
+            padding: 60px 0;
+        }
+
+        .hero h1 {
+            font-size: 1.9rem;
+        }
+
+        .ts-media {
+            height: 180px;
+        }
     }
 
     @media (max-width: 480px) {
-        .ts-grid { grid-template-columns: 1fr; }
-        .subcategories-grid { grid-template-columns: 1fr; }
-         .comparison { padding: 15px;}
+        .ts-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .subcategories-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .comparison {
+            padding: 15px;
+        }
     }
 </style>
 
@@ -461,7 +437,9 @@ get_header();
 <!-- Преимущества -->
 <section class="fade-in" style="background-color:#f8f9fa;">
     <div class="container">
-        <div class="section-title"><h2>Преимущества чиллеров с водяным охлаждением</h2></div>
+        <div class="section-title">
+            <h2>Преимущества чиллеров с водяным охлаждением</h2>
+        </div>
 
         <div class="features-grid">
             <div class="feature-card">
@@ -551,7 +529,9 @@ get_header();
 <!-- Области применения -->
 <section class="applications fade-in">
     <div class="container">
-        <div class="section-title"><h2>Области применения</h2></div>
+        <div class="section-title">
+            <h2>Области применения</h2>
+        </div>
 
         <div class="applications-grid">
             <div class="application-item">
@@ -656,22 +636,22 @@ get_header();
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function() {
 
- 
 
-    // Анимация появления при скролле
-    const fadeElems = document.querySelectorAll('.fade-in');
-    const onScroll = () => {
-        fadeElems.forEach(el => {
-            const top = el.getBoundingClientRect().top;
-            if (top < window.innerHeight - 120) el.classList.add('visible');
-        });
-    };
-    window.addEventListener('scroll', onScroll);
-    onScroll();
-});
-   (function() {
+
+        // Анимация появления при скролле
+        const fadeElems = document.querySelectorAll('.fade-in');
+        const onScroll = () => {
+            fadeElems.forEach(el => {
+                const top = el.getBoundingClientRect().top;
+                if (top < window.innerHeight - 120) el.classList.add('visible');
+            });
+        };
+        window.addEventListener('scroll', onScroll);
+        onScroll();
+    });
+    (function() {
         const root = document.getElementById('ts-chillers');
         const grid = root.querySelector('#ts-grid');
         const search = root.querySelector('#ts-search');

@@ -1,54 +1,119 @@
 <?php
 // telegram-send.php
+// Универсальный обработчик для отправки данных форм в Telegram
 
 // Настройки
 $bot_token = '8588271571:AAFCGdoM24DFRUi6QhJPE7JV7C05F6xh5Tc';
-$chat_id   = '-1003550560566'; // пример: -1001234567890
+$chat_id   = '-1003550560566';
 
-// Получаем данные
-$name    = $_POST['name'] ?? '';
-$phone   = $_POST['phone'] ?? '';
-$email   = $_POST['email'] ?? '';
-$message = $_POST['message'] ?? '';
-$time    = $_POST['time'] ?? '';
-$model   = $_POST['model'] ?? '';
-$location   = $_POST['location'] ?? '';
-$noise   = $_POST['noise'] ?? '';
-$water   = $_POST['water'] ?? '';
-$climate   = $_POST['climate'] ?? '';
-$budget   = $_POST['budget'] ?? '';
-// Формируем текст
-$text = "📩 Новая заявка с сайта\n\n";
-$text .= "👤 Имя: $name\n";
-$text .= "📞 Телефон: $phone\n";
-if(!empty($email)){
-    $text .= "✉️ Email: $email\n";
+// Определяем заголовок сообщения
+$formType = $_POST['formType'] ?? 'Форма с сайта';
+$text = "📩 $formType\n";
+$text .= str_repeat("━", 30) . "\n\n";
+
+// Эмодзи для разных типов полей
+$emojiMap = [
+    'name' => '👤',
+    'phone' => '📞',
+    'email' => '✉️',
+    'message' => '💬',
+    'time' => '⏰',
+    'model' => '🔧',
+    'location' => '📍',
+    'noise' => '🔊',
+    'water' => '💧',
+    'climate' => '🌡️',
+    'budget' => '💰',
+    'company' => '🏢',
+    'position' => '💼',
+    'request' => '📝',
+    'notes' => '📄',
+    'temp' => '🌡️',
+    'flow' => '💦',
+    'power' => '⚡',
+    'media' => '🧪',
+    'timeline' => '⏳',
+    'funding' => '💳',
+    'file' => '📎',
+];
+
+// Обрабатываем все POST данные
+$postedFields = array_diff_key($_POST, array_flip(['formType', 'submitBtn'])); // Исключаем служебные поля
+
+// Разделяем поля на основные, чекбоксы и текстовые поля
+$groupedData = [
+    'main' => [],
+    'checkboxes' => [],
+    'textarea' => [],
+];
+
+foreach ($postedFields as $fieldName => $fieldValue) {
+    if (empty($fieldValue)) continue;
+    
+    // Получаем эмодзи
+    $emoji = '';
+    foreach ($emojiMap as $key => $symbol) {
+        if (strpos(strtolower($fieldName), $key) !== false) {
+            $emoji = $symbol;
+            break;
+        }
+    }
+    if (empty($emoji)) $emoji = '•';
+    
+    // Создаём красивое название поля
+    $label = preg_replace('/([A-Z])/', ' $1', $fieldName);
+    $label = ucfirst(str_replace(['request', 'id'], '', $label));
+    
+    // Классифицируем тип поля
+    if (is_array($fieldValue)) {
+        $groupedData['checkboxes'][$label] = implode(', ', $fieldValue);
+    } else if (strlen($fieldValue) > 100 || strpos($fieldName, 'Notes') !== false || strpos($fieldName, 'notes') !== false) {
+        $groupedData['textarea'][$label] = $fieldValue;
+    } else {
+        $groupedData['main'][$label] = $fieldValue;
+    }
 }
-if(!empty($message)){
-    $text .= "💬 Сообщение:\n$message\n";
+
+// Форматируем основные данные
+if (!empty($groupedData['main'])) {
+    $text .= "🔹 *Основная информация:*\n";
+    foreach ($groupedData['main'] as $label => $value) {
+        // Ищем эмодзи
+        $emoji = '•';
+        foreach ($emojiMap as $key => $symbol) {
+            if (strpos(strtolower($label), strtolower($key)) !== false) {
+                $emoji = $symbol;
+                break;
+            }
+        }
+        $text .= "$emoji $label: <b>$value</b>\n";
+    }
+    $text .= "\n";
 }
-if(!empty($time)){
-    $text .= "⏰ Время: $time\n";
+
+// Форматируем чекбоксы
+if (!empty($groupedData['checkboxes'])) {
+    $text .= "✓ *Выбранные опции:*\n";
+    foreach ($groupedData['checkboxes'] as $label => $values) {
+        $text .= "• $label: <b>$values</b>\n";
+    }
+    $text .= "\n";
 }
-if(!empty($model)){
-    $text .= "🔧 Модель: $model\n";
+
+// Форматируем текстовые поля
+if (!empty($groupedData['textarea'])) {
+    $text .= "📋 *Дополнительная информация:*\n";
+    foreach ($groupedData['textarea'] as $label => $value) {
+        $text .= "━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
+        $text .= "<b>$label:</b>\n";
+        $text .= htmlspecialchars($value) . "\n\n";
+    }
 }
-if(!empty($location)){
-    $text .= "Выбор клиента:\n";
-    $text .= "📍 Локация: $location\n";
-}
-if(!empty($noise)){
-    $text .= "🔊 Шум: $noise\n";
-}
-if(!empty($water)){
-    $text .= "� Вода: $water\n";
-}
-if(!empty($climate)){
-    $text .= "🌡️ Климат: $climate\n";
-}
-if(!empty($budget)){
-    $text .= "💰 Бюджет: $budget\n";
-}
+
+// Добавляем время отправки
+$text .= "━" . str_repeat("━", 28) . "\n";
+$text .= "🕐 Время отправки: " . date('d.m.Y H:i:s') . "\n";
+$text .= "🌐 IP: " . $_SERVER['REMOTE_ADDR'] ?? 'N/A';
 
 // Отправка текста в Telegram
 $sendTextUrl = "https://api.telegram.org/bot$bot_token/sendMessage";
@@ -68,29 +133,34 @@ $options = [
 $context  = stream_context_create($options);
 file_get_contents($sendTextUrl, false, $context);
 
-// ----------------------------
-// Обработка файлов (до 10 МБ)
-if(!empty($_FILES)){
-    foreach($_FILES as $file){
-        if($file['error'] === UPLOAD_ERR_OK && $file['size'] <= 10*1024*1024){ // ≤10 МБ
-            $tmpFile = $file['tmp_name'];
-            $fileName = $file['name'];
-
-            $sendFileUrl = "https://api.telegram.org/bot$bot_token/sendDocument";
-            $postFields = [
-                'chat_id' => $chat_id,
-                'document' => new CURLFile($tmpFile, mime_content_type($tmpFile), $fileName)
-            ];
-
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $sendFileUrl);
-            curl_setopt($ch, CURLOPT_POST, 1);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_exec($ch);
-            curl_close($ch);
+// Обработка файлов (до 50 МБ за файл)
+if (!empty($_FILES)) {
+    foreach ($_FILES as $fieldName => $filesData) {
+        // Обработка как множественной загрузки так и одиночной
+        $files = isset($filesData[0]) ? $filesData : [$filesData];
+        
+        foreach ($files as $file) {
+            if ($file['error'] === UPLOAD_ERR_OK && $file['size'] <= 50*1024*1024) {
+                $tmpFile = $file['tmp_name'];
+                $fileName = $file['name'];
+                
+                $sendFileUrl = "https://api.telegram.org/bot$bot_token/sendDocument";
+                $postFields = [
+                    'chat_id' => $chat_id,
+                    'document' => new CURLFile($tmpFile, mime_content_type($tmpFile), $fileName),
+                    'caption' => "📎 Файл: $fieldName"
+                ];
+                
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_URL, $sendFileUrl);
+                curl_setopt($ch, CURLOPT_POST, 1);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_exec($ch);
+                curl_close($ch);
+            }
         }
     }
 }
 
-echo 'OK';
+echo json_encode(['success' => true, 'message' => 'OK']);
