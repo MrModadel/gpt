@@ -2100,7 +2100,7 @@ get_header();
                         <div class="card-badge">ПОДКАТЕГОРИЯ</div>
                      </div>
                      <div class="card-content">
-                        <h3><?php echo esc_html($subcat->name); ?></h3>
+                        <h3>Специализированные чиллеры: <?php echo esc_html($subcat->name); ?></h3>
                         <p><?php echo wp_kses_post(term_description($subcat->term_id, 'product_cat')); ?></p>
                         <a href="<?php echo get_page_or_term_link($subcat); ?>" class="btn">Смотреть</a>
                      </div>
