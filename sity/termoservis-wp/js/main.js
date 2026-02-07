@@ -347,3 +347,74 @@ if (projectModal && closeProjectModalButton) {
     }
   });
 }
+
+// ===== МОДАЛЬНЫЕ ОКНА (modal-overlay) =====
+(function () {
+  function getOverlayById(id) {
+    const el = document.getElementById(id);
+    if (!el || !el.classList || !el.classList.contains('modal-overlay')) return null;
+    return el;
+  }
+
+  function openOverlay(overlay) {
+    if (!overlay) return;
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeOverlay(overlay) {
+    if (!overlay) return;
+    overlay.classList.remove('active');
+    if (!document.querySelector('.modal-overlay.active')) {
+      document.body.style.overflow = 'auto';
+    }
+  }
+
+  function closeAllOverlays() {
+    document.querySelectorAll('.modal-overlay.active').forEach(overlay => overlay.classList.remove('active'));
+    document.body.style.overflow = 'auto';
+  }
+
+  document.addEventListener('click', function (e) {
+    const openCalcTrigger = e.target.closest('.open-modal-calc');
+    if (openCalcTrigger) {
+      openOverlay(getOverlayById('calcModal'));
+      return;
+    }
+
+    const openCallTrigger = e.target.closest('.open-modal-call');
+    if (openCallTrigger) {
+      openOverlay(getOverlayById('callModal'));
+      return;
+    }
+
+    const closeTrigger = e.target.closest('.close-modal, .modal-close');
+    if (closeTrigger) {
+      closeOverlay(closeTrigger.closest('.modal-overlay'));
+      return;
+    }
+
+    if (e.target.classList && e.target.classList.contains('modal-overlay')) {
+      closeOverlay(e.target);
+      return;
+    }
+
+    const faqQuestion = e.target.closest('.faq-question');
+    if (faqQuestion) {
+      const faqItem = faqQuestion.closest('.faq-item');
+      if (!faqItem) return;
+
+      document.querySelectorAll('.faq-item.active').forEach(item => {
+        if (item !== faqItem) item.classList.remove('active');
+      });
+
+      faqItem.classList.add('active');
+    }
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      closeAllOverlays();
+    }
+  });
+})();

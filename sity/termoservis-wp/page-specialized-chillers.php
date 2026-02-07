@@ -1879,7 +1879,7 @@ get_header();
       .comparison-table {
          padding: 15px;
          border-radius: 12px;
-         min-width:auto;
+         min-width: auto;
       }
 
       .comparison-table h3 {
@@ -1894,867 +1894,924 @@ get_header();
 
    }
 </style>
-   <!-- ХЛЕБНЫЕ КРОШКИ -->
-   <div class="breadcrumbs">
-      <div class="container">
-         <a href="/">Главная</a> <span>/</span>
-         <a href="/catalog/">Каталог</a> <span>/</span>
-         <a href="/industrial-chillers/">Промышленные чиллеры</a> <span>/</span>
-         <strong>Специализированные и нестандартные</strong>
+<!-- ХЛЕБНЫЕ КРОШКИ -->
+<div class="breadcrumbs">
+   <div class="container">
+      <a href="/">Главная</a> <span>/</span>
+      <a href="/catalog/">Каталог</a> <span>/</span>
+      <a href="/industrial-chillers/">Промышленные чиллеры</a> <span>/</span>
+      <strong>Специализированные и нестандартные</strong>
+   </div>
+</div>
+
+<!-- 1. ГЕРОЙ-СЕКЦИЯ -->
+<section class="special-hero hero">
+   <div class="container">
+      <h1 class="text-center">Чиллеры для нестандартных задач: когда серийные решения не подходят</h1>
+      <p class="hero-subtitle text-center">Разрабатываем и производим специализированные системы охлаждения для уникальных производственных процессов. От концепции до запуска — полный цикл реализации сложных проектов.</p>
+
+      <div class="hero-features">
+         <div class="feature-item">
+            <i class="fas fa-thermometer-empty"></i>
+            <h4>Широкий температурный диапазон</h4>
+            <p>От криогенных -60°C до высокотемпературных +200°C</p>
+         </div>
+         <div class="feature-item">
+            <i class="fas fa-radiation"></i>
+            <h4>Агрессивные среды</h4>
+            <p>Кислоты, щелочи, газы, масла, рассолы</p>
+         </div>
+         <div class="feature-item">
+            <i class="fas fa-shield-alt"></i>
+            <h4>Взрывозащита ATEX/ГОСТ</h4>
+            <p>Исполнения для опасных производств</p>
+         </div>
+         <div class="feature-item">
+            <i class="fas fa-snowflake"></i>
+            <h4>Морозоустойчивость до -50°C</h4>
+            <p>Работа в северных регионах и на улице</p>
+         </div>
+         <div class="feature-item">
+            <i class="fas fa-tachometer-alt"></i>
+            <h4>Высокое давление до 40 бар</h4>
+            <p>Для гидравлических систем и испытаний</p>
+         </div>
+         <div class="feature-item">
+            <i class="fas fa-project-diagram"></i>
+            <h4>Интеграция в АСУ ТП</h4>
+            <p>SCADA, Modbus, Profibus, Ethernet</p>
+         </div>
+      </div>
+
+      <div class="hero-actions">
+         <a href="#diagnostic" class="btn">
+            <i class="fas fa-stethoscope"></i> Диагностика задачи
+         </a>
+
+         <button class="btn btn-outline open-project-modal">
+            <i class="fas fa-phone-alt"></i> Вызвать инженера
+         </button>
       </div>
    </div>
+</section>
 
-   <!-- 1. ГЕРОЙ-СЕКЦИЯ -->
-   <section class="special-hero hero">
-      <div class="container">
-         <h1 class="text-center">Чиллеры для нестандартных задач: когда серийные решения не подходят</h1>
-         <p class="hero-subtitle text-center">Разрабатываем и производим специализированные системы охлаждения для уникальных производственных процессов. От концепции до запуска — полный цикл реализации сложных проектов.</p>
+<!-- 2. БЫСТРАЯ ДИАГНОСТИКА -->
+<section id="diagnostic" class="quick-diagnostic fade-in">
+   <div class="container">
+      <div class="diagnostic-header">
+         <h2>За 2 минуты определим тип решения, которое вам требуется</h2>
+         <p>Ответьте на 3 вопроса, и наш инженер подготовит предварительный анализ вашей задачи</p>
+      </div>
 
-         <div class="hero-features">
-            <div class="feature-item">
-               <i class="fas fa-thermometer-empty"></i>
-               <h4>Широкий температурный диапазон</h4>
-               <p>От криогенных -60°C до высокотемпературных +200°C</p>
+      <form>
+         <div class="diagnostic-step">
+            <div class="step-question">
+               <h3><i class="fas fa-flask"></i> 1. С какими средами работает оборудование?</h3>
             </div>
-            <div class="feature-item">
-               <i class="fas fa-radiation"></i>
-               <h4>Агрессивные среды</h4>
-               <p>Кислоты, щелочи, газы, масла, рассолы</p>
-            </div>
-            <div class="feature-item">
-               <i class="fas fa-shield-alt"></i>
-               <h4>Взрывозащита ATEX/ГОСТ</h4>
-               <p>Исполнения для опасных производств</p>
-            </div>
-            <div class="feature-item">
-               <i class="fas fa-snowflake"></i>
-               <h4>Морозоустойчивость до -50°C</h4>
-               <p>Работа в северных регионах и на улице</p>
-            </div>
-            <div class="feature-item">
-               <i class="fas fa-tachometer-alt"></i>
-               <h4>Высокое давление до 40 бар</h4>
-               <p>Для гидравлических систем и испытаний</p>
-            </div>
-            <div class="feature-item">
-               <i class="fas fa-project-diagram"></i>
-               <h4>Интеграция в АСУ ТП</h4>
-               <p>SCADA, Modbus, Profibus, Ethernet</p>
+            <div class="options-grid" id="mediaOptions">
+               <div class="option-card" data-value="water">
+                  <i class="fas fa-tint"></i>
+                  <p>Вода / Рассолы</p>
+               </div>
+               <div class="option-card" data-value="oils">
+                  <i class="fas fa-oil-can"></i>
+                  <p>Масла</p>
+               </div>
+               <div class="option-card" data-value="glycol">
+                  <i class="fas fa-vial"></i>
+                  <p>Этиленгликоль</p>
+               </div>
+               <div class="option-card" data-value="acids">
+                  <i class="fas fa-skull-crossbones"></i>
+                  <p>Кислоты</p>
+               </div>
+               <div class="option-card" data-value="gases">
+                  <i class="fas fa-wind"></i>
+                  <p>Газы</p>
+               </div>
+               <div class="option-card" data-value="other">
+                  <i class="fas fa-ellipsis-h"></i>
+                  <p>Другое</p>
+               </div>
             </div>
          </div>
 
-         <div class="hero-actions">
-            <a href="#diagnostic" class="btn">
-               <i class="fas fa-stethoscope"></i> Диагностика задачи
-            </a>
+         <div class="diagnostic-step">
+            <div class="step-question">
+               <h3><i class="fas fa-cogs"></i> 2. Какие требуются условия эксплуатации?</h3>
+            </div>
+            <div class="options-grid" id="conditionOptions">
+               <div class="option-card" data-value="explosion">
+                  <i class="fas fa-bomb"></i>
+                  <p>Взрывозащита</p>
+               </div>
+               <div class="option-card" data-value="frost">
+                  <i class="fas fa-icicles"></i>
+                  <p>Морозостойкость</p>
+               </div>
+               <div class="option-card" data-value="pressure">
+                  <i class="fas fa-compress-arrows-alt"></i>
+                  <p>Высокое давление</p>
+               </div>
+               <div class="option-card" data-value="sterile">
+                  <i class="fas fa-bacteria"></i>
+                  <p>Стерильность</p>
+               </div>
+               <div class="option-card" data-value="corrosion">
+                  <i class="fas fa-rust"></i>
+                  <p>Коррозионная стойкость</p>
+               </div>
+               <div class="option-card" data-value="precision">
+                  <i class="fas fa-bullseye"></i>
+                  <p>Высокая точность (±0.1°C)</p>
+               </div>
+            </div>
+         </div>
 
-            <button class="btn btn-outline open-project-modal">
-               <i class="fas fa-phone-alt"></i> Вызвать инженера
+         <div class="diagnostic-step">
+            <div class="step-question">
+               <h3><i class="fas fa-edit"></i> 3. Особые требования и описание задачи</h3>
+            </div>
+            <textarea class="text-option" id="specialRequirements" placeholder="Опишите уникальность задачи, условия эксплуатации, предыдущий опыт (если есть), ограничения и пожелания..."></textarea>
+         </div>
+
+
+         <div class="diagnostic-actions">
+            <button type="button" class="btn" id="getEstimationBtn">
+               <i class="fas fa-calculator"></i> Получить предварительную оценку
             </button>
          </div>
-      </div>
-   </section>
+      </form>
 
-   <!-- 2. БЫСТРАЯ ДИАГНОСТИКА -->
-   <section id="diagnostic" class="quick-diagnostic fade-in">
-      <div class="container">
-         <div class="diagnostic-header">
-            <h2>За 2 минуты определим тип решения, которое вам требуется</h2>
-            <p>Ответьте на 3 вопроса, и наш инженер подготовит предварительный анализ вашей задачи</p>
+      <div class="diagnostic-result" id="diagnosticResult">
+         <h3><i class="fas fa-clipboard-check"></i> Предварительный анализ вашей задачи</h3>
+         <div class="result-details">
+            <div class="result-item">
+               <h4>Тип решения:</h4>
+               <p id="resultType">Специализированный чиллер</p>
+            </div>
+            <div class="result-item">
+               <h4>Сложность проекта:</h4>
+               <p id="resultComplexity">Высокая</p>
+            </div>
+            <div class="result-item">
+               <h4>Ориентировочный срок:</h4>
+               <p id="resultTimeline">35-50 дней</p>
+            </div>
+            <div class="result-item">
+               <h4>Ключевые компоненты:</h4>
+               <p id="resultComponents">Специальные материалы, взрывозащита</p>
+            </div>
+         </div>
+         <p style="margin: 20px 0; opacity: 0.9;">Наш инженер свяжется с вами в течение 1 часа для уточнения деталей и подготовки технико-коммерческого предложения.</p>
+
+      </div>
+   </div>
+</section>
+<section class="categories-preview fade-in">
+   <div class="container">
+      <h2 style="text-align: center;">Ключевые подкатегории</h2>
+      <p class="mb-30" style="color:#666; max-width:900px; margin:0 auto 30px;">Ниже представлены основные группы нашего каталога с детальными техническими особенностями, областями применения и типовыми схемами внедрения. Для каждой категории мы подготовили руководство по выбору.</p>
+
+      <div class="categories-grid">
+         <?php
+         // Укажи slug родительской категории — будут показаны ВСЕ её подкатегории
+         $parent_category_slug = 'specialized-chillers';
+         $parent_category = get_term_by('slug', $parent_category_slug, 'product_cat');
+
+         if ($parent_category && ! is_wp_error($parent_category)) {
+            $subcategories = get_terms(array(
+               'taxonomy' => 'product_cat',
+               'parent' => $parent_category->term_id,
+               'hide_empty' => false,
+            ));
+
+            if (! empty($subcategories) && ! is_wp_error($subcategories)) {
+               foreach ($subcategories as $subcat) {
+                  $image_id = get_woocommerce_term_meta($subcat->term_id, 'thumbnail_id', true);
+                  if (! $image_id) {
+                     $image_id = get_term_meta($subcat->term_id, 'thumbnail_id', true);
+                  }
+                  $image_url = $image_id ? wp_get_attachment_url($image_id) : 'https://images.iimg.live/images/amazing-shot-8342.webp&auto=format&fit=crop&w=600&q=80';
+         ?>
+                  <div class="category-card">
+                     <div class="card-image">
+                        <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($subcat->name); ?>">
+                        <div class="card-badge">ПОДКАТЕГОРИЯ</div>
+                     </div>
+                     <div class="card-content">
+                        <h3><?php echo esc_html($subcat->name); ?></h3>
+                        <p><?php echo wp_kses_post(term_description($subcat->term_id, 'product_cat')); ?></p>
+                        <a href="<?php echo get_page_or_term_link($subcat); ?>" class="btn">Смотреть</a>
+                     </div>
+                  </div>
+               <?php
+               }
+            } else {
+               ?>
+               <p style="grid-column: 1 / -1; text-align:center; color:#666;">Подкатегории не найдены.</p>
+            <?php
+            }
+         } else {
+            ?>
+            <p style="grid-column: 1 / -1; text-align:center; color:#666;">
+               Категория не найдена: <?php echo esc_html($parent_category_slug); ?>
+            </p>
+         <?php
+         }
+         ?>
+
+
+
+      </div>
+   </div>
+</section>
+<!-- 3. КЛАССИФИКАЦИЯ РЕШЕНИЙ -->
+<section class="solutions-classification fade-in">
+   <div class="container">
+      <h2 class="text-center">Классификация специализированных решений</h2>
+      <p class="text-center mb-40" style="color:#666; max-width:800px; margin:0 auto;">Выберите категорию, наиболее соответствующую вашей задаче, или закажите комплексное решение</p>
+
+      <div class="solutions-table-container">
+         <table class="solutions-table" aria-label="Классификация специализированных решений">
+            <thead>
+               <tr>
+                  <th scope="col">Категория</th>
+                  <th scope="col">Температура</th>
+                  <th scope="col">Сферы применения</th>
+                  <th scope="col">Сложность</th>
+                  <th scope="col">Срок реализации</th>
+                  <th scope="col">Действие</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <th scope="row" class="solution-type">Криогенные</th>
+                  <td class="solution-temp">-60°C...-10°C</td>
+                  <td class="solution-apps">Фармацевтика, химические производства, лаборатории, криообработка</td>
+                  <td><span class="solution-complexity complexity-high">Высокая</span></td>
+                  <td class="solution-duration">30-45 дней</td>
+                  <td class="solution-action"><button type="button" class="btn btn-outline btn-small open-project-modal discuss-project" data-type="cryogenic">Обсудить</button></td>
+               </tr>
+               <tr>
+                  <th scope="row" class="solution-type">Высокотемпературные</th>
+                  <td class="solution-temp">+80°C...+200°C</td>
+                  <td class="solution-apps">Промышленные процессы с нагревом, термостатирование, испытательные стенды</td>
+                  <td><span class="solution-complexity complexity-medium">Средняя</span></td>
+                  <td class="solution-duration">25-35 дней</td>
+                  <td class="solution-action"><button type="button" class="btn btn-outline btn-small open-project-modal discuss-project" data-type="high-temp">Обсудить</button></td>
+               </tr>
+               <tr>
+                  <th scope="row" class="solution-type">Взрывозащищенные</th>
+                  <td class="solution-temp">-25°C...+40°C</td>
+                  <td class="solution-apps">Химическая промышленность, нефтегаз, лакокрасочное производство, АЗС</td>
+                  <td><span class="solution-complexity complexity-high">Высокая</span></td>
+                  <td class="solution-duration">35-50 дней</td>
+                  <td class="solution-action"><button type="button" class="btn btn-outline btn-small open-project-modal discuss-project" data-type="explosion">Обсудить</button></td>
+               </tr>
+               <tr>
+                  <th scope="row" class="solution-type">Морозоустойчивые</th>
+                  <td class="solution-temp">-50°C...+30°C</td>
+                  <td class="solution-apps">Северные регионы, уличная установка, арктические условия</td>
+                  <td><span class="solution-complexity complexity-medium">Средняя</span></td>
+                  <td class="solution-duration">20-30 дней</td>
+                  <td class="solution-action"><button type="button" class="btn btn-outline btn-small open-project-modal discuss-project" data-type="frost">Обсудить</button></td>
+               </tr>
+               <tr>
+                  <th scope="row" class="solution-type">Коррозионностойкие</th>
+                  <td class="solution-temp">-20°C...+60°C</td>
+                  <td class="solution-apps">Агрессивные среды, морская вода, химические производства</td>
+                  <td><span class="solution-complexity complexity-high">Высокая</span></td>
+                  <td class="solution-duration">30-40 дней</td>
+                  <td class="solution-action"><button type="button" class="btn btn-outline btn-small open-project-modal discuss-project" data-type="corrosion">Обсудить</button></td>
+               </tr>
+               <tr>
+                  <th scope="row" class="solution-type">Высокого давления</th>
+                  <td class="solution-temp">-10°C...+40°C</td>
+                  <td class="solution-apps">Гидравлические системы, испытательные стенды, компрессорные станции</td>
+                  <td><span class="solution-complexity complexity-high">Высокая</span></td>
+                  <td class="solution-duration">40-55 дней</td>
+                  <td class="solution-action"><button type="button" class="btn btn-outline btn-small open-project-modal discuss-project" data-type="pressure">Обсудить</button></td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+
+      <p class="solutions-note">* Срок реализации указан от момента утверждения технического задания до отгрузки оборудования</p>
+   </div>
+</section>
+
+<!-- 5. ТЕХНОЛОГИЧЕСКИЕ ВОЗМОЖНОСТИ -->
+<section class="tech-capabilities fade-in">
+   <div class="container">
+      <h2 class="text-center">Наши технологические возможности</h2>
+      <p class="text-center mb-40" style="color:#666;">Пирамида компетенций от базовых решений до уникальных разработок</p>
+
+      <div class="capabilities-pyramid">
+         <div class="pyramid-level complex">
+            <div class="level-header">
+               <i class="fas fa-crown"></i>
+               <h3>Комплексные системы</h3>
+            </div>
+            <div class="level-features">
+               <div class="level-feature">Системы с несколькими независимыми контурами</div>
+               <div class="level-feature">Каскадные схемы охлаждения</div>
+               <div class="level-feature">Интеграция с SCADA/АСУ ТП</div>
+               <div class="level-feature">Рекуперация тепла и утилизация</div>
+            </div>
          </div>
 
-         <form>
-            <div class="diagnostic-step">
-               <div class="step-question">
-                  <h3><i class="fas fa-flask"></i> 1. С какими средами работает оборудование?</h3>
-               </div>
-               <div class="options-grid" id="mediaOptions">
-                  <div class="option-card" data-value="water">
-                     <i class="fas fa-tint"></i>
-                     <p>Вода / Рассолы</p>
-                  </div>
-                  <div class="option-card" data-value="oils">
-                     <i class="fas fa-oil-can"></i>
-                     <p>Масла</p>
-                  </div>
-                  <div class="option-card" data-value="glycol">
-                     <i class="fas fa-vial"></i>
-                     <p>Этиленгликоль</p>
-                  </div>
-                  <div class="option-card" data-value="acids">
-                     <i class="fas fa-skull-crossbones"></i>
-                     <p>Кислоты</p>
-                  </div>
-                  <div class="option-card" data-value="gases">
-                     <i class="fas fa-wind"></i>
-                     <p>Газы</p>
-                  </div>
-                  <div class="option-card" data-value="other">
-                     <i class="fas fa-ellipsis-h"></i>
-                     <p>Другое</p>
-                  </div>
-               </div>
+         <div class="pyramid-level special">
+            <div class="level-header">
+               <i class="fas fa-star"></i>
+               <h3>Специальные решения</h3>
             </div>
-
-            <div class="diagnostic-step">
-               <div class="step-question">
-                  <h3><i class="fas fa-cogs"></i> 2. Какие требуются условия эксплуатации?</h3>
-               </div>
-               <div class="options-grid" id="conditionOptions">
-                  <div class="option-card" data-value="explosion">
-                     <i class="fas fa-bomb"></i>
-                     <p>Взрывозащита</p>
-                  </div>
-                  <div class="option-card" data-value="frost">
-                     <i class="fas fa-icicles"></i>
-                     <p>Морозостойкость</p>
-                  </div>
-                  <div class="option-card" data-value="pressure">
-                     <i class="fas fa-compress-arrows-alt"></i>
-                     <p>Высокое давление</p>
-                  </div>
-                  <div class="option-card" data-value="sterile">
-                     <i class="fas fa-bacteria"></i>
-                     <p>Стерильность</p>
-                  </div>
-                  <div class="option-card" data-value="corrosion">
-                     <i class="fas fa-rust"></i>
-                     <p>Коррозионная стойкость</p>
-                  </div>
-                  <div class="option-card" data-value="precision">
-                     <i class="fas fa-bullseye"></i>
-                     <p>Высокая точность (±0.1°C)</p>
-                  </div>
-               </div>
+            <div class="level-features">
+               <div class="level-feature">Нестандартные хладагенты (аммиак, CO₂, пропан)</div>
+               <div class="level-feature">Работа с вязкими жидкостями (масла, пасты)</div>
+               <div class="level-feature">Высокоточное регулирование (±0.1°C)</div>
+               <div class="level-feature">Бессальниковые насосы, магнитные муфты</div>
             </div>
+         </div>
 
-            <div class="diagnostic-step">
-               <div class="step-question">
-                  <h3><i class="fas fa-edit"></i> 3. Особые требования и описание задачи</h3>
-               </div>
-               <textarea class="text-option" id="specialRequirements" placeholder="Опишите уникальность задачи, условия эксплуатации, предыдущий опыт (если есть), ограничения и пожелания..."></textarea>
+         <div class="pyramid-level basic">
+            <div class="level-header">
+               <i class="fas fa-layer-group"></i>
+               <h3>Базовые компетенции</h3>
             </div>
+            <div class="level-features">
+               <div class="level-feature">Стандартные чиллеры воздушного/водяного охлаждения</div>
+               <div class="level-feature">Серийные решения до 1000 кВт</div>
+               <div class="level-feature">Типовые среды (вода, рассолы, этиленгликоль)</div>
+               <div class="level-feature">Стандартные температурные диапазоны</div>
+            </div>
+         </div>
+      </div>
 
+      <div class="stat-block">
+         <div class="stat-number">80%</div>
+         <p class="stat-text">проектов требуют индивидуальной разработки хотя бы одного компонента или системы</p>
+      </div>
+   </div>
+</section>
 
-            <div class="diagnostic-actions">
-               <button type="button" class="btn" id="getEstimationBtn">
-                  <i class="fas fa-calculator"></i> Получить предварительную оценку
+<!-- 6. МНОГОШАГОВАЯ ФОРМА -->
+<section class="multi-step-form fade-in">
+   <div class="container">
+      <div class="form-container">
+         <div class="form-header">
+            <h2>Техническое задание на расчет</h2>
+            <p>Заполните форму, и мы подготовим коммерческое предложение за 48 часов</p>
+         </div>
+
+         <div class="form-progress">
+            <div class="progress-step active" id="progressStep1">
+               <div class="step-circle">1</div>
+               <div class="step-label">Контактные данные</div>
+            </div>
+            <div class="progress-step" id="progressStep2">
+               <div class="step-circle">2</div>
+               <div class="step-label">Технические параметры</div>
+            </div>
+            <div class="progress-step" id="progressStep3">
+               <div class="step-circle">3</div>
+               <div class="step-label">Особые требования</div>
+            </div>
+            <div class="progress-step" id="progressStep4">
+               <div class="step-circle">4</div>
+               <div class="step-label">Документы</div>
+            </div>
+            <div class="progress-step" id="progressStep5">
+               <div class="step-circle">5</div>
+               <div class="step-label">Сроки и бюджет</div>
+            </div>
+         </div>
+
+         <div class="form-content">
+            <form id="technicalRequestForm">
+               <!-- Шаг 1 -->
+               <div class="form-step-content active" id="formStepContent1">
+                  <div class="form-row">
+                     <div class="form-group">
+                        <label>Ваше имя *</label>
+                        <input type="text" class="form-control" id="requestName" name="requestName" placeholder="Иванов Иван Иванович" required>
+                     </div>
+                     <div class="form-group">
+                        <label>Должность</label>
+                        <input type="text" class="form-control" id="requestPosition" name="requestPosition" placeholder="Технический директор">
+                     </div>
+                  </div>
+                  <div class="form-row">
+                     <div class="form-group">
+                        <label>Телефон *</label>
+                        <input type="tel" class="form-control" id="requestPhone" name="requestPhone" placeholder="+7 (___) ___-__-__" required>
+                     </div>
+                     <div class="form-group">
+                        <label>Email *</label>
+                        <input type="email" class="form-control" id="requestEmail" name="requestEmail" placeholder="ivanov@company.ru" required>
+                     </div>
+                  </div>
+                  <div class="form-group">
+                     <label>Компания *</label>
+                     <input type="text" class="form-control" id="requestCompany" name="requestCompany" placeholder="ООО 'Ваша компания'" required>
+                  </div>
+                  <div class="form-actions">
+                     <button type="button" class="btn btn-outline" disabled>Назад</button>
+                     <button type="button" class="btn" id="nextToStep2">Далее</button>
+                  </div>
+               </div>
+
+               <!-- Шаг 2 -->
+               <div class="form-step-content" id="formStepContent2">
+                  <div class="form-group">
+                     <label>Температура теплоносителя на входе/выходе *</label>
+                     <input type="text" class="form-control" id="requestTemp" name="requestTemp" placeholder="Пример: +25°C / +5°C" required>
+                  </div>
+                  <div class="form-row">
+                     <div class="form-group">
+                        <label>Расход теплоносителя, м³/ч *</label>
+                        <input type="number" class="form-control" id="requestFlow" name="requestFlow" placeholder="10" min="0" step="0.1" required>
+                     </div>
+                     <div class="form-group">
+                        <label>Мощность охлаждения, кВт</label>
+                        <input type="number" class="form-control" id="requestPower" name="requestPower" placeholder="100" min="0">
+                     </div>
+                  </div>
+                  <div class="form-group">
+                     <label>Среда (теплоноситель) *</label>
+                     <select class="form-control" id="requestMedia" name="requestMedia" required>
+                        <option value="">-- Выберите среду --</option>
+                        <option value="water">Вода</option>
+                        <option value="brine">Рассол (пропиленгликоль)</option>
+                        <option value="glycol">Этиленгликоль</option>
+                        <option value="oil">Масло</option>
+                        <option value="acid">Кислота</option>
+                        <option value="gas">Газ</option>
+                        <option value="other">Другое</option>
+                     </select>
+                  </div>
+                  <div class="form-actions">
+                     <button type="button" class="btn btn-outline" id="backToStep1">Назад</button>
+                     <button type="button" class="btn" id="nextToStep3">Далее</button>
+                  </div>
+               </div>
+
+               <!-- Шаг 3 -->
+               <div class="form-step-content" id="formStepContent3">
+                  <div class="form-group">
+                     <label>Особые требования *</label>
+                     <div class="checkbox-grid">
+                        <label class="checkbox-label">
+                           <input type="checkbox" name="specialReq[]" value="explosion" required> Взрывозащищенное исполнение
+                        </label>
+                        <label class="checkbox-label">
+                           <input type="checkbox" name="specialReq[]" value="corrosion"> Антикоррозионная защита
+                        </label>
+                        <label class="checkbox-label">
+                           <input type="checkbox" name="specialReq[]" value="frost"> Морозостойкость
+                        </label>
+                        <label class="checkbox-label">
+                           <input type="checkbox" name="specialReq[]" value="precision"> Высокая точность (±0.1°C)
+                        </label>
+                        <label class="checkbox-label">
+                           <input type="checkbox" name="specialReq[]" value="automation"> Интеграция с АСУ ТП
+                        </label>
+                        <label class="checkbox-label">
+                           <input type="checkbox" name="specialReq[]" value="sterile"> Стерильное исполнение
+                        </label>
+                     </div>
+                  </div>
+                  <div class="form-group">
+                     <label>Дополнительные условия и пожелания</label>
+                     <textarea class="form-control" id="requestNotes" name="requestNotes" rows="4" placeholder="Особые условия эксплуатации, ограничения по габаритам, требования к материалам..."></textarea>
+                  </div>
+                  <div class="form-actions">
+                     <button type="button" class="btn btn-outline" id="backToStep2">Назад</button>
+                     <button type="button" class="btn" id="nextToStep4">Далее</button>
+                  </div>
+               </div>
+
+               <!-- Шаг 4 -->
+               <div class="form-step-content" id="formStepContent4">
+                  <div class="form-group">
+                     <label>Загрузить техническое задание (до 20 МБ)</label>
+                     <div class="file-upload">
+                        <input type="file" id="tzFile" name="tzFile" accept=".pdf,.doc,.docx,.xls,.xlsx">
+                        <div class="file-label">
+                           <i class="fas fa-file-alt"></i>
+                           <span id="tzFileName">Выберите файл ТЗ...</span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-group">
+                     <label>Загрузить чертежи и схемы (до 50 МБ)</label>
+                     <div class="file-upload">
+                        <input type="file" id="drawingsFile" name="drawingsFile" accept=".dwg,.dxf,.pdf,.jpg,.png" multiple>
+                        <div class="file-label">
+                           <i class="fas fa-drafting-compass"></i>
+                           <span id="drawingsFileName">Выберите файлы чертежей...</span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-group">
+                     <label>Загрузить спецификацию оборудования (если есть)</label>
+                     <div class="file-upload">
+                        <input type="file" id="specFile" name="specFile" accept=".pdf,.doc,.docx,.xls,.xlsx">
+                        <div class="file-label">
+                           <i class="fas fa-list-alt"></i>
+                           <span id="specFileName">Выберите файл спецификации...</span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-actions">
+                     <button type="button" class="btn btn-outline" id="backToStep3">Назад</button>
+                     <button type="button" class="btn" id="nextToStep5">Далее</button>
+                  </div>
+               </div>
+
+               <!-- Шаг 5 -->
+               <div class="form-step-content" id="formStepContent5">
+                  <div class="form-row">
+                     <div class="form-group">
+                        <label>Желаемые сроки реализации</label>
+                        <select class="form-control" id="requestTimeline" name="requestTimeline">
+                           <option value="">-- Выберите срок --</option>
+                           <option value="urgent">Срочно (до 30 дней)</option>
+                           <option value="normal">Нормальные (30-60 дней)</option>
+                           <option value="flexible">Гибкие (по согласованию)</option>
+                        </select>
+                     </div>
+                     <div class="form-group">
+                        <label>Ориентировочный бюджет, руб</label>
+                        <input type="text" class="form-control" id="requestBudget" name="requestBudget" placeholder="1 000 000">
+                     </div>
+                  </div>
+                  <div class="form-group">
+                     <label>Источник финансирования</label>
+                     <select class="form-control" id="requestFunding" name="requestFunding">
+                        <option value="">-- Выберите источник --</option>
+                        <option value="own">Собственные средства</option>
+                        <option value="leasing">Лизинг</option>
+                        <option value="credit">Кредит</option>
+                        <option value="budget">Бюджетное финансирование</option>
+                        <option value="other">Другое</option>
+                     </select>
+                  </div>
+                  <div class="form-group">
+                     <label>Дополнительные комментарии</label>
+                     <textarea class="form-control" id="finalNotes" name="finalNotes" rows="3" placeholder="Информация о тендере, конкурсе, особых условиях оплаты..."></textarea>
+                  </div>
+                  <div class="guarantee-note">
+                     <i class="fas fa-shield-alt"></i>
+                     <p><strong>Гарантия:</strong> Если мы не сможем решить вашу задачу — порекомендуем того, кто сможет</p>
+                  </div>
+                  <div class="form-actions">
+                     <button type="button" class="btn btn-outline" id="backToStep4">Назад</button>
+                     <button type="submit" class="btn">
+                        <i class="fas fa-paper-plane"></i> Получить КП за 48 часов
+                     </button>
+                  </div>
+               </div>
+            </form>
+
+            <div class="form-success" id="formSuccess">
+               <i class="fas fa-check-circle"></i>
+               <h3>Заявка успешно отправлена!</h3>
+               <p>Наш инженер свяжется с вами в течение 1 часа для уточнения деталей.</p>
+               <p><strong>Номер заявки:</strong> #SPC-<span id="requestNumber">001</span></p>
+               <p style="margin-top:20px; color:#666; font-size:0.9rem;">Копия заявки отправлена на указанный email. Сохраните номер заявки для отслеживания статуса.</p>
+               <button class="btn btn-outline" style="margin-top:20px;">
+                  <i class="fas fa-download"></i> Скачать копию заявки
                </button>
             </div>
-         </form>
-
-         <div class="diagnostic-result" id="diagnosticResult">
-            <h3><i class="fas fa-clipboard-check"></i> Предварительный анализ вашей задачи</h3>
-            <div class="result-details">
-               <div class="result-item">
-                  <h4>Тип решения:</h4>
-                  <p id="resultType">Специализированный чиллер</p>
-               </div>
-               <div class="result-item">
-                  <h4>Сложность проекта:</h4>
-                  <p id="resultComplexity">Высокая</p>
-               </div>
-               <div class="result-item">
-                  <h4>Ориентировочный срок:</h4>
-                  <p id="resultTimeline">35-50 дней</p>
-               </div>
-               <div class="result-item">
-                  <h4>Ключевые компоненты:</h4>
-                  <p id="resultComponents">Специальные материалы, взрывозащита</p>
-               </div>
-            </div>
-            <p style="margin: 20px 0; opacity: 0.9;">Наш инженер свяжется с вами в течение 1 часа для уточнения деталей и подготовки технико-коммерческого предложения.</p>
-
          </div>
       </div>
-   </section>
+   </div>
+</section>
 
-   <!-- 3. КЛАССИФИКАЦИЯ РЕШЕНИЙ -->
-   <section class="solutions-classification fade-in">
-      <div class="container">
-         <h2 class="text-center">Классификация специализированных решений</h2>
-         <p class="text-center mb-40" style="color:#666; max-width:800px; margin:0 auto;">Выберите категорию, наиболее соответствующую вашей задаче, или закажите комплексное решение</p>
+<!-- 7. ТАЙМЛАЙН ПРОЦЕССА -->
+<section class="process-timeline fade-in">
+   <div class="container">
+      <h2 class="text-center">Процесс работы над нестандартным проектом</h2>
+      <p class="text-center mb-40" style="color:#666;">От заявки до запуска — полный контроль качества на каждом этапе</p>
 
-         <div class="solutions-table-container">
-            <table class="solutions-table" aria-label="Классификация специализированных решений">
-               <thead>
-                  <tr>
-                     <th scope="col">Категория</th>
-                     <th scope="col">Температура</th>
-                     <th scope="col">Сферы применения</th>
-                     <th scope="col">Сложность</th>
-                     <th scope="col">Срок реализации</th>
-                     <th scope="col">Действие</th>
-                  </tr>
-               </thead>
-               <tbody>
-                  <tr>
-                     <th scope="row" class="solution-type">Криогенные</th>
-                     <td class="solution-temp">-60°C...-10°C</td>
-                     <td class="solution-apps">Фармацевтика, химические производства, лаборатории, криообработка</td>
-                     <td><span class="solution-complexity complexity-high">Высокая</span></td>
-                     <td class="solution-duration">30-45 дней</td>
-                     <td class="solution-action"><button type="button" class="btn btn-outline btn-small open-project-modal discuss-project" data-type="cryogenic">Обсудить</button></td>
-                  </tr>
-                  <tr>
-                     <th scope="row" class="solution-type">Высокотемпературные</th>
-                     <td class="solution-temp">+80°C...+200°C</td>
-                     <td class="solution-apps">Промышленные процессы с нагревом, термостатирование, испытательные стенды</td>
-                     <td><span class="solution-complexity complexity-medium">Средняя</span></td>
-                     <td class="solution-duration">25-35 дней</td>
-                     <td class="solution-action"><button type="button" class="btn btn-outline btn-small open-project-modal discuss-project" data-type="high-temp">Обсудить</button></td>
-                  </tr>
-                  <tr>
-                     <th scope="row" class="solution-type">Взрывозащищенные</th>
-                     <td class="solution-temp">-25°C...+40°C</td>
-                     <td class="solution-apps">Химическая промышленность, нефтегаз, лакокрасочное производство, АЗС</td>
-                     <td><span class="solution-complexity complexity-high">Высокая</span></td>
-                     <td class="solution-duration">35-50 дней</td>
-                     <td class="solution-action"><button type="button" class="btn btn-outline btn-small open-project-modal discuss-project" data-type="explosion">Обсудить</button></td>
-                  </tr>
-                  <tr>
-                     <th scope="row" class="solution-type">Морозоустойчивые</th>
-                     <td class="solution-temp">-50°C...+30°C</td>
-                     <td class="solution-apps">Северные регионы, уличная установка, арктические условия</td>
-                     <td><span class="solution-complexity complexity-medium">Средняя</span></td>
-                     <td class="solution-duration">20-30 дней</td>
-                     <td class="solution-action"><button type="button" class="btn btn-outline btn-small open-project-modal discuss-project" data-type="frost">Обсудить</button></td>
-                  </tr>
-                  <tr>
-                     <th scope="row" class="solution-type">Коррозионностойкие</th>
-                     <td class="solution-temp">-20°C...+60°C</td>
-                     <td class="solution-apps">Агрессивные среды, морская вода, химические производства</td>
-                     <td><span class="solution-complexity complexity-high">Высокая</span></td>
-                     <td class="solution-duration">30-40 дней</td>
-                     <td class="solution-action"><button type="button" class="btn btn-outline btn-small open-project-modal discuss-project" data-type="corrosion">Обсудить</button></td>
-                  </tr>
-                  <tr>
-                     <th scope="row" class="solution-type">Высокого давления</th>
-                     <td class="solution-temp">-10°C...+40°C</td>
-                     <td class="solution-apps">Гидравлические системы, испытательные стенды, компрессорные станции</td>
-                     <td><span class="solution-complexity complexity-high">Высокая</span></td>
-                     <td class="solution-duration">40-55 дней</td>
-                     <td class="solution-action"><button type="button" class="btn btn-outline btn-small open-project-modal discuss-project" data-type="pressure">Обсудить</button></td>
-                  </tr>
-               </tbody>
-            </table>
-         </div>
-
-         <p class="solutions-note">* Срок реализации указан от момента утверждения технического задания до отгрузки оборудования</p>
-      </div>
-   </section>
-
-   <!-- 5. ТЕХНОЛОГИЧЕСКИЕ ВОЗМОЖНОСТИ -->
-   <section class="tech-capabilities fade-in">
-      <div class="container">
-         <h2 class="text-center">Наши технологические возможности</h2>
-         <p class="text-center mb-40" style="color:#666;">Пирамида компетенций от базовых решений до уникальных разработок</p>
-
-         <div class="capabilities-pyramid">
-            <div class="pyramid-level complex">
-               <div class="level-header">
-                  <i class="fas fa-crown"></i>
-                  <h3>Комплексные системы</h3>
-               </div>
-               <div class="level-features">
-                  <div class="level-feature">Системы с несколькими независимыми контурами</div>
-                  <div class="level-feature">Каскадные схемы охлаждения</div>
-                  <div class="level-feature">Интеграция с SCADA/АСУ ТП</div>
-                  <div class="level-feature">Рекуперация тепла и утилизация</div>
-               </div>
+      <div class="timeline-container">
+         <div class="timeline-item">
+            <div class="timeline-day">День 1-3</div>
+            <div class="timeline-icon">
+               <i class="fas fa-search"></i>
             </div>
-
-            <div class="pyramid-level special">
-               <div class="level-header">
-                  <i class="fas fa-star"></i>
-                  <h3>Специальные решения</h3>
-               </div>
-               <div class="level-features">
-                  <div class="level-feature">Нестандартные хладагенты (аммиак, CO₂, пропан)</div>
-                  <div class="level-feature">Работа с вязкими жидкостями (масла, пасты)</div>
-                  <div class="level-feature">Высокоточное регулирование (±0.1°C)</div>
-                  <div class="level-feature">Бессальниковые насосы, магнитные муфты</div>
-               </div>
-            </div>
-
-            <div class="pyramid-level basic">
-               <div class="level-header">
-                  <i class="fas fa-layer-group"></i>
-                  <h3>Базовые компетенции</h3>
-               </div>
-               <div class="level-features">
-                  <div class="level-feature">Стандартные чиллеры воздушного/водяного охлаждения</div>
-                  <div class="level-feature">Серийные решения до 1000 кВт</div>
-                  <div class="level-feature">Типовые среды (вода, рассолы, этиленгликоль)</div>
-                  <div class="level-feature">Стандартные температурные диапазоны</div>
-               </div>
+            <div class="timeline-content">
+               <h3>Детальный анализ ТЗ</h3>
+               <p>Изучение технического задания, анализ требований, предварительные расчеты. Выезд на объект при необходимости.</p>
             </div>
          </div>
 
-         <div class="stat-block">
-            <div class="stat-number">80%</div>
-            <p class="stat-text">проектов требуют индивидуальной разработки хотя бы одного компонента или системы</p>
+         <div class="timeline-item">
+            <div class="timeline-day">День 4-10</div>
+            <div class="timeline-icon">
+               <i class="fas fa-cogs"></i>
+            </div>
+            <div class="timeline-content">
+               <h3>Проектирование и 3D-моделирование</h3>
+               <p>Разработка 3D-модели оборудования, тепловой расчет, подбор компонентов, создание конструкторской документации.</p>
+            </div>
          </div>
-      </div>
-   </section>
 
-   <!-- 6. МНОГОШАГОВАЯ ФОРМА -->
-   <section class="multi-step-form fade-in">
-      <div class="container">
-         <div class="form-container">
-            <div class="form-header">
-               <h2>Техническое задание на расчет</h2>
-               <p>Заполните форму, и мы подготовим коммерческое предложение за 48 часов</p>
+         <div class="timeline-item">
+            <div class="timeline-day">День 11-15</div>
+            <div class="timeline-icon">
+               <i class="fas fa-handshake"></i>
             </div>
-
-            <div class="form-progress">
-               <div class="progress-step active" id="progressStep1">
-                  <div class="step-circle">1</div>
-                  <div class="step-label">Контактные данные</div>
-               </div>
-               <div class="progress-step" id="progressStep2">
-                  <div class="step-circle">2</div>
-                  <div class="step-label">Технические параметры</div>
-               </div>
-               <div class="progress-step" id="progressStep3">
-                  <div class="step-circle">3</div>
-                  <div class="step-label">Особые требования</div>
-               </div>
-               <div class="progress-step" id="progressStep4">
-                  <div class="step-circle">4</div>
-                  <div class="step-label">Документы</div>
-               </div>
-               <div class="progress-step" id="progressStep5">
-                  <div class="step-circle">5</div>
-                  <div class="step-label">Сроки и бюджет</div>
-               </div>
+            <div class="timeline-content">
+               <h3>Согласование решения</h3>
+               <p>Презентация технического решения заказчику, внесение правок и корректировок, окончательное утверждение.</p>
             </div>
+         </div>
 
-            <div class="form-content">
-               <form id="technicalRequestForm">
-                  <!-- Шаг 1 -->
-                  <div class="form-step-content active" id="formStepContent1">
-                     <div class="form-row">
-                        <div class="form-group">
-                           <label>Ваше имя *</label>
-                           <input type="text" class="form-control" id="requestName" name="requestName" placeholder="Иванов Иван Иванович" required>
-                        </div>
-                        <div class="form-group">
-                           <label>Должность</label>
-                           <input type="text" class="form-control" id="requestPosition" name="requestPosition" placeholder="Технический директор">
-                        </div>
-                     </div>
-                     <div class="form-row">
-                        <div class="form-group">
-                           <label>Телефон *</label>
-                           <input type="tel" class="form-control" id="requestPhone" name="requestPhone" placeholder="+7 (___) ___-__-__" required>
-                        </div>
-                        <div class="form-group">
-                           <label>Email *</label>
-                           <input type="email" class="form-control" id="requestEmail" name="requestEmail" placeholder="ivanov@company.ru" required>
-                        </div>
-                     </div>
-                     <div class="form-group">
-                        <label>Компания *</label>
-                        <input type="text" class="form-control" id="requestCompany" name="requestCompany" placeholder="ООО 'Ваша компания'" required>
-                     </div>
-                     <div class="form-actions">
-                        <button type="button" class="btn btn-outline" disabled>Назад</button>
-                        <button type="button" class="btn" id="nextToStep2">Далее</button>
-                     </div>
-                  </div>
+         <div class="timeline-item">
+            <div class="timeline-day">День 16-40</div>
+            <div class="timeline-icon">
+               <i class="fas fa-industry"></i>
+            </div>
+            <div class="timeline-content">
+               <h3>Изготовление и тестирование</h3>
+               <p>Изготовление компонентов, сборка, тестирование на стенде, контроль качества на каждом этапе производства.</p>
+            </div>
+         </div>
 
-                  <!-- Шаг 2 -->
-                  <div class="form-step-content" id="formStepContent2">
-                     <div class="form-group">
-                        <label>Температура теплоносителя на входе/выходе *</label>
-                        <input type="text" class="form-control" id="requestTemp" name="requestTemp" placeholder="Пример: +25°C / +5°C" required>
-                     </div>
-                     <div class="form-row">
-                        <div class="form-group">
-                           <label>Расход теплоносителя, м³/ч *</label>
-                           <input type="number" class="form-control" id="requestFlow" name="requestFlow" placeholder="10" min="0" step="0.1" required>
-                        </div>
-                        <div class="form-group">
-                           <label>Мощность охлаждения, кВт</label>
-                           <input type="number" class="form-control" id="requestPower" name="requestPower" placeholder="100" min="0">
-                        </div>
-                     </div>
-                     <div class="form-group">
-                        <label>Среда (теплоноситель) *</label>
-                        <select class="form-control" id="requestMedia" name="requestMedia" required>
-                           <option value="">-- Выберите среду --</option>
-                           <option value="water">Вода</option>
-                           <option value="brine">Рассол (пропиленгликоль)</option>
-                           <option value="glycol">Этиленгликоль</option>
-                           <option value="oil">Масло</option>
-                           <option value="acid">Кислота</option>
-                           <option value="gas">Газ</option>
-                           <option value="other">Другое</option>
-                        </select>
-                     </div>
-                     <div class="form-actions">
-                        <button type="button" class="btn btn-outline" id="backToStep1">Назад</button>
-                        <button type="button" class="btn" id="nextToStep3">Далее</button>
-                     </div>
-                  </div>
+         <div class="timeline-item">
+            <div class="timeline-day">День 41-45</div>
+            <div class="timeline-icon">
+               <i class="fas fa-truck"></i>
+            </div>
+            <div class="timeline-content">
+               <h3>Отгрузка и доставка</h3>
+               <p>Упаковка, отгрузка, доставка транспортом любой сложности. Шеф-монтаж на объекте заказчика.</p>
+            </div>
+         </div>
 
-                  <!-- Шаг 3 -->
-                  <div class="form-step-content" id="formStepContent3">
-                     <div class="form-group">
-                        <label>Особые требования *</label>
-                        <div class="checkbox-grid">
-                           <label class="checkbox-label">
-                              <input type="checkbox" name="specialReq[]" value="explosion" required> Взрывозащищенное исполнение
-                           </label>
-                           <label class="checkbox-label">
-                              <input type="checkbox" name="specialReq[]" value="corrosion"> Антикоррозионная защита
-                           </label>
-                           <label class="checkbox-label">
-                              <input type="checkbox" name="specialReq[]" value="frost"> Морозостойкость
-                           </label>
-                           <label class="checkbox-label">
-                              <input type="checkbox" name="specialReq[]" value="precision"> Высокая точность (±0.1°C)
-                           </label>
-                           <label class="checkbox-label">
-                              <input type="checkbox" name="specialReq[]" value="automation"> Интеграция с АСУ ТП
-                           </label>
-                           <label class="checkbox-label">
-                              <input type="checkbox" name="specialReq[]" value="sterile"> Стерильное исполнение
-                           </label>
-                        </div>
-                     </div>
-                     <div class="form-group">
-                        <label>Дополнительные условия и пожелания</label>
-                        <textarea class="form-control" id="requestNotes" name="requestNotes" rows="4" placeholder="Особые условия эксплуатации, ограничения по габаритам, требования к материалам..."></textarea>
-                     </div>
-                     <div class="form-actions">
-                        <button type="button" class="btn btn-outline" id="backToStep2">Назад</button>
-                        <button type="button" class="btn" id="nextToStep4">Далее</button>
-                     </div>
-                  </div>
-
-                  <!-- Шаг 4 -->
-                  <div class="form-step-content" id="formStepContent4">
-                     <div class="form-group">
-                        <label>Загрузить техническое задание (до 20 МБ)</label>
-                        <div class="file-upload">
-                           <input type="file" id="tzFile" name="tzFile" accept=".pdf,.doc,.docx,.xls,.xlsx">
-                           <div class="file-label">
-                              <i class="fas fa-file-alt"></i>
-                              <span id="tzFileName">Выберите файл ТЗ...</span>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="form-group">
-                        <label>Загрузить чертежи и схемы (до 50 МБ)</label>
-                        <div class="file-upload">
-                           <input type="file" id="drawingsFile" name="drawingsFile" accept=".dwg,.dxf,.pdf,.jpg,.png" multiple>
-                           <div class="file-label">
-                              <i class="fas fa-drafting-compass"></i>
-                              <span id="drawingsFileName">Выберите файлы чертежей...</span>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="form-group">
-                        <label>Загрузить спецификацию оборудования (если есть)</label>
-                        <div class="file-upload">
-                           <input type="file" id="specFile" name="specFile" accept=".pdf,.doc,.docx,.xls,.xlsx">
-                           <div class="file-label">
-                              <i class="fas fa-list-alt"></i>
-                              <span id="specFileName">Выберите файл спецификации...</span>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="form-actions">
-                        <button type="button" class="btn btn-outline" id="backToStep3">Назад</button>
-                        <button type="button" class="btn" id="nextToStep5">Далее</button>
-                     </div>
-                  </div>
-
-                  <!-- Шаг 5 -->
-                  <div class="form-step-content" id="formStepContent5">
-                     <div class="form-row">
-                        <div class="form-group">
-                           <label>Желаемые сроки реализации</label>
-                           <select class="form-control" id="requestTimeline" name="requestTimeline">
-                              <option value="">-- Выберите срок --</option>
-                              <option value="urgent">Срочно (до 30 дней)</option>
-                              <option value="normal">Нормальные (30-60 дней)</option>
-                              <option value="flexible">Гибкие (по согласованию)</option>
-                           </select>
-                        </div>
-                        <div class="form-group">
-                           <label>Ориентировочный бюджет, руб</label>
-                           <input type="text" class="form-control" id="requestBudget" name="requestBudget" placeholder="1 000 000">
-                        </div>
-                     </div>
-                     <div class="form-group">
-                        <label>Источник финансирования</label>
-                        <select class="form-control" id="requestFunding" name="requestFunding">
-                           <option value="">-- Выберите источник --</option>
-                           <option value="own">Собственные средства</option>
-                           <option value="leasing">Лизинг</option>
-                           <option value="credit">Кредит</option>
-                           <option value="budget">Бюджетное финансирование</option>
-                           <option value="other">Другое</option>
-                        </select>
-                     </div>
-                     <div class="form-group">
-                        <label>Дополнительные комментарии</label>
-                        <textarea class="form-control" id="finalNotes" name="finalNotes" rows="3" placeholder="Информация о тендере, конкурсе, особых условиях оплаты..."></textarea>
-                     </div>
-                     <div class="guarantee-note">
-                        <i class="fas fa-shield-alt"></i>
-                        <p><strong>Гарантия:</strong> Если мы не сможем решить вашу задачу — порекомендуем того, кто сможет</p>
-                     </div>
-                     <div class="form-actions">
-                        <button type="button" class="btn btn-outline" id="backToStep4">Назад</button>
-                        <button type="submit" class="btn">
-                           <i class="fas fa-paper-plane"></i> Получить КП за 48 часов
-                        </button>
-                     </div>
-                  </div>
-               </form>
-
-               <div class="form-success" id="formSuccess">
-                  <i class="fas fa-check-circle"></i>
-                  <h3>Заявка успешно отправлена!</h3>
-                  <p>Наш инженер свяжется с вами в течение 1 часа для уточнения деталей.</p>
-                  <p><strong>Номер заявки:</strong> #SPC-<span id="requestNumber">001</span></p>
-                  <p style="margin-top:20px; color:#666; font-size:0.9rem;">Копия заявки отправлена на указанный email. Сохраните номер заявки для отслеживания статуса.</p>
-                  <button class="btn btn-outline" style="margin-top:20px;">
-                     <i class="fas fa-download"></i> Скачать копию заявки
-                  </button>
-               </div>
+         <div class="timeline-item">
+            <div class="timeline-day">День 46-50</div>
+            <div class="timeline-icon">
+               <i class="fas fa-play-circle"></i>
+            </div>
+            <div class="timeline-content">
+               <h3>Пусконаладка и обучение</h3>
+               <p>Пусконаладка оборудования, тестовый запуск, обучение персонала заказчика, передача документации.</p>
             </div>
          </div>
       </div>
-   </section>
 
-   <!-- 7. ТАЙМЛАЙН ПРОЦЕССА -->
-   <section class="process-timeline fade-in">
-      <div class="container">
-         <h2 class="text-center">Процесс работы над нестандартным проектом</h2>
-         <p class="text-center mb-40" style="color:#666;">От заявки до запуска — полный контроль качества на каждом этапе</p>
-
-         <div class="timeline-container">
-            <div class="timeline-item">
-               <div class="timeline-day">День 1-3</div>
-               <div class="timeline-icon">
-                  <i class="fas fa-search"></i>
-               </div>
-               <div class="timeline-content">
-                  <h3>Детальный анализ ТЗ</h3>
-                  <p>Изучение технического задания, анализ требований, предварительные расчеты. Выезд на объект при необходимости.</p>
-               </div>
+      <div class="quality-control">
+         <h3>Критические точки контроля качества</h3>
+         <div class="quality-grid">
+            <div class="quality-item">
+               <h4>Испытание давлением</h4>
+               <p>Гидравлические испытания давлением 1.5× рабочего в течение 24 часов</p>
             </div>
-
-            <div class="timeline-item">
-               <div class="timeline-day">День 4-10</div>
-               <div class="timeline-icon">
-                  <i class="fas fa-cogs"></i>
-               </div>
-               <div class="timeline-content">
-                  <h3>Проектирование и 3D-моделирование</h3>
-                  <p>Разработка 3D-модели оборудования, тепловой расчет, подбор компонентов, создание конструкторской документации.</p>
-               </div>
+            <div class="quality-item">
+               <h4>Тест на герметичность</h4>
+               <p>Проверка гелиевым течеискателем с чувствительностью до 10⁻⁶ мбар·л/с</p>
             </div>
-
-            <div class="timeline-item">
-               <div class="timeline-day">День 11-15</div>
-               <div class="timeline-icon">
-                  <i class="fas fa-handshake"></i>
-               </div>
-               <div class="timeline-content">
-                  <h3>Согласование решения</h3>
-                  <p>Презентация технического решения заказчику, внесение правок и корректировок, окончательное утверждение.</p>
-               </div>
+            <div class="quality-item">
+               <h4>Контроль чистоты контуров</h4>
+               <p>Обеспечение чистоты контуров (частицы ≤ 25 мкм, масло ≤ 5 мг/м²)</p>
             </div>
-
-            <div class="timeline-item">
-               <div class="timeline-day">День 16-40</div>
-               <div class="timeline-icon">
-                  <i class="fas fa-industry"></i>
-               </div>
-               <div class="timeline-content">
-                  <h3>Изготовление и тестирование</h3>
-                  <p>Изготовление компонентов, сборка, тестирование на стенде, контроль качества на каждом этапе производства.</p>
-               </div>
-            </div>
-
-            <div class="timeline-item">
-               <div class="timeline-day">День 41-45</div>
-               <div class="timeline-icon">
-                  <i class="fas fa-truck"></i>
-               </div>
-               <div class="timeline-content">
-                  <h3>Отгрузка и доставка</h3>
-                  <p>Упаковка, отгрузка, доставка транспортом любой сложности. Шеф-монтаж на объекте заказчика.</p>
-               </div>
-            </div>
-
-            <div class="timeline-item">
-               <div class="timeline-day">День 46-50</div>
-               <div class="timeline-icon">
-                  <i class="fas fa-play-circle"></i>
-               </div>
-               <div class="timeline-content">
-                  <h3>Пусконаладка и обучение</h3>
-                  <p>Пусконаладка оборудования, тестовый запуск, обучение персонала заказчика, передача документации.</p>
-               </div>
-            </div>
-         </div>
-
-         <div class="quality-control">
-            <h3>Критические точки контроля качества</h3>
-            <div class="quality-grid">
-               <div class="quality-item">
-                  <h4>Испытание давлением</h4>
-                  <p>Гидравлические испытания давлением 1.5× рабочего в течение 24 часов</p>
-               </div>
-               <div class="quality-item">
-                  <h4>Тест на герметичность</h4>
-                  <p>Проверка гелиевым течеискателем с чувствительностью до 10⁻⁶ мбар·л/с</p>
-               </div>
-               <div class="quality-item">
-                  <h4>Контроль чистоты контуров</h4>
-                  <p>Обеспечение чистоты контуров (частицы ≤ 25 мкм, масло ≤ 5 мг/м²)</p>
-               </div>
-               <div class="quality-item">
-                  <h4>Холодный запуск на стенде</h4>
-                  <p>Тестовый запуск с имитацией рабочих условий на 72 часа</p>
-               </div>
+            <div class="quality-item">
+               <h4>Холодный запуск на стенде</h4>
+               <p>Тестовый запуск с имитацией рабочих условий на 72 часа</p>
             </div>
          </div>
       </div>
-   </section>
+   </div>
+</section>
 
 
-   <!-- SEO-ГЛОССАРИЙ -->
-   <section class="seo-glossary fade-in">
-      <div class="container">
-         <div class="glossary-container">
-            <h2>Технический глоссарий</h2>
-            <p style="text-align:center; color:#666; margin-bottom:40px;">Объяснение терминов и понятий, используемых в специализированном холодильном оборудовании</p>
+<!-- SEO-ГЛОССАРИЙ -->
+<section class="seo-glossary fade-in">
+   <div class="container">
+      <div class="glossary-container">
+         <h2>Технический глоссарий</h2>
+         <p style="text-align:center; color:#666; margin-bottom:40px;">Объяснение терминов и понятий, используемых в специализированном холодильном оборудовании</p>
 
-            <div class="glossary-grid">
-               <div class="glossary-term">
-                  <h3>ATEX (АТЕКС)</h3>
-                  <p>Европейская директива по оборудованию, предназначенному для использования во взрывоопасных средах. Определяет требования к взрывозащите электрооборудования.</p>
-               </div>
-               <div class="glossary-term">
-                  <h3>Каскадные схемы охлаждения</h3>
-                  <p>Многоступенчатые системы, где одна холодильная машина охлаждает другую. Позволяют достигать сверхнизких температур (до -150°C).</p>
-               </div>
-               <div class="glossary-term">
-                  <h3>SCADA (СКАДА)</h3>
-                  <p>Система диспетчерского управления и сбора данных. Позволяет удаленно контролировать и управлять промышленным оборудованием.</p>
-               </div>
-               <div class="glossary-term">
-                  <h3>Криогенные температуры</h3>
-                  <p>Температуры ниже -150°C. В промышленности криогенным обычно считается диапазон от -60°C до -196°C (температура жидкого азота).</p>
-               </div>
-               <div class="glossary-term">
-                  <h3>НАКС (Национальное агентство контроля сварки)</h3>
-                  <p>Система аттестации сварщиков и сварочных технологий в России. Обязательна для ответственных конструкций.</p>
-               </div>
-               <div class="glossary-term">
-                  <h3>Рекуперация тепла</h3>
-                  <p>Использование тепла, выделяемого при работе холодильной машины, для отопления помещений или технологических нужд.</p>
-               </div>
+         <div class="glossary-grid">
+            <div class="glossary-term">
+               <h3>ATEX (АТЕКС)</h3>
+               <p>Европейская директива по оборудованию, предназначенному для использования во взрывоопасных средах. Определяет требования к взрывозащите электрооборудования.</p>
             </div>
+            <div class="glossary-term">
+               <h3>Каскадные схемы охлаждения</h3>
+               <p>Многоступенчатые системы, где одна холодильная машина охлаждает другую. Позволяют достигать сверхнизких температур (до -150°C).</p>
+            </div>
+            <div class="glossary-term">
+               <h3>SCADA (СКАДА)</h3>
+               <p>Система диспетчерского управления и сбора данных. Позволяет удаленно контролировать и управлять промышленным оборудованием.</p>
+            </div>
+            <div class="glossary-term">
+               <h3>Криогенные температуры</h3>
+               <p>Температуры ниже -150°C. В промышленности криогенным обычно считается диапазон от -60°C до -196°C (температура жидкого азота).</p>
+            </div>
+            <div class="glossary-term">
+               <h3>НАКС (Национальное агентство контроля сварки)</h3>
+               <p>Система аттестации сварщиков и сварочных технологий в России. Обязательна для ответственных конструкций.</p>
+            </div>
+            <div class="glossary-term">
+               <h3>Рекуперация тепла</h3>
+               <p>Использование тепла, выделяемого при работе холодильной машины, для отопления помещений или технологических нужд.</p>
+            </div>
+         </div>
 
-            <div class="comparison-table">
-               <h3>Серийный vs Специальный чиллер: ключевые отличия</h3>
-               <div class="comparison-row">
-                  <div class="comparison-header">Параметр</div>
-                  <div class="comparison-header">Серийный чиллер</div>
-               </div>
-               <div class="comparison-row">
-                  <div><strong>Температурный диапазон</strong></div>
-                  <div>Стандартный (+5°C...+25°C)</div>
-               </div>
-               <div class="comparison-row">
-                  <div><strong>Рабочие среды</strong></div>
-                  <div>Вода, стандартные рассолы</div>
-               </div>
-               <div class="comparison-row">
-                  <div><strong>Исполнение</strong></div>
-                  <div>Типовое, для отапливаемых помещений</div>
-               </div>
-               <div class="comparison-row">
-                  <div><strong>Срок поставки</strong></div>
-                  <div>5-10 дней (со склада)</div>
-               </div>
-               <div class="comparison-row">
-                  <div><strong>Стоимость</strong></div>
-                  <div>От 450 000 ₽</div>
-               </div>
-               <div class="comparison-row">
-                  <div class="comparison-header">Параметр</div>
-                  <div class="comparison-header">Специальный чиллер</div>
-               </div>
-               <div class="comparison-row">
-                  <div><strong>Температурный диапазон</strong></div>
-                  <div>От -60°C до +200°C</div>
-               </div>
-               <div class="comparison-row">
-                  <div><strong>Рабочие среды</strong></div>
-                  <div>Кислоты, газы, масла, агрессивные жидкости</div>
-               </div>
-               <div class="comparison-row">
-                  <div><strong>Исполнение</strong></div>
-                  <div>Взрывозащищенное, морозостойкое, антикоррозионное</div>
-               </div>
-               <div class="comparison-row">
-                  <div><strong>Срок поставки</strong></div>
-                  <div>30-60 дней (под заказ)</div>
-               </div>
-               <div class="comparison-row">
-                  <div><strong>Стоимость</strong></div>
-                  <div>От 1 500 000 ₽</div>
-               </div>
+         <div class="comparison-table">
+            <h3>Серийный vs Специальный чиллер: ключевые отличия</h3>
+            <div class="comparison-row">
+               <div class="comparison-header">Параметр</div>
+               <div class="comparison-header">Серийный чиллер</div>
+            </div>
+            <div class="comparison-row">
+               <div><strong>Температурный диапазон</strong></div>
+               <div>Стандартный (+5°C...+25°C)</div>
+            </div>
+            <div class="comparison-row">
+               <div><strong>Рабочие среды</strong></div>
+               <div>Вода, стандартные рассолы</div>
+            </div>
+            <div class="comparison-row">
+               <div><strong>Исполнение</strong></div>
+               <div>Типовое, для отапливаемых помещений</div>
+            </div>
+            <div class="comparison-row">
+               <div><strong>Срок поставки</strong></div>
+               <div>5-10 дней (со склада)</div>
+            </div>
+            <div class="comparison-row">
+               <div><strong>Стоимость</strong></div>
+               <div>От 450 000 ₽</div>
+            </div>
+            <div class="comparison-row">
+               <div class="comparison-header">Параметр</div>
+               <div class="comparison-header">Специальный чиллер</div>
+            </div>
+            <div class="comparison-row">
+               <div><strong>Температурный диапазон</strong></div>
+               <div>От -60°C до +200°C</div>
+            </div>
+            <div class="comparison-row">
+               <div><strong>Рабочие среды</strong></div>
+               <div>Кислоты, газы, масла, агрессивные жидкости</div>
+            </div>
+            <div class="comparison-row">
+               <div><strong>Исполнение</strong></div>
+               <div>Взрывозащищенное, морозостойкое, антикоррозионное</div>
+            </div>
+            <div class="comparison-row">
+               <div><strong>Срок поставки</strong></div>
+               <div>30-60 дней (под заказ)</div>
+            </div>
+            <div class="comparison-row">
+               <div><strong>Стоимость</strong></div>
+               <div>От 1 500 000 ₽</div>
             </div>
          </div>
       </div>
-   </section>
+   </div>
+</section>
 
 
 
 
-   <script>
-      // ===== ОСНОВНОЙ СКРИПТ =====
-      document.addEventListener('DOMContentLoaded', function() {
-         // Анимация появления элементов при скролле
-         const fadeElements = document.querySelectorAll('.fade-in');
+<script>
+   // ===== ОСНОВНОЙ СКРИПТ =====
+   document.addEventListener('DOMContentLoaded', function() {
+      // Анимация появления элементов при скролле
+      const fadeElements = document.querySelectorAll('.fade-in');
 
-         const fadeInOnScroll = function() {
-            fadeElements.forEach(element => {
-               const elementTop = element.getBoundingClientRect().top;
-               const elementVisible = 150;
+      const fadeInOnScroll = function() {
+         fadeElements.forEach(element => {
+            const elementTop = element.getBoundingClientRect().top;
+            const elementVisible = 150;
 
-               if (elementTop < window.innerHeight - elementVisible) {
-                  element.classList.add('visible');
-               }
-            });
-         };
-
-         window.addEventListener('scroll', fadeInOnScroll);
-         fadeInOnScroll(); // Проверка при загрузке
-
-         // Плавная прокрутка по якорным ссылкам
-         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-               const href = this.getAttribute('href');
-               if (href === '#' || href === '#!') return;
-
-               const targetElement = document.querySelector(href);
-               if (targetElement) {
-                  e.preventDefault();
-                  window.scrollTo({
-                     top: targetElement.offsetTop - 100,
-                     behavior: 'smooth'
-                  });
-               }
-            });
+            if (elementTop < window.innerHeight - elementVisible) {
+               element.classList.add('visible');
+            }
          });
+      };
 
-         // ===== БЫСТРАЯ ДИАГНОСТИКА =====
-         const optionCards = document.querySelectorAll('.option-card');
-         const getEstimationBtn = document.getElementById('getEstimationBtn');
-         const diagnosticResult = document.getElementById('diagnosticResult');
+      window.addEventListener('scroll', fadeInOnScroll);
+      fadeInOnScroll(); // Проверка при загрузке
 
-         optionCards.forEach(card => {
-            card.addEventListener('click', function() {
-               const parentGrid = this.parentElement;
-               if (parentGrid.id === 'mediaOptions') {
-                  // Для медиа только один выбор
-                  document.querySelectorAll('#mediaOptions .option-card').forEach(c => {
-                     c.classList.remove('selected');
-                  });
-               }
-               this.classList.toggle('selected');
-            });
+      // Плавная прокрутка по якорным ссылкам
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+         anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href === '#' || href === '#!') return;
+
+            const targetElement = document.querySelector(href);
+            if (targetElement) {
+               e.preventDefault();
+               window.scrollTo({
+                  top: targetElement.offsetTop - 100,
+                  behavior: 'smooth'
+               });
+            }
          });
+      });
 
-         getEstimationBtn.addEventListener('click', function() {
-            const selectedMedia = Array.from(document.querySelectorAll('#mediaOptions .option-card.selected'))
-               .map(card => card.querySelector('p').textContent)
-               .join(', ');
+      // ===== БЫСТРАЯ ДИАГНОСТИКА =====
+      const optionCards = document.querySelectorAll('.option-card');
+      const getEstimationBtn = document.getElementById('getEstimationBtn');
+      const diagnosticResult = document.getElementById('diagnosticResult');
 
-            const selectedConditions = Array.from(document.querySelectorAll('#conditionOptions .option-card.selected'))
-               .map(card => card.querySelector('p').textContent)
-               .join(', ');
-
-            const specialRequirements = document.getElementById('specialRequirements').value;
-
-            if (!selectedMedia || !selectedConditions) {
-               alert('Пожалуйста, выберите хотя бы один вариант в каждом вопросе');
-               return;
+      optionCards.forEach(card => {
+         card.addEventListener('click', function() {
+            const parentGrid = this.parentElement;
+            if (parentGrid.id === 'mediaOptions') {
+               // Для медиа только один выбор
+               document.querySelectorAll('#mediaOptions .option-card').forEach(c => {
+                  c.classList.remove('selected');
+               });
             }
-
-            // Определяем сложность проекта
-            let complexity = 'Средняя';
-            let timeline = '25-35 дней';
-            let components = 'Стандартные компоненты, индивидуальная сборка';
-
-            if (selectedConditions.includes('Взрывозащита') || selectedConditions.includes('Высокое давление')) {
-               complexity = 'Высокая';
-               timeline = '35-50 дней';
-               components = 'Специальные материалы, взрывозащищенное исполнение, усиленная конструкция';
-            }
-
-            if (selectedMedia.includes('Кислоты') || selectedMedia.includes('Газы')) {
-               complexity = 'Высокая';
-               timeline = '30-45 дней';
-               components = 'Коррозионностойкие материалы, специальные уплотнения';
-            }
-
-            // Обновляем результат
-            document.getElementById('resultType').textContent = selectedMedia.includes('Кислоты') || selectedMedia.includes('Газы') ?
-               'Специализированный чиллер с антикоррозионной защитой' :
-               'Специализированный чиллер';
-
-            document.getElementById('resultComplexity').textContent = complexity;
-            document.getElementById('resultTimeline').textContent = timeline;
-            document.getElementById('resultComponents').textContent = components;
-
-            // Показываем результат
-            diagnosticResult.style.display = 'block';
-            diagnosticResult.scrollIntoView({
-               behavior: 'smooth',
-               block: 'center'
-            });
-
-            // Отправляем данные (в реальности - AJAX запрос)
-            console.log('Диагностика отправлена:', {
-               media: selectedMedia,
-               conditions: selectedConditions,
-               requirements: specialRequirements,
-               complexity: complexity,
-               timeline: timeline
-            });
+            this.classList.toggle('selected');
          });
+      });
 
-         // ===== МНОГОШАГОВАЯ ФОРМА =====
-         // Обработка формы #technicalRequestForm выполняется в /js/main.js (отправка в telegram-send.php)
+      getEstimationBtn.addEventListener('click', function() {
+         const selectedMedia = Array.from(document.querySelectorAll('#mediaOptions .option-card.selected'))
+            .map(card => card.querySelector('p').textContent)
+            .join(', ');
 
+         const selectedConditions = Array.from(document.querySelectorAll('#conditionOptions .option-card.selected'))
+            .map(card => card.querySelector('p').textContent)
+            .join(', ');
 
+         const specialRequirements = document.getElementById('specialRequirements').value;
 
-
-         // Адаптация таймлайна для мобильных
-         function adjustTimeline() {
-            if (window.innerWidth <= 992) {
-               document.querySelector('.timeline-container').style.paddingLeft = '60px';
-            } else {
-               document.querySelector('.timeline-container').style.paddingLeft = '0';
-            }
+         if (!selectedMedia || !selectedConditions) {
+            alert('Пожалуйста, выберите хотя бы один вариант в каждом вопросе');
+            return;
          }
 
-         window.addEventListener('resize', adjustTimeline);
-         adjustTimeline();
-      });
-   </script>
+         // Определяем сложность проекта
+         let complexity = 'Средняя';
+         let timeline = '25-35 дней';
+         let components = 'Стандартные компоненты, индивидуальная сборка';
 
-   <?php get_footer(); ?>
+         if (selectedConditions.includes('Взрывозащита') || selectedConditions.includes('Высокое давление')) {
+            complexity = 'Высокая';
+            timeline = '35-50 дней';
+            components = 'Специальные материалы, взрывозащищенное исполнение, усиленная конструкция';
+         }
+
+         if (selectedMedia.includes('Кислоты') || selectedMedia.includes('Газы')) {
+            complexity = 'Высокая';
+            timeline = '30-45 дней';
+            components = 'Коррозионностойкие материалы, специальные уплотнения';
+         }
+
+         // Обновляем результат
+         document.getElementById('resultType').textContent = selectedMedia.includes('Кислоты') || selectedMedia.includes('Газы') ?
+            'Специализированный чиллер с антикоррозионной защитой' :
+            'Специализированный чиллер';
+
+         document.getElementById('resultComplexity').textContent = complexity;
+         document.getElementById('resultTimeline').textContent = timeline;
+         document.getElementById('resultComponents').textContent = components;
+
+         // Показываем результат
+         diagnosticResult.style.display = 'block';
+         diagnosticResult.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+         });
+
+         // Отправляем данные (в реальности - AJAX запрос)
+         console.log('Диагностика отправлена:', {
+            media: selectedMedia,
+            conditions: selectedConditions,
+            requirements: specialRequirements,
+            complexity: complexity,
+            timeline: timeline
+         });
+      });
+
+      // ===== МНОГОШАГОВАЯ ФОРМА =====
+      // Обработка формы #technicalRequestForm выполняется в /js/main.js (отправка в telegram-send.php)
+
+
+
+
+      // Адаптация таймлайна для мобильных
+      function adjustTimeline() {
+         if (window.innerWidth <= 992) {
+            document.querySelector('.timeline-container').style.paddingLeft = '60px';
+         } else {
+            document.querySelector('.timeline-container').style.paddingLeft = '0';
+         }
+      }
+
+      window.addEventListener('resize', adjustTimeline);
+      adjustTimeline();
+   });
+</script>
+
+<?php get_footer(); ?>

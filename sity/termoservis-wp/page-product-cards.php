@@ -372,6 +372,7 @@ get_header();
         display: flex;
         justify-content: space-between;
         align-items: center;
+        flex-wrap: wrap;
         gap: 5px;
     }
 
@@ -536,6 +537,9 @@ get_header();
         display: flex;
         justify-content: center;
         align-items: center;
+        padding: 20px;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
         z-index: 2000;
         opacity: 0;
         visibility: hidden;
@@ -552,6 +556,9 @@ get_header();
         border-radius: 10px;
         width: 90%;
         max-width: 500px;
+        max-height: calc(100vh - 40px);
+        height:auto;
+        overflow-y: auto;
         padding: 30px;
         position: relative;
         transform: translateY(20px);
@@ -560,6 +567,8 @@ get_header();
 
     .modal-overlay.active .modal {
         transform: translateY(0);
+                display: block;
+
     }
 
     .modal-close {
@@ -608,6 +617,11 @@ get_header();
             flex-direction: column;
         }
 
+        .hero-content, .hero-image, .description-text, .description-image {
+            min-width: 0;
+            width: 100%;
+        }
+
         .product-title {
             font-size: 2rem;
         }
@@ -639,6 +653,24 @@ get_header();
     }
 
     @media (max-width: 480px) {
+        .hero-cta {
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .hero-cta .btn {
+            width: 100%;
+        }
+
+        .package-grid,
+        .services-showcase {
+            grid-template-columns: 1fr;
+        }
+
+        .modal {
+            padding: 20px;
+        }
+
         .badge {
             width: 140px;
             padding: 15px 10px;
@@ -677,7 +709,7 @@ get_header();
             $product = wc_get_product(get_the_ID());
             $power = $product ? $product->get_attribute('Мощность') : '';
             ?>
-            <h1 class="product-title"><?php the_title(); ?><?php echo $power ? ' мощностью ' . esc_html($power) . ' кВт' : ''; ?></h1>
+            <h1 class="product-title"><?php the_title(); ?><?php echo $power ? ' мощностью ' . esc_html($power): ''; ?></h1>
             <div class="product-subtitle">Профессиональное промышленное охлаждение для вашего производства</div>
             <p class="product-description">
                 Современный чиллер российского производства, разработанный для эффективного охлаждения технологического оборудования, воды, гликоля и других теплоносителей. Обеспечивает стабильный температурный режим с высокой точностью.
@@ -1008,6 +1040,7 @@ get_header();
         <h3>Рассчитать стоимость и получить КП</h3>
         <p>Наш специалист свяжется с вами в ближайшее время для расчета стоимости.</p>
         <form id="calcForm"  class="form-tel">
+            <input type="hidden" name="formType" value="Расчет стоимости: <?php echo esc_attr(get_the_title()); ?>">
             <div class="form-group">
                 <label for="calcName">Ваше имя *</label>
                 <input type="text" id="calcName" class="form-control" name="name" required>
@@ -1022,7 +1055,7 @@ get_header();
             </div>
             <div class="form-group">
                 <label for="calcModel">Интересуемая модель</label>
-                <input type="text" id="calcModel" class="form-control" name="model" value="<?php the_title(); ?>" readonly>
+                <input type="text" id="calcModel" class="form-control" name="model" value="<?php echo esc_attr(get_the_title()); ?>" readonly>
             </div>
             <div class="form-group">
                 <label for="calcMessage">Дополнительная информация</label>
@@ -1042,6 +1075,7 @@ get_header();
         <h3>Заказать консультацию</h3>
         <p>Наш специалист свяжется с вами в удобное время и ответит на все вопросы.</p>
         <form id="callForm"  class="form-tel">
+            <input type="hidden" name="formType" value="Консультация: <?php echo esc_attr(get_the_title()); ?>">
             <div class="form-group">
                 <label for="callName">Ваше имя *</label>
                 <input type="text" id="callName" class="form-control" name="name" required>
@@ -1069,103 +1103,5 @@ get_header();
         </form>
     </div>
 </div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Табы характеристик
-        const tabBtns = document.querySelectorAll('.tab-btn');
-        tabBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                const tabId = this.dataset.tab;
-                
-                tabBtns.forEach(b => b.classList.remove('active'));
-                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-                
-                this.classList.add('active');
-                document.getElementById(tabId + '-tab').classList.add('active');
-            });
-        });
-        
-        // FAQ аккордеон
-        const faqQuestions = document.querySelectorAll('.faq-question');
-        faqQuestions.forEach(question => {
-            question.addEventListener('click', function() {
-                const faqItem = this.parentElement;
-                
-                document.querySelectorAll('.faq-item.active').forEach(item => {
-                    item.classList.remove('active');
-                });
-                
-                faqItem.classList.add('active');
-            });
-        });
-        
-        // Модальные окна
-        const calcModal = document.getElementById('calcModal');
-        const callModal = document.getElementById('callModal');
-        const openCalcBtns = document.querySelectorAll('.open-modal-calc');
-        const openCallBtns = document.querySelectorAll('.open-modal-call');
-        const closeModals = document.querySelectorAll('.close-modal');
-        
-        openCalcBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                calcModal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            });
-        });
-        
-        openCallBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                callModal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            });
-        });
-        
-        closeModals.forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.modal-overlay.active').forEach(m => {
-                    m.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                });
-            });
-        });
-        
-        document.querySelectorAll('.modal-overlay').forEach(modal => {
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                }
-            });
-        });
-        
-        // Закрытие по Escape
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                document.querySelectorAll('.modal-overlay').forEach(m => {
-                    m.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                });
-            }
-        });
-        
-        // Отправка форм
-        document.getElementById('calcForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Заявка отправлена! Наш специалист свяжется с вами в ближайшее время.');
-            calcModal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-            document.getElementById('calcForm').reset();
-        });
-        
-        document.getElementById('callForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Заявка на консультацию принята! Мы свяжемся с вами в указанное время.');
-            callModal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-            document.getElementById('callForm').reset();
-        });
-    });
-</script>
 
 <?php get_footer(); ?>
