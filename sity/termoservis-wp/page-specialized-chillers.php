@@ -126,18 +126,6 @@ get_header();
       margin-bottom: 40px;
    }
 
-   h2:after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 80px;
-      height: 4px;
-      background: #0056b8;
-      border-radius: 2px;
-      animation: expandLine 1s ease-out forwards;
-   }
-
    h3 {
       font-size: 1.6rem;
       color: #222;
@@ -1722,6 +1710,188 @@ get_header();
          width: calc(100vw - 40px);
          right: -20px;
       }
+
+      .form-progress {
+         flex-wrap: wrap;
+         justify-content: center;
+         gap: 16px 12px;
+         margin-bottom: 30px;
+      }
+
+      .form-progress:before {
+         display: none;
+      }
+
+      .progress-step {
+         flex: 0 0 calc(33.333% - 12px);
+      }
+
+      .step-circle {
+         width: 36px;
+         height: 36px;
+         margin-bottom: 8px;
+      }
+
+      .step-label {
+         font-size: 0.8rem;
+         line-height: 1.2;
+      }
+
+      .timeline-container {
+         margin: 30px auto;
+         padding-left: 0 !important;
+      }
+
+      .timeline-container:before {
+         left: 26px;
+      }
+
+      .timeline-item {
+         align-items: flex-start;
+         gap: 14px;
+         margin-bottom: 30px;
+         padding-top: 34px;
+      }
+
+      .timeline-day {
+         left: 0;
+         transform: none;
+         padding: 6px 12px;
+         border-radius: 16px;
+         font-size: 0.9rem;
+      }
+
+      .timeline-icon {
+         width: 52px;
+         height: 52px;
+         font-size: 1.25rem;
+         margin-right: 0;
+      }
+
+      .timeline-content {
+         margin: 0;
+         padding: 20px;
+      }
+
+      .comparison-table {
+         padding: 20px;
+      }
+
+      .comparison-table h3 {
+         margin-bottom: 20px;
+         font-size: 1.2rem;
+      }
+
+      .comparison-row {
+         grid-template-columns: 1fr;
+         gap: 10px;
+         padding: 15px;
+         margin-bottom: 12px;
+      }
+
+      .comparison-header {
+         border-bottom: none;
+         padding-bottom: 0;
+         margin-bottom: 0;
+      }
+
+      .comparison-row div {
+         overflow-wrap: anywhere;
+      }
+   }
+
+   @media (max-width: 360px) {
+      h3 {
+         font-size: 1.2rem;
+      }
+
+      .seo-glossary {
+         padding: 0;
+      }
+
+      .quality-control {
+         padding: 15px;
+      }
+
+      .form-progress {
+         flex-wrap: wrap;
+         justify-content: center;
+         gap: 14px 10px;
+         margin-bottom: 25px;
+      }
+
+      .form-progress:before {
+         display: none;
+      }
+
+      .progress-step {
+         flex: 0 0 calc(50% - 10px);
+      }
+
+      .step-circle {
+         width: 34px;
+         height: 34px;
+         margin-bottom: 6px;
+         font-size: 0.95rem;
+      }
+
+      .step-label {
+         font-size: 0.75rem;
+         line-height: 1.2;
+      }
+
+      .timeline-container {
+         margin: 25px auto;
+         padding-left: 0 !important;
+      }
+
+      .timeline-container:before {
+         left: 22px;
+      }
+
+      .timeline-item {
+         align-items: flex-start;
+         gap: 12px;
+         margin-bottom: 26px;
+         padding-top: 32px;
+      }
+
+      .timeline-day {
+         left: 0;
+         transform: none;
+         padding: 6px 10px;
+         border-radius: 16px;
+         font-size: 0.85rem;
+      }
+
+      .timeline-icon {
+         width: 44px;
+         height: 44px;
+         font-size: 1.1rem;
+         margin-right: 0;
+      }
+
+      .timeline-content {
+         margin: 0;
+         padding: 18px;
+      }
+
+      .comparison-table {
+         padding: 15px;
+         border-radius: 12px;
+         min-width:auto;
+      }
+
+      .comparison-table h3 {
+         margin-bottom: 16px;
+         font-size: 1.05rem;
+      }
+
+      .comparison-row {
+         padding: 12px;
+         gap: 8px;
+      }
+
    }
 </style>
 </head>
