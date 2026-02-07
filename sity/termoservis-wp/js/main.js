@@ -70,10 +70,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Обновляем прогресс
     document.querySelectorAll('.progress-step').forEach((el, index) => {
-      if (index < step) {
-        el.classList.add('active');
-      } else {
+      const stepIndex = index + 1;
+      if (stepIndex < step) {
+        el.classList.add('completed');
         el.classList.remove('active');
+      } else if (stepIndex === step) {
+        el.classList.add('active');
+        el.classList.remove('completed');
+      } else {
+        el.classList.remove('active', 'completed');
       }
     });
 
@@ -193,6 +198,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const formData = new FormData(technicalForm);
     formData.append('formType', 'Техническое задание на расчет');
 
+    const requestNumber = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
+    formData.append('requestNumber', requestNumber);
+
     // Показываем лоадер
     const submitBtn = technicalForm.querySelector('button[type="submit"]');
     const originalText = submitBtn.innerHTML;
@@ -213,8 +221,6 @@ document.addEventListener('DOMContentLoaded', function () {
       .then(result => {
         console.log('Response from PHP:', result);
         if (result && result.success) {
-          // Генерируем номер заявки
-          const requestNumber = 'TZ-' + Date.now();
           document.getElementById('requestNumber').textContent = requestNumber;
 
           // Показываем окно успеха
@@ -268,7 +274,6 @@ accordionHeaders.forEach(header => {
     }
   });
 });
-console.log('wreqwq')
 // ===== МОДАЛЬНЫЕ ОКНА =====
 const projectModal = document.getElementById('projectModal');
 const closeProjectModal = document.getElementById('closeProjectModal');
@@ -283,4 +288,3 @@ projectButtons.forEach(button => {
     projectModal.classList.add('active');
   });
 }); 
-

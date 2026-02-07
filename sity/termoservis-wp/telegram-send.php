@@ -62,7 +62,7 @@ foreach ($postedFields as $fieldName => $fieldValue) {
     
     // Создаём красивое название поля
     $label = preg_replace('/([A-Z])/', ' $1', $fieldName);
-    $label = ucfirst(str_replace(['request', 'id'], '', $label));
+    $label = ucfirst(trim(str_replace(['request', 'id'], '', $label)));
     
     // Классифицируем тип поля
     if (is_array($fieldValue)) {
@@ -113,7 +113,7 @@ if (!empty($groupedData['textarea'])) {
 // Добавляем время отправки
 $text .= "━" . str_repeat("━", 28) . "\n";
 $text .= "🕐 Время отправки: " . date('d.m.Y H:i:s') . "\n";
-$text .= "🌐 IP: " . $_SERVER['REMOTE_ADDR'] ?? 'N/A';
+$text .= "🌐 IP: " . ($_SERVER['REMOTE_ADDR'] ?? 'N/A');
 
 // Отправка текста в Telegram
 $sendTextUrl = "https://api.telegram.org/bot$bot_token/sendMessage";
@@ -134,31 +134,66 @@ $context  = stream_context_create($options);
 file_get_contents($sendTextUrl, false, $context);
 
 // Обработка файлов (до 50 МБ за файл)
+function termoservis_normalize_uploaded_files($filesData) {
+    if (empty($filesData) || !isset($filesData['name'])) {
+        return [];
+    }
+
+    // Одиночный файл
+    if (!is_array($filesData['name'])) {
+        return [$filesData];
+    }
+
+    // Множественная загрузка
+    $normalized = [];
+    $fileCount = count($filesData['name']);
+
+    for ($i = 0; $i < $fileCount; $i++) {
+        $normalized[] = [
+            'name' => $filesData['name'][$i] ?? '',
+            'type' => $filesData['type'][$i] ?? '',
+            'tmp_name' => $filesData['tmp_name'][$i] ?? '',
+            'error' => $filesData['error'][$i] ?? UPLOAD_ERR_NO_FILE,
+            'size' => $filesData['size'][$i] ?? 0,
+        ];
+    }
+
+    return $normalized;
+}
+
 if (!empty($_FILES)) {
     foreach ($_FILES as $fieldName => $filesData) {
-        // Обработка как множественной загрузки так и одиночной
-        $files = isset($filesData[0]) ? $filesData : [$filesData];
-        
-        foreach ($files as $file) {
-            if ($file['error'] === UPLOAD_ERR_OK && $file['size'] <= 50*1024*1024) {
-                $tmpFile = $file['tmp_name'];
-                $fileName = $file['name'];
-                
-                $sendFileUrl = "https://api.telegram.org/bot$bot_token/sendDocument";
-                $postFields = [
-                    'chat_id' => $chat_id,
-                    'document' => new CURLFile($tmpFile, mime_content_type($tmpFile), $fileName),
-                    'caption' => "📎 Файл: $fieldName"
-                ];
-                
-                $ch = curl_init();
-                curl_setopt($ch, CURLOPT_URL, $sendFileUrl);
-                curl_setopt($ch, CURLOPT_POST, 1);
-                curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                curl_exec($ch);
-                curl_close($ch);
+        foreach (termoservis_normalize_uploaded_files($filesData) as $file) {
+            if (($file['error'] ?? UPLOAD_ERR_NO_FILE) !== UPLOAD_ERR_OK) {
+                continue;
             }
+
+            $fileSize = $file['size'] ?? 0;
+            if (!is_numeric($fileSize) || $fileSize > 50 * 1024 * 1024) {
+                continue;
+            }
+
+            $tmpFile = $file['tmp_name'] ?? '';
+            $fileName = $file['name'] ?? '';
+            if (empty($tmpFile) || empty($fileName)) {
+                continue;
+            }
+
+            $sendFileUrl = "https://api.telegram.org/bot$bot_token/sendDocument";
+            $mimeType = function_exists('mime_content_type') ? mime_content_type($tmpFile) : 'application/octet-stream';
+            $postFields = [
+                'chat_id' => $chat_id,
+                'document' => new CURLFile($tmpFile, $mimeType, $fileName),
+                'caption' => "📎 Файл: $fieldName"
+            ];
+
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $sendFileUrl);
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_exec($ch);
+            curl_close($ch);
         }
     }
 }

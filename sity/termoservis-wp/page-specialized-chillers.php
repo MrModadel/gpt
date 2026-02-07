@@ -1794,7 +1794,7 @@ get_header();
             <p>Ответьте на 3 вопроса, и наш инженер подготовит предварительный анализ вашей задачи</p>
          </div>
 
-         <form class="form-tel">
+         <form>
             <div class="diagnostic-step">
                <div class="step-question">
                   <h3><i class="fas fa-flask"></i> 1. С какими средами работает оборудование?</h3>
@@ -1865,16 +1865,10 @@ get_header();
                </div>
                <textarea class="text-option" id="specialRequirements" placeholder="Опишите уникальность задачи, условия эксплуатации, предыдущий опыт (если есть), ограничения и пожелания..."></textarea>
             </div>
-            <div class="form-group">
-               <label>Ваши контактные данные для отправки результата</label>
-               <div style="display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 15px;">
-                  <input type="text" class="form-control" id="selectorName" placeholder="Ваше имя" name="name" required>
-                  <input type="tel" class="form-control" id="selectorPhone" placeholder="Телефон" name="phone" required>
-               </div>
-            </div>
+
 
             <div class="diagnostic-actions">
-               <button type="submit" class="btn" id="getEstimationBtn">
+               <button type="button" class="btn" id="getEstimationBtn">
                   <i class="fas fa-calculator"></i> Получить предварительную оценку
                </button>
             </div>
@@ -2142,22 +2136,22 @@ get_header();
                         <label>Особые требования *</label>
                         <div class="checkbox-grid">
                            <label class="checkbox-label">
-                              <input type="checkbox" name="specialReq" value="explosion"> Взрывозащищенное исполнение
+                              <input type="checkbox" name="specialReq[]" value="explosion" required> Взрывозащищенное исполнение
                            </label>
                            <label class="checkbox-label">
-                              <input type="checkbox" name="specialReq" value="corrosion"> Антикоррозионная защита
+                              <input type="checkbox" name="specialReq[]" value="corrosion"> Антикоррозионная защита
                            </label>
                            <label class="checkbox-label">
-                              <input type="checkbox" name="specialReq" value="frost"> Морозостойкость
+                              <input type="checkbox" name="specialReq[]" value="frost"> Морозостойкость
                            </label>
                            <label class="checkbox-label">
-                              <input type="checkbox" name="specialReq" value="precision"> Высокая точность (±0.1°C)
+                              <input type="checkbox" name="specialReq[]" value="precision"> Высокая точность (±0.1°C)
                            </label>
                            <label class="checkbox-label">
-                              <input type="checkbox" name="specialReq" value="automation"> Интеграция с АСУ ТП
+                              <input type="checkbox" name="specialReq[]" value="automation"> Интеграция с АСУ ТП
                            </label>
                            <label class="checkbox-label">
-                              <input type="checkbox" name="specialReq" value="sterile"> Стерильное исполнение
+                              <input type="checkbox" name="specialReq[]" value="sterile"> Стерильное исполнение
                            </label>
                         </div>
                      </div>
@@ -2575,174 +2569,7 @@ get_header();
          });
 
          // ===== МНОГОШАГОВАЯ ФОРМА =====
-         let currentFormStep = 1;
-         const progressSteps = document.querySelectorAll('.progress-step');
-         const formStepContents = document.querySelectorAll('.form-step-content');
-
-         function updateFormProgress(step) {
-            // Обновляем прогресс-бар
-            progressSteps.forEach((s, index) => {
-               if (index < step - 1) {
-                  s.classList.add('completed');
-                  s.classList.remove('active');
-               } else if (index === step - 1) {
-                  s.classList.add('active');
-                  s.classList.remove('completed');
-               } else {
-                  s.classList.remove('active', 'completed');
-               }
-            });
-
-            // Показываем нужный шаг
-            formStepContents.forEach(content => {
-               content.classList.remove('active');
-            });
-            document.getElementById(`formStepContent${step}`).classList.add('active');
-
-            currentFormStep = step;
-         }
-
-         // Обработчики кнопок формы
-         document.getElementById('nextToStep2').addEventListener('click', function() {
-            const name = document.getElementById('requestName').value;
-            const phone = document.getElementById('requestPhone').value;
-            const email = document.getElementById('requestEmail').value;
-            const company = document.getElementById('requestCompany').value;
-
-            if (!name || !phone || !email || !company) {
-               alert('Пожалуйста, заполните все обязательные поля');
-               return;
-            }
-
-            updateFormProgress(2);
-         });
-
-         document.getElementById('backToStep1').addEventListener('click', function() {
-            updateFormProgress(1);
-         });
-
-         document.getElementById('nextToStep3').addEventListener('click', function() {
-            const temp = document.getElementById('requestTemp').value;
-            const flow = document.getElementById('requestFlow').value;
-            const media = document.getElementById('requestMedia').value;
-
-            if (!temp || !flow || !media) {
-               alert('Пожалуйста, заполните все обязательные поля');
-               return;
-            }
-
-            updateFormProgress(3);
-         });
-
-         document.getElementById('backToStep2').addEventListener('click', function() {
-            updateFormProgress(2);
-         });
-
-         document.getElementById('nextToStep4').addEventListener('click', function() {
-            const specialReqs = document.querySelectorAll('input[name="specialReq"]:checked');
-            if (specialReqs.length === 0) {
-               alert('Пожалуйста, выберите хотя бы одно особое требование');
-               return;
-            }
-
-            updateFormProgress(4);
-         });
-
-         document.getElementById('backToStep3').addEventListener('click', function() {
-            updateFormProgress(3);
-         });
-
-         document.getElementById('nextToStep5').addEventListener('click', function() {
-            updateFormProgress(5);
-         });
-
-         document.getElementById('backToStep4').addEventListener('click', function() {
-            updateFormProgress(4);
-         });
-
-         // Работа с загрузкой файлов
-         const fileInputs = document.querySelectorAll('input[type="file"]');
-         fileInputs.forEach(input => {
-            input.addEventListener('change', function() {
-               const fileName = this.files[0] ? this.files[0].name : 'Выберите файл...';
-               const labelId = this.id + 'Name';
-               document.getElementById(labelId).textContent = fileName;
-            });
-         });
-
-         // Отправка формы
-         document.getElementById('technicalRequestForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            // Валидация последнего шага
-            const timeline = document.getElementById('requestTimeline').value;
-            const budget = document.getElementById('requestBudget').value;
-
-            if (!timeline) {
-               alert('Пожалуйста, укажите желаемые сроки реализации');
-               return;
-            }
-
-            // Сбор всех данных формы
-            const formData = {
-               step1: {
-                  name: document.getElementById('requestName').value,
-                  position: document.getElementById('requestPosition').value,
-                  phone: document.getElementById('requestPhone').value,
-                  email: document.getElementById('requestEmail').value,
-                  company: document.getElementById('requestCompany').value
-               },
-               step2: {
-                  temp: document.getElementById('requestTemp').value,
-                  flow: document.getElementById('requestFlow').value,
-                  power: document.getElementById('requestPower').value,
-                  media: document.getElementById('requestMedia').value
-               },
-               step3: {
-                  specialReqs: Array.from(document.querySelectorAll('input[name="specialReq"]:checked')).map(cb => cb.value),
-                  notes: document.getElementById('requestNotes').value
-               },
-               step4: {
-                  tzFile: document.getElementById('tzFile').files[0]?.name || 'Не загружено',
-                  drawingsFiles: document.getElementById('drawingsFile').files.length > 0 ?
-                     `${document.getElementById('drawingsFile').files.length} файлов` : 'Не загружено',
-                  specFile: document.getElementById('specFile').files[0]?.name || 'Не загружено'
-               },
-               step5: {
-                  timeline: document.getElementById('requestTimeline').value,
-                  budget: document.getElementById('requestBudget').value,
-                  funding: document.getElementById('requestFunding').value,
-                  finalNotes: document.getElementById('finalNotes').value
-               }
-            };
-
-            // Генерация номера заявки
-            const requestNumber = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
-            document.getElementById('requestNumber').textContent = requestNumber;
-
-            // Показываем успешное сообщение
-            document.getElementById('formSuccess').style.display = 'block';
-            formStepContents.forEach(content => {
-               content.style.display = 'none';
-            });
-
-            // Прокрутка к результату
-            document.getElementById('formSuccess').scrollIntoView({
-               behavior: 'smooth',
-               block: 'center'
-            });
-
-            // Отправка данных (в реальности - AJAX запрос)
-            console.log('Заявка на расчет отправлена:', formData);
-            console.log('Номер заявки:', `SPC-${requestNumber}`);
-
-            // Можно добавить отправку на email или в CRM
-            // fetch('/api/submit-request', {
-            //     method: 'POST',
-            //     headers: { 'Content-Type': 'application/json' },
-            //     body: JSON.stringify(formData)
-            // });
-         });
+         // Обработка формы #technicalRequestForm выполняется в /js/main.js (отправка в telegram-send.php)
 
 
 
