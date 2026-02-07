@@ -511,7 +511,7 @@ get_header();
       min-width: 900px;
    }
 
-   .solutions-table th {
+   .solutions-table thead th {
       background-color: #0056b8;
       color: white;
       padding: 20px 15px;
@@ -522,10 +522,12 @@ get_header();
       z-index: 10;
    }
 
-   .solutions-table td {
+   .solutions-table td,
+   .solutions-table tbody th {
       padding: 20px 15px;
       border-bottom: 1px solid #eee;
       vertical-align: top;
+      text-align: left;
    }
 
    .solutions-table tr:hover {
@@ -1907,65 +1909,65 @@ get_header();
          <p class="text-center mb-40" style="color:#666; max-width:800px; margin:0 auto;">Выберите категорию, наиболее соответствующую вашей задаче, или закажите комплексное решение</p>
 
          <div class="solutions-table-container">
-            <table class="solutions-table">
+            <table class="solutions-table" aria-label="Классификация специализированных решений">
                <thead>
                   <tr>
-                     <th>Категория</th>
-                     <th>Температура</th>
-                     <th>Сферы применения</th>
-                     <th>Сложность</th>
-                     <th>Срок реализации</th>
-                     <th>Действие</th>
+                     <th scope="col">Категория</th>
+                     <th scope="col">Температура</th>
+                     <th scope="col">Сферы применения</th>
+                     <th scope="col">Сложность</th>
+                     <th scope="col">Срок реализации</th>
+                     <th scope="col">Действие</th>
                   </tr>
                </thead>
                <tbody>
                   <tr>
-                     <td class="solution-type">Криогенные</td>
+                     <th scope="row" class="solution-type">Криогенные</th>
                      <td class="solution-temp">-60°C...-10°C</td>
                      <td class="solution-apps">Фармацевтика, химические производства, лаборатории, криообработка</td>
                      <td><span class="solution-complexity complexity-high">Высокая</span></td>
                      <td class="solution-duration">30-45 дней</td>
-                     <td class="solution-action"><button class="btn-small discuss-project" data-type="cryogenic">Обсудить</button></td>
+                     <td class="solution-action"><button type="button" class="btn btn-outline btn-small open-project-modal discuss-project" data-type="cryogenic">Обсудить</button></td>
                   </tr>
                   <tr>
-                     <td class="solution-type">Высокотемпературные</td>
+                     <th scope="row" class="solution-type">Высокотемпературные</th>
                      <td class="solution-temp">+80°C...+200°C</td>
                      <td class="solution-apps">Промышленные процессы с нагревом, термостатирование, испытательные стенды</td>
                      <td><span class="solution-complexity complexity-medium">Средняя</span></td>
                      <td class="solution-duration">25-35 дней</td>
-                     <td class="solution-action"><button class="btn-small discuss-project" data-type="high-temp">Обсудить</button></td>
+                     <td class="solution-action"><button type="button" class="btn btn-outline btn-small open-project-modal discuss-project" data-type="high-temp">Обсудить</button></td>
                   </tr>
                   <tr>
-                     <td class="solution-type">Взрывозащищенные</td>
+                     <th scope="row" class="solution-type">Взрывозащищенные</th>
                      <td class="solution-temp">-25°C...+40°C</td>
                      <td class="solution-apps">Химическая промышленность, нефтегаз, лакокрасочное производство, АЗС</td>
                      <td><span class="solution-complexity complexity-high">Высокая</span></td>
                      <td class="solution-duration">35-50 дней</td>
-                     <td class="solution-action"><button class="btn-small discuss-project" data-type="explosion">Обсудить</button></td>
+                     <td class="solution-action"><button type="button" class="btn btn-outline btn-small open-project-modal discuss-project" data-type="explosion">Обсудить</button></td>
                   </tr>
                   <tr>
-                     <td class="solution-type">Морозоустойчивые</td>
+                     <th scope="row" class="solution-type">Морозоустойчивые</th>
                      <td class="solution-temp">-50°C...+30°C</td>
                      <td class="solution-apps">Северные регионы, уличная установка, арктические условия</td>
                      <td><span class="solution-complexity complexity-medium">Средняя</span></td>
                      <td class="solution-duration">20-30 дней</td>
-                     <td class="solution-action"><button class="btn-small discuss-project" data-type="frost">Обсудить</button></td>
+                     <td class="solution-action"><button type="button" class="btn btn-outline btn-small open-project-modal discuss-project" data-type="frost">Обсудить</button></td>
                   </tr>
                   <tr>
-                     <td class="solution-type">Коррозионностойкие</td>
+                     <th scope="row" class="solution-type">Коррозионностойкие</th>
                      <td class="solution-temp">-20°C...+60°C</td>
                      <td class="solution-apps">Агрессивные среды, морская вода, химические производства</td>
                      <td><span class="solution-complexity complexity-high">Высокая</span></td>
                      <td class="solution-duration">30-40 дней</td>
-                     <td class="solution-action"><button class="btn-small discuss-project" data-type="corrosion">Обсудить</button></td>
+                     <td class="solution-action"><button type="button" class="btn btn-outline btn-small open-project-modal discuss-project" data-type="corrosion">Обсудить</button></td>
                   </tr>
                   <tr>
-                     <td class="solution-type">Высокого давления</td>
+                     <th scope="row" class="solution-type">Высокого давления</th>
                      <td class="solution-temp">-10°C...+40°C</td>
                      <td class="solution-apps">Гидравлические системы, испытательные стенды, компрессорные станции</td>
                      <td><span class="solution-complexity complexity-high">Высокая</span></td>
                      <td class="solution-duration">40-55 дней</td>
-                     <td class="solution-action"><button class="btn-small discuss-project" data-type="pressure">Обсудить</button></td>
+                     <td class="solution-action"><button type="button" class="btn btn-outline btn-small open-project-modal discuss-project" data-type="pressure">Обсудить</button></td>
                   </tr>
                </tbody>
             </table>

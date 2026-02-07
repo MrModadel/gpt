@@ -276,15 +276,61 @@ accordionHeaders.forEach(header => {
 });
 // ===== МОДАЛЬНЫЕ ОКНА =====
 const projectModal = document.getElementById('projectModal');
-const closeProjectModal = document.getElementById('closeProjectModal');
+const closeProjectModalButton = document.getElementById('closeProjectModal');
 const projectButtons = document.querySelectorAll('.open-project-modal');
-console.log(projectButtons);
-// Закрытие модального окна
-closeProjectModal.addEventListener('click', function () {
-  projectModal.classList.remove('active');
-});
-projectButtons.forEach(button => {
-  button.addEventListener('click', function () {
+
+if (projectModal && closeProjectModalButton) {
+  const modalProjectComment = document.getElementById('modalProjectComment');
+
+  function closeModal() {
+    projectModal.classList.remove('active');
+  }
+
+  function openModal(triggerElement) {
+    if (modalProjectComment) {
+      modalProjectComment.value = '';
+
+      const row = triggerElement?.closest('tr');
+      if (row) {
+        const category = row.querySelector('.solution-type')?.textContent?.trim();
+        const temperature = row.querySelector('.solution-temp')?.textContent?.trim();
+        const complexity = row.querySelector('.solution-complexity')?.textContent?.trim();
+        const duration = row.querySelector('.solution-duration')?.textContent?.trim();
+        const applications = row.querySelector('.solution-apps')?.textContent?.trim();
+
+        const parts = [];
+        if (category) parts.push(`Категория: ${category}`);
+        if (temperature) parts.push(`Температура: ${temperature}`);
+        if (complexity) parts.push(`Сложность: ${complexity}`);
+        if (duration) parts.push(`Срок реализации: ${duration}`);
+        if (applications) parts.push(`Сферы применения: ${applications}`);
+
+        if (parts.length) {
+          modalProjectComment.value = parts.join('\n') + '\n\n';
+        }
+      }
+    }
+
     projectModal.classList.add('active');
+  }
+
+  closeProjectModalButton.addEventListener('click', closeModal);
+
+  projectButtons.forEach(button => {
+    button.addEventListener('click', function () {
+      openModal(button);
+    });
   });
-}); 
+
+  projectModal.addEventListener('click', function (e) {
+    if (e.target === projectModal) {
+      closeModal();
+    }
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      closeModal();
+    }
+  });
+}
