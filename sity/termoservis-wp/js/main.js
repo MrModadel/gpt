@@ -23,7 +23,9 @@ document.querySelectorAll('.form-tel').forEach(form => {
     e.preventDefault();
 
     const data = new FormData(form); // FormData автоматически берёт все поля + файлы
-    data.append('formType', 'Форма обратной связи');
+    if (!data.get('formType')) {
+      data.set('formType', 'Форма обратной связи');
+    }
 
     fetch('/wp-content/themes/termo/telegram-send.php', {
       method: 'POST',
@@ -41,6 +43,17 @@ document.querySelectorAll('.form-tel').forEach(form => {
         if (result && result.success) {
           alert('Заявка отправлена!');
           form.reset();
+
+          const modalOverlay = form.closest('.modal-overlay');
+          if (modalOverlay) {
+            modalOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+          }
+
+          const closestProjectModal = form.closest('#projectModal');
+          if (closestProjectModal) {
+            closestProjectModal.classList.remove('active');
+          }
         } else {
           console.error('Unexpected response:', result);
           alert('Ошибка отправки. Проверьте консоль браузера (F12).');

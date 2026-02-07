@@ -1894,9 +1894,6 @@ get_header();
 
    }
 </style>
-</head>
-
-<body>
    <!-- ХЛЕБНЫЕ КРОШКИ -->
    <div class="breadcrumbs">
       <div class="container">
