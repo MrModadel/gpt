@@ -21,9 +21,25 @@ $low_temp_page_ids = get_posts(
       'update_post_term_cache' => false,
       'fields'                 => 'ids',
       'meta_key'               => '_wp_page_template',
-      'meta_value'             => 'page-low-temp-aggregates.php',
+      'meta_value'             => 'page-low-temperature-units.php',
    )
 );
+
+if ( empty( $low_temp_page_ids ) ) {
+   $low_temp_page_ids = get_posts(
+      array(
+         'post_type'              => 'page',
+         'posts_per_page'         => 1,
+         'no_found_rows'          => true,
+         'ignore_sticky_posts'    => true,
+         'update_post_meta_cache' => false,
+         'update_post_term_cache' => false,
+         'fields'                 => 'ids',
+         'meta_key'               => '_wp_page_template',
+         'meta_value'             => 'page-low-temp-aggregates.php',
+      )
+   );
+}
 
 if ( ! empty( $low_temp_page_ids ) ) {
    $low_temp_page_url = get_permalink( (int) $low_temp_page_ids[0] );
