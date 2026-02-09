@@ -687,6 +687,129 @@ get_header();
         font-size: 1.5rem;
     }
 
+    /* ===== ФОРМЫ / ФАЙЛЫ ===== */
+    .form-row {
+        display: flex;
+        gap: 15px;
+    }
+
+    .form-group {
+        flex: 1;
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 1rem;
+    }
+
+    .form-control:focus {
+        outline: none;
+        border-color: #0056b8;
+    }
+
+    .file-upload input[type="file"] {
+        display: none;
+    }
+
+    .file-label {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px dashed #cbd5e1;
+        border-radius: 8px;
+        background: white;
+        cursor: pointer;
+        transition: all 0.25s ease;
+    }
+
+    .file-label:hover {
+        border-color: #0056b8;
+        background-color: #f0f7ff;
+    }
+
+    .file-label i {
+        color: #0056b8;
+    }
+
+    /* ===== МОДАЛЬНЫЕ ОКНА (под main.js) ===== */
+    .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        z-index: 2000;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s, visibility 0.3s;
+    }
+
+    .modal-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .modal {
+        background-color: white;
+        border-radius: 10px;
+        width: 90%;
+        max-width: 520px;
+        max-height: calc(100vh - 40px);
+        overflow-y: auto;
+        padding: 30px;
+        position: relative;
+        transform: translateY(20px);
+        transition: transform 0.3s;
+        height: auto;
+    }
+
+    .modal-overlay.active .modal {
+        transform: translateY(0);
+        display: block;
+    }
+
+    .modal-close {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #666;
+    }
+
+    .modal h3 {
+        color: #0056b8;
+        margin-bottom: 12px;
+        font-size: 1.5rem;
+    }
+
+    .modal p {
+        color: #555;
+        margin-bottom: 18px;
+        line-height: 1.6;
+    }
+
     /* ===== АДАПТИВНОСТЬ ===== */
     @media (max-width: 768px) {
         section {
@@ -719,6 +842,156 @@ get_header();
             font-size: 2rem;
         }
     }
+
+    @media (max-width: 480px) {
+        section {
+            padding: 50px 0;
+        }
+
+        .aggregate-hero {
+            padding: 80px 0 50px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.05rem;
+            margin-bottom: 28px;
+        }
+
+        .hero-features {
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin: 28px 0;
+        }
+
+        .feature-item {
+            padding: 16px;
+        }
+
+        .classification {
+            padding: 24px 18px;
+            margin-top: -25px;
+        }
+
+        .class-grid,
+        .industry-grid,
+        .keywords-grid,
+        .type-features {
+            grid-template-columns: 1fr;
+        }
+
+        .class-card,
+        .industry-card {
+            padding: 22px;
+        }
+
+        .types-tabs {
+            gap: 10px;
+        }
+
+        .type-tab {
+            padding: 12px 18px;
+        }
+
+        .type-feature {
+            padding: 16px;
+        }
+
+        .install-step {
+            gap: 12px;
+        }
+
+        .step-index {
+            width: 34px;
+            height: 34px;
+        }
+
+        .seo-content {
+            padding: 28px 18px;
+        }
+
+        .cta-form {
+            padding: 20px;
+        }
+
+        .form-row {
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .modal {
+            width: 100%;
+            padding: 22px;
+        }
+
+        .sticky-nav .container {
+            justify-content: flex-start;
+        }
+    }
+
+    @media (max-width: 360px) {
+        .aggregate-hero {
+            padding: 70px 0 45px;
+        }
+
+        h1 {
+            font-size: 1.9rem;
+        }
+
+        h2 {
+            font-size: 1.6rem;
+        }
+
+        .classification {
+            margin-top: 0;
+            padding: 20px 14px;
+            border-radius: 12px;
+        }
+
+        .cta-content p {
+            font-size: 1rem;
+        }
+
+        .cta-form {
+            padding: 16px;
+        }
+
+        .faq-question {
+            padding: 16px;
+        }
+
+        .faq-answer.active {
+            padding: 16px;
+        }
+
+        .modal {
+            padding: 18px;
+        }
+
+        .sticky-nav a {
+            font-size: 0.9rem;
+        }
+    }
+
+    @media (max-width: 320px) {
+        .sticky-nav .container {
+            gap: 12px;
+        }
+
+        .sticky-nav a {
+            font-size: 0.85rem;
+        }
+
+        .feature-item i {
+            font-size: 2rem;
+        }
+
+        .class-icon,
+        .industry-icon {
+            width: 64px;
+            height: 64px;
+            font-size: 1.6rem;
+        }
+    }
 </style>
 
 <!-- ХЛЕБНЫЕ КРОШКИ -->
@@ -732,8 +1005,20 @@ get_header();
     </div>
 </div>
 
+<!-- СТИКИ-НАВИГАЦИЯ -->
+<div class="sticky-nav" id="stickyNav">
+    <div class="container">
+        <a href="#classification"><i class="fas fa-list"></i> Классификация</a>
+        <a href="#types"><i class="fas fa-layer-group"></i> Типы</a>
+        <a href="#applications"><i class="fas fa-industry"></i> Отрасли</a>
+        <a href="#installation"><i class="fas fa-tools"></i> Монтаж</a>
+        <a href="#cta"><i class="fas fa-calculator"></i> Расчет</a>
+        <a href="#faq"><i class="fas fa-question-circle"></i> FAQ</a>
+    </div>
+</div>
 
-<!-- ГЕРОЙ-СЕКЦИЯ -->
+
+ <!-- ГЕРОЙ-СЕКЦИЯ -->
 <section class="aggregate-hero">
     <div class="container">
         <h1 class="text-center"><?php the_title(); ?></h1>
@@ -763,12 +1048,12 @@ get_header();
         </div>
 
         <div class="text-center">
-            <a href="#cta" class="btn" style="">
+            <button type="button" class="btn open-modal-calc">
                 <i class="fas fa-calculator"></i> Подобрать агрегат
-            </a>
-            <a href="#cta" class="btn btn-outline">
-                <i class="fas fa-file-alt"></i> Получить КП
-            </a>
+            </button>
+            <button type="button" class="btn btn-outline open-modal-call">
+                <i class="fas fa-phone"></i> Получить консультацию
+            </button>
         </div>
     </div>
 </section>
@@ -1151,7 +1436,8 @@ function get_custom_or_term_link($term, $custom_links)
 
             <div class="cta-form">
                 <h3 style="color:#0056b8; text-align:center; margin-bottom:25px;">Рассчитайте индивидуальное решение</h3>
-                <form id="catalogForm">
+                <form id="catalogForm" class="form-tel" enctype="multipart/form-data">
+                    <input type="hidden" name="formType" value="Расчет холодильного агрегата / КП: <?php echo esc_attr(get_the_title()); ?>">
                     <div class="form-row">
                         <div class="form-group">
                             <label>Ваше имя *</label>
@@ -1170,11 +1456,11 @@ function get_custom_or_term_link($term, $custom_links)
                         <div class="form-group">
                             <label>Прикрепить ТЗ (до 10 МБ)</label>
                             <div class="file-upload">
-                                <input type="file" id="fileUpload" name="file1">
-                                <div class="file-label">
+                                <input type="file" id="fileUpload" name="file1" accept=".pdf,.doc,.docx,.xls,.xlsx,.png,.jpg,.jpeg">
+                                <label class="file-label" for="fileUpload">
                                     <i class="fas fa-paperclip"></i>
                                     <span id="fileName">Выберите файл...</span>
-                                </div>
+                                </label>
                             </div>
                         </div>
                     </div>
@@ -1304,6 +1590,82 @@ function get_custom_or_term_link($term, $custom_links)
     </div>
 </section>
 
+<!-- МОДАЛЬНЫЕ ОКНА -->
+<div class="modal-overlay" id="calcModal">
+    <div class="modal">
+        <button class="modal-close close-modal" type="button" aria-label="Закрыть">&times;</button>
+        <h3>Рассчитать стоимость и получить КП</h3>
+        <p>Оставьте контакты — инженер уточнит параметры и подготовит предложение.</p>
+        <form id="calcForm" class="form-tel" enctype="multipart/form-data">
+            <input type="hidden" name="formType" value="Расчет/КП: <?php echo esc_attr(get_the_title()); ?>">
+            <div class="form-group">
+                <label for="calcName">Ваше имя *</label>
+                <input type="text" id="calcName" name="name" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="calcPhone">Телефон *</label>
+                <input type="tel" id="calcPhone" name="phone" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="calcEmail">Email</label>
+                <input type="email" id="calcEmail" name="email" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="calcMessage">Что нужно рассчитать</label>
+                <textarea id="calcMessage" name="message" class="form-control" rows="3" placeholder="Температура, объем камеры, продукт, условия установки, сроки..."></textarea>
+            </div>
+            <div class="form-group">
+                <label>Прикрепить ТЗ (до 10 МБ)</label>
+                <div class="file-upload">
+                    <input type="file" id="calcFileUpload" name="file1" accept=".pdf,.doc,.docx,.xls,.xlsx,.png,.jpg,.jpeg">
+                    <label class="file-label" for="calcFileUpload">
+                        <i class="fas fa-paperclip"></i>
+                        <span id="calcFileName">Выберите файл...</span>
+                    </label>
+                </div>
+            </div>
+            <button type="submit" class="btn" style="width:100%;">
+                <i class="fas fa-paper-plane"></i> Отправить заявку
+            </button>
+        </form>
+    </div>
+</div>
+
+<div class="modal-overlay" id="callModal">
+    <div class="modal">
+        <button class="modal-close close-modal" type="button" aria-label="Закрыть">&times;</button>
+        <h3>Заказать консультацию</h3>
+        <p>Наш специалист свяжется с вами в удобное время и ответит на вопросы.</p>
+        <form id="callForm" class="form-tel">
+            <input type="hidden" name="formType" value="Консультация: <?php echo esc_attr(get_the_title()); ?>">
+            <div class="form-group">
+                <label for="callName">Ваше имя *</label>
+                <input type="text" id="callName" name="name" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="callPhone">Телефон *</label>
+                <input type="tel" id="callPhone" name="phone" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="callTime">Удобное время</label>
+                <select id="callTime" name="time" class="form-control">
+                    <option value="">В любое время</option>
+                    <option value="9-12">9:00 - 12:00</option>
+                    <option value="12-15">12:00 - 15:00</option>
+                    <option value="15-18">15:00 - 18:00</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="callQuestion">Ваш вопрос</label>
+                <textarea id="callQuestion" name="message" class="form-control" rows="3" placeholder="Что вас интересует?"></textarea>
+            </div>
+            <button type="submit" class="btn" style="width:100%;">
+                <i class="fas fa-phone"></i> Заказать звонок
+            </button>
+        </form>
+    </div>
+</div>
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Анимация появления при скролле
@@ -1318,10 +1680,12 @@ function get_custom_or_term_link($term, $custom_links)
                 }
             });
 
-            if (window.scrollY > 500) {
-                stickyNav.classList.add('active');
-            } else {
-                stickyNav.classList.remove('active');
+            if (stickyNav) {
+                if (window.scrollY > 500) {
+                    stickyNav.classList.add('active');
+                } else {
+                    stickyNav.classList.remove('active');
+                }
             }
         };
 
@@ -1341,6 +1705,25 @@ function get_custom_or_term_link($term, $custom_links)
                 document.getElementById(tabId).classList.add('active');
             });
         });
+
+        // Отображение выбранного файла (CTA + модальное окно)
+        function bindFileLabel(inputId, labelId) {
+            const input = document.getElementById(inputId);
+            const label = document.getElementById(labelId);
+            if (!input || !label) return;
+
+            input.addEventListener('change', function(e) {
+                const files = e.target.files;
+                if (files && files.length > 0) {
+                    label.textContent = Array.from(files).map(f => f.name).join(', ');
+                } else {
+                    label.textContent = 'Выберите файл...';
+                }
+            });
+        }
+
+        bindFileLabel('fileUpload', 'fileName');
+        bindFileLabel('calcFileUpload', 'calcFileName');
 
         // Фильтрация модели
         const configBtns = document.querySelectorAll('.config-btn');

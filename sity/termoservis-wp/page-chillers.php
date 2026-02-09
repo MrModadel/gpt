@@ -1098,7 +1098,7 @@ get_header();
         <div class="categories-grid">
             <?php
             // Показываем только три конкретные категории по slug
-            $category_slugs = array('condenser-cooling-types', 'specialized-chillers', 'chiller-components');
+            $category_slugs = array('condenser-cooling-types', 'specialized-chillers', 'komponenty-i-moduli-dlya-chillerov');
 
 
             foreach ($category_slugs as $index => $slug) {

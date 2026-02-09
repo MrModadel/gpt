@@ -62,6 +62,7 @@ get_header();
         </div>
     </div>
 </section>
+
 <?php
 // Массив кастомных ссылок: 'slug' => '/путь/на/сайте/'
 $custom_links = array(
@@ -248,7 +249,7 @@ function get_custom_or_term_link( $term, $custom_links = array() ) {
                                 foreach ($subcategories as $subcat) {
                                     if ($sub_count >= 4) break;
                             ?>
-                                    <a href="/<?php echo esc_html($subcat->slug); ?>" class="card-link">
+                                    <a href="<?php echo esc_url( get_custom_or_term_link( $subcat, $custom_links ) ); ?>" class="card-link">
                                         <?php echo esc_html($subcat->name); ?>
                                     </a>
                             <?php
