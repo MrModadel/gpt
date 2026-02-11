@@ -1,16 +1,58 @@
 <?php
 
 /**
- * Template Name: Среднетемпературные агрегаты
+ * Template Name: Генераторы ледяной воды
  *
- * Шаблон страницы "Среднетемпературные агрегаты" (подкатегория "Холодильные агрегаты").
+ * Шаблон страницы "Генераторы ледяной воды".
+ * Родительский раздел для категории "Холодильные агрегаты".
  *
  * @package Termoservis
  */
 
 get_header();
 
-$low_temp_page_url = '';
+$aggregates_page_url  = '';
+$medium_temp_page_url = '';
+$low_temp_page_url    = '';
+
+$aggregates_page_ids = get_posts(
+   array(
+      'post_type'              => 'page',
+      'posts_per_page'         => 1,
+      'no_found_rows'          => true,
+      'ignore_sticky_posts'    => true,
+      'update_post_meta_cache' => false,
+      'update_post_term_cache' => false,
+      'fields'                 => 'ids',
+      'meta_key'               => '_wp_page_template',
+      'meta_value'             => 'page-aggregates.php',
+   )
+);
+
+if (! empty($aggregates_page_ids)) {
+   $aggregates_page_url = get_permalink((int) $aggregates_page_ids[0]);
+} else {
+   $aggregates_page_url = home_url('/refrigeration-units');
+}
+
+$medium_temp_page_ids = get_posts(
+   array(
+      'post_type'              => 'page',
+      'posts_per_page'         => 1,
+      'no_found_rows'          => true,
+      'ignore_sticky_posts'    => true,
+      'update_post_meta_cache' => false,
+      'update_post_term_cache' => false,
+      'fields'                 => 'ids',
+      'meta_key'               => '_wp_page_template',
+      'meta_value'             => 'page-medium-temperature-units.php',
+   )
+);
+
+if (! empty($medium_temp_page_ids)) {
+   $medium_temp_page_url = get_permalink((int) $medium_temp_page_ids[0]);
+}
+
 $low_temp_page_ids = get_posts(
    array(
       'post_type'              => 'page',
@@ -25,7 +67,7 @@ $low_temp_page_ids = get_posts(
    )
 );
 
-if ( empty( $low_temp_page_ids ) ) {
+if (empty($low_temp_page_ids)) {
    $low_temp_page_ids = get_posts(
       array(
          'post_type'              => 'page',
@@ -41,8 +83,8 @@ if ( empty( $low_temp_page_ids ) ) {
    );
 }
 
-if ( ! empty( $low_temp_page_ids ) ) {
-   $low_temp_page_url = get_permalink( (int) $low_temp_page_ids[0] );
+if (! empty($low_temp_page_ids)) {
+   $low_temp_page_url = get_permalink((int) $low_temp_page_ids[0]);
 }
 ?>
 <style>
@@ -754,27 +796,83 @@ if ( ! empty( $low_temp_page_ids ) ) {
 <!-- Хлебные крошки -->
 <div class="breadcrumbs">
    <div class="container">
-      <a href="<?php echo esc_url( home_url( '/' ) ); ?>">Главная</a>
+      <a href="<?php echo esc_url(home_url('/')); ?>">Главная</a>
       <i class="fas fa-chevron-right"></i>
-      <a href="<?php echo esc_url( home_url( '/catalog' ) ); ?>">Каталог</a>
+      <a href="<?php echo esc_url(home_url('/catalog')); ?>">Каталог</a>
       <i class="fas fa-chevron-right"></i>
-      <a href="<?php echo esc_url( home_url( '/refrigeration-units' ) ); ?>">Холодильные агрегаты</a>
+      <a href="<?php echo esc_url(home_url('/refrigeration-units')); ?>">Холодильные агрегаты</a>
       <i class="fas fa-chevron-right"></i>
-      <span>Среднетемпературные агрегаты</span>
+      <span>Генераторы ледяной воды</span>
    </div>
 </div>
 
 <!-- Hero секция -->
 <section class="hero">
    <div class="container">
-      <h1>Среднетемпературные агрегаты — подбор и производство под ваш объект</h1>
-      <p>Раздел категории «Холодильные агрегаты». Среднетемпературные агрегаты применяются для камер хранения, овоще- и фруктохранилищ, складов и пищевых производств. Типовой диапазон температур — от <strong>0°C до +15°C</strong> (точное значение зависит от продукта и технологии). Подберём по расчёту теплопритоков, режиму оттайки, условиям установки и требованиям к автоматике.</p>
+      <h1>Генераторы ледяной воды</h1>
+      <p>Генератор ледяной воды — это промышленная система для получения и подачи <strong>охлаждённой воды</strong> (часто ориентир <strong>+1…+3°C</strong>) на технологические потребители: теплообменники, рубашки, линии, оборудование. Решение помогает обеспечить <strong>стабильную температуру</strong>, быстрый отбор тепла и надёжную работу 24/7. По необходимости система дополняется <strong>буферным баком</strong>, насосной группой, фильтрацией и автоматикой. Раздел является родительским для категории «Холодильные агрегаты».</p>
       <div class="cta-buttons">
-         <button class="btn" id="openCalcModal">Рассчитать среднетемпературный агрегат</button>
-         <?php if ( $low_temp_page_url ) : ?>
-            <a class="btn btn-outline" href="<?php echo esc_url( $low_temp_page_url ); ?>">Низкотемпературные агрегаты</a>
+         <button class="btn" id="openCalcModal">Рассчитать генератор ледяной воды</button>
+         <?php if ($aggregates_page_url) : ?>
+            <a class="btn btn-outline" href="<?php echo esc_url($aggregates_page_url); ?>">Холодильные агрегаты</a>
+         <?php endif; ?>
+         <?php if ($medium_temp_page_url) : ?>
+            <a class="btn btn-outline" href="<?php echo esc_url($medium_temp_page_url); ?>">Среднетемпературные</a>
+         <?php endif; ?>
+         <?php if ($low_temp_page_url) : ?>
+            <a class="btn btn-outline" href="<?php echo esc_url($low_temp_page_url); ?>">Низкотемпературные</a>
          <?php endif; ?>
       </div>
+   </div>
+</section>
+
+<!-- Как работает генератор ледяной воды -->
+<section style="background-color: #f1f5f9;">
+   <div class="container">
+      <div class="section-title">
+         <h2>Как работает генератор ледяной воды</h2>
+      </div>
+      <p class="section-intro">Генератор охлаждает воду в контуре и подаёт её потребителям. Компоновка подбирается под требуемую температуру, расход и режим работы.</p>
+
+      <div class="problems-grid">
+         <div class="problem-card">
+            <div class="problem-icon">
+               <i class="fas fa-snowflake"></i>
+            </div>
+            <h3>Охлаждение воды</h3>
+            <p>Компрессорный агрегат/чиллер снимает тепло и охлаждает воду до требуемой уставки. Важно обеспечить защиту от замерзания и стабильность температуры.</p>
+         </div>
+
+         <div class="problem-card">
+            <div class="problem-icon">
+               <i class="fas fa-water"></i>
+            </div>
+            <h3>Буфер и запас холода</h3>
+            <p>Буферный бак сглаживает пики, стабилизирует температуру и снижает количество пусков оборудования. При необходимости добавляется запас холода.</p>
+         </div>
+
+         <div class="problem-card">
+            <div class="problem-icon">
+               <i class="fas fa-cogs"></i>
+            </div>
+            <h3>Насосная группа</h3>
+            <p>Циркуляционные насосы обеспечивают расход и давление в контуре. Возможны резервирование, фильтрация и узлы учета/контроля.</p>
+         </div>
+
+         <div class="problem-card">
+            <div class="problem-icon">
+               <i class="fas fa-network-wired"></i>
+            </div>
+            <h3>Автоматика и контроль</h3>
+            <p>Управление поддерживает уставку, защищает систему, контролирует датчики и режимы. При необходимости — диспетчеризация и удалённый доступ.</p>
+         </div>
+      </div>
+
+      <?php if ($aggregates_page_url) : ?>
+         <div style="text-align: center; margin-top: 28px;">
+            <a class="btn btn-outline" href="<?php echo esc_url($aggregates_page_url); ?>">Перейти в категорию «Холодильные агрегаты»</a>
+         </div>
+      <?php endif; ?>
    </div>
 </section>
 
@@ -782,38 +880,39 @@ if ( ! empty( $low_temp_page_ids ) ) {
 <section>
    <div class="container">
       <div class="section-title">
-         <h2>Какие задачи решают среднетемпературные агрегаты?</h2>
+         <h2>Где применяется ледяная вода</h2>
       </div>
-       <div class="problems-grid">
-           <div class="problem-card">
-              <div class="problem-icon">
-                 <i class="fas fa-thermometer-half"></i>
-              </div>
-             <h3>Стабильная температура без перемораживания</h3>
-             <p>Держим уставку в диапазоне 0…+15°C, чтобы продукт сохранял качество и срок годности. Подбираем агрегат и автоматику под условия хранения и вентиляцию камеры.</p>
-           </div>
-           <div class="problem-card">
-             <div class="problem-icon">
-               <i class="fas fa-snowflake"></i>
-             </div>
-             <h3>Обмерзание испарителя и проблемы с оттайкой</h3>
-             <p>Неправильная схема оттайки приводит к наледи, «задушенному» воздухообмену и просадке температуры. Настраиваем оттайку и управление вентиляторами для стабильной работы.</p>
-           </div>
-           <div class="problem-card">
-              <div class="problem-icon">
-                 <i class="fas fa-bolt"></i>
-              </div>
-             <h3>Перерасход энергии и «лишние кВт»</h3>
-             <p>Перемощненное или неверно настроенное оборудование работает в коротких циклах и тратит больше энергии. Подбор по расчёту и корректное регулирование снижают расходы.</p>
-           </div>
-           <div class="problem-card">
-              <div class="problem-icon">
-                 <i class="fas fa-shield-alt"></i>
-              </div>
-             <h3>Надёжная работа 24/7 и защита оборудования</h3>
-             <p>Комплекс защит по давлению/температуре, грамотная обвязка и сервисные узлы помогают избежать аварий и простоев. Возможен удалённый мониторинг и сигнализация.</p>
-           </div>
-       </div>
+      <p class="section-intro">Ледяная вода широко применяется в пищевой промышленности и технологических процессах, где важны стабильная температура и высокая интенсивность теплообмена.</p>
+      <div class="problems-grid">
+         <div class="problem-card">
+            <div class="problem-icon">
+               <i class="fas fa-utensils"></i>
+            </div>
+            <h3>Молочная промышленность</h3>
+            <p>Охлаждение молока и продуктов, обеспечение холодной воды для технологических нужд, поддержание режимов на оборудовании и линиях.</p>
+         </div>
+         <div class="problem-card">
+            <div class="problem-icon">
+               <i class="fas fa-wine-bottle"></i>
+            </div>
+            <h3>Напитки и пивоварение</h3>
+            <p>Охлаждение технологических процессов (брожение/созревание/линии), стабильная температура воды для теплообменников и рубашек.</p>
+         </div>
+         <div class="problem-card">
+            <div class="problem-icon">
+               <i class="fas fa-drumstick-bite"></i>
+            </div>
+            <h3>Мясо и рыба</h3>
+            <p>Охлаждение технологических жидкостей и помещений, поддержка производственных линий, стабильный холод для процессов и моек.</p>
+         </div>
+         <div class="problem-card">
+            <div class="problem-icon">
+               <i class="fas fa-industry"></i>
+            </div>
+            <h3>Производство и технологии</h3>
+            <p>Охлаждение оборудования и технологических процессов в цехах, централизованное холодоснабжение, интеграция в существующие системы.</p>
+         </div>
+      </div>
    </div>
 </section>
 
@@ -821,62 +920,62 @@ if ( ! empty( $low_temp_page_ids ) ) {
 <section style="background-color: #f8f9fa;">
    <div class="container">
       <div class="section-title">
-         <h2>Преимущества среднетемпературных агрегатов</h2>
+         <h2>Какие задачи решают генераторы ледяной воды?</h2>
       </div>
-      <p class="section-intro">Подбираем агрегаты под режим среднетемпературного хранения (0…+15°C): расчёт теплопритоков, подбор компрессора/конденсации/автоматики, компоновка и заводские испытания перед отгрузкой.</p>
+      <p class="section-intro">Подбираем и производим системы ледяной воды под ваш процесс: температура подачи, расход, качество воды и требования к гигиене/автоматике.</p>
 
       <div class="features-list">
          <div class="feature-item">
             <div class="feature-icon">
-                <i class="fas fa-bullseye"></i>
+               <i class="fas fa-thermometer-half"></i>
             </div>
             <div class="feature-text">
-               <h3>Точный расчёт и подбор под ваш объект</h3>
-               <p>Учитываем объём камеры, продукт, частоту открытий, оттайку, теплопритоки, температуру окружающей среды и длины трасс — чтобы агрегат работал стабильно и без переплаты.</p>
+               <h3>Стабильная температура подачи</h3>
+               <p>Держим уставку и обеспечиваем повторяемость процесса — важна для качества продукта и стабильной работы оборудования.</p>
             </div>
          </div>
          <div class="feature-item">
             <div class="feature-icon">
-                <i class="fas fa-compress-arrows-alt"></i>
+               <i class="fas fa-tachometer-alt"></i>
             </div>
             <div class="feature-text">
-               <h3>Гибкая комплектация и варианты исполнения</h3>
-               <p>Подбираем конфигурацию под объект: уровень шума, условия монтажа (улица/цех), вариант конденсации, сервисный доступ. Возможны опции — зимний комплект и шумозащита.</p>
+               <h3>Нужный расход и давление</h3>
+               <p>Правильная гидравлика и насосная группа обеспечивают производительность в контуре и корректную работу потребителей.</p>
             </div>
          </div>
          <div class="feature-item">
             <div class="feature-icon">
-                <i class="fas fa-shield-alt"></i>
+               <i class="fas fa-shield-alt"></i>
             </div>
             <div class="feature-text">
-               <h3>Автоматика, защиты и правильная оттайка</h3>
-               <p>Контроллер, датчики, аварийные защиты, управление вентиляторами и клапанами, логика оттайки и сигнализация. При необходимости — интеграция в диспетчеризацию.</p>
+               <h3>Надёжность и защиты</h3>
+               <p>Защиты по давлению/температуре, защита от замерзания, аварийная сигнализация и корректная логика управления.</p>
             </div>
          </div>
          <div class="feature-item">
             <div class="feature-icon">
-                <i class="fas fa-leaf"></i>
+               <i class="fas fa-bacteria"></i>
             </div>
             <div class="feature-text">
-               <h3>Энергоэффективность в реальных условиях</h3>
-               <p>Оптимизация конденсации, регулирование производительности и корректные уставки помогают снижать энергопотребление при частичных нагрузках и сезонных изменениях.</p>
+               <h3>Гигиена и удобство обслуживания</h3>
+               <p>Подбираем исполнение под производство: материалы, фильтрация, дренажи, удобный доступ для сервиса и санитарных процедур.</p>
             </div>
          </div>
          <div class="feature-item">
             <div class="feature-icon">
-                <i class="fas fa-network-wired"></i>
+               <i class="fas fa-network-wired"></i>
             </div>
             <div class="feature-text">
-               <h3>Контроль и мониторинг (опционально)</h3>
-               <p>Сигналы аварий, история параметров, удалённый доступ и интеграция по протоколам — удобно для эксплуатации складов и распределительных центров.</p>
+               <h3>Автоматика и диспетчеризация (опционально)</h3>
+               <p>Датчики, управление насосами/клапанами, журналирование параметров и удалённый доступ — для стабильной работы и контроля.</p>
             </div>
          </div>
          <div class="feature-item">
             <div class="feature-icon">
-                <i class="fas fa-tools"></i>
+               <i class="fas fa-tools"></i>
             </div>
             <div class="feature-text">
-               <h3>Поставка, монтаж и сервис</h3>
+               <h3>Проектирование, монтаж и сервис</h3>
                <p>Сопровождаем проект от расчёта до пусконаладки: документация, настройка, обучение персонала и сервисное обслуживание.</p>
             </div>
          </div>
@@ -886,42 +985,88 @@ if ( ! empty( $low_temp_page_ids ) ) {
    </div>
 </section>
 
-<!-- Типовые режимы и применение -->
+<!-- Режимы работы -->
 <section>
    <div class="container">
       <div class="section-title">
-         <h2>Типовые режимы среднетемпературного хранения</h2>
+         <h2>Температурные режимы — быстрые ориентиры</h2>
       </div>
-      <p class="section-intro">Ниже — ориентиры по диапазонам температур. Точный режим зависит от продукта, влажности, вентиляции и требований к технологии хранения.</p>
+      <p class="section-intro">Точный режим зависит от процесса и теплообменников. Ниже — ориентиры для первичного запроса по «ледяной воде».</p>
 
-      <div class="problems-grid">
-         <div class="problem-card">
-            <div class="problem-icon">
-               <i class="fas fa-leaf"></i>
+      <div style="max-width: 980px; margin: 0 auto; background: #fff; border-radius: 8px; padding: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+         <ul class="product-specs" style="margin: 0;">
+            <li>
+               <span class="spec-name"><i class="fas fa-tint" style="margin-right: 8px; color: var(--ts-primary);"></i>Ледяная вода (типовой контур)</span>
+               <span class="spec-value">Подача +1…+3°C • Обратка +5…+7°C</span>
+            </li>
+            <li>
+               <span class="spec-name"><i class="fas fa-snowflake" style="margin-right: 8px; color: var(--ts-primary);"></i>Усиленный режим</span>
+               <span class="spec-value">Подача 0…+2°C • По задаче</span>
+            </li>
+            <li>
+               <span class="spec-name"><i class="fas fa-flask" style="margin-right: 8px; color: var(--ts-primary);"></i>Гликоль (если есть риск замерзания)</span>
+               <span class="spec-value">Концентрация 10–35% • Температура по проекту</span>
+            </li>
+            <li>
+               <span class="spec-name"><i class="fas fa-layer-group" style="margin-right: 8px; color: var(--ts-primary);"></i>Буферный бак</span>
+               <span class="spec-value">Сглаживание пиков • Меньше пусков</span>
+            </li>
+         </ul>
+
+         <p style="margin-top: 15px; color: #666;">Если требуется перенос нагрузки на ночь или резерв по холоду — рассмотрим вариант с льдоаккумулированием и подготовим технико‑экономическое сравнение.</p>
+         <?php if ($aggregates_page_url) : ?>
+            <div style="text-align: center; margin-top: 20px;">
+               <a class="btn btn-outline" href="<?php echo esc_url($aggregates_page_url); ?>">Холодильные агрегаты</a>
             </div>
-            <h3>Овощи и фрукты</h3>
-            <p>Обычно +2…+10°C. Часто важнее не «холод», а стабильность температуры и контроль влажности, чтобы избежать пересушки.</p>
+         <?php endif; ?>
+      </div>
+   </div>
+</section>
+
+<!-- Чек-лист для подбора -->
+<section style="background-color: #f1f5f9;">
+   <div class="container">
+      <div class="section-title">
+         <h2>Что указать для точного подбора</h2>
+      </div>
+      <p class="section-intro">Если каких-то данных нет — ничего страшного: поможем уточнить. Но чем больше исходных данных, тем точнее расчёт.</p>
+
+      <div class="features-list">
+         <div class="feature-item">
+            <div class="feature-icon">
+               <i class="fas fa-clipboard-list"></i>
+            </div>
+            <div class="feature-text">
+               <h3>Процесс и потребители</h3>
+               <p>Куда подаётся ледяная вода: теплообменники, рубашки, линии, оборудование. Режим работы (смены/24-7) и особенности процесса.</p>
+            </div>
          </div>
-         <div class="problem-card">
-            <div class="problem-icon">
-               <i class="fas fa-utensils"></i>
+         <div class="feature-item">
+            <div class="feature-icon">
+               <i class="fas fa-thermometer-half"></i>
             </div>
-            <h3>Молочная продукция и гастрономия</h3>
-            <p>Обычно +2…+6°C. Требуются стабильная вентиляция, корректная оттайка и надежные защиты для круглосуточной работы.</p>
+            <div class="feature-text">
+               <h3>Температура и расход</h3>
+               <p>Подача/обратка (°C), требуемый расход (м³/ч) или мощность (кВт), перепад температур на потребителях.</p>
+            </div>
          </div>
-         <div class="problem-card">
-            <div class="problem-icon">
-               <i class="fas fa-fish"></i>
+         <div class="feature-item">
+            <div class="feature-icon">
+               <i class="fas fa-map-marker-alt"></i>
             </div>
-            <h3>Охлаждённое мясо и рыба</h3>
-            <p>Часто 0…+2°C. Важно исключить перемораживание и обеспечить равномерную температуру по объёму камеры.</p>
+            <div class="feature-text">
+               <h3>Условия эксплуатации</h3>
+               <p>Место установки (цех/улица), температура окружающей среды, качество воды/фильтрация, требования по шуму, доступность обслуживания, электропитание.</p>
+            </div>
          </div>
-         <div class="problem-card">
-            <div class="problem-icon">
-               <i class="fas fa-warehouse"></i>
+         <div class="feature-item">
+            <div class="feature-icon">
+               <i class="fas fa-network-wired"></i>
             </div>
-            <h3>Склад и логистика</h3>
-            <p>Обычно +4…+12°C. Учитываем теплопритоки от частых открытий дверей, погрузки и перемещения товара.</p>
+            <div class="feature-text">
+               <h3>Автоматика и контроль</h3>
+               <p>Нужны ли мониторинг, сигнализация, удалённый доступ, интеграция с существующей системой холодоснабжения и диспетчеризацией.</p>
+            </div>
          </div>
       </div>
    </div>
@@ -931,99 +1076,99 @@ if ( ! empty( $low_temp_page_ids ) ) {
  <section class='products-section'>
     <div class="container">
        <div class="section-title">
-           <h2>Подберите среднетемпературный агрегат</h2>
-         </div>
-       <p class="section-intro">Подбор по режиму 0…+15°C и параметрам объекта: различная холодопроизводительность, варианты автоматики и исполнения.</p>
+            <h2>Подберите генератор ледяной воды</h2>
+          </div>
+        <p class="section-intro">Подбор по температуре подачи/обратки и расходу: мощность (кВт), вода/гликоль, буферный бак, насосная группа, автоматика и исполнение.</p>
 
        <div class="products-grid">
-          <?php
-         // Укажи slug категории WooCommerce для среднетемпературных агрегатов
-         $category_slug = 'medium-temperature-units';
+           <?php
+            // Укажи slug категории WooCommerce для генераторов ледяной воды
+            $category_slug = 'chilled-water-generators';
 
-         if (!function_exists('wc_get_product')) {
-            echo '<p style="grid-column: 1/-1; text-align: center; padding: 40px;">WooCommerce не активен. Каталог товаров недоступен.</p>';
-         } else {
-            $args = array(
-               'post_type' => 'product',
-               'post_status' => 'publish',
-               'posts_per_page' => -1,
-               'no_found_rows' => true,
-               'ignore_sticky_posts' => true,
-               'orderby' => array(
-                  'menu_order' => 'ASC',
-                  'title' => 'ASC',
-               ),
-               'tax_query' => array(
-                  array(
-                     'taxonomy' => 'product_cat',
-                     'field' => 'slug',
-                     'terms' => $category_slug,
+            if (!function_exists('wc_get_product')) {
+               echo '<p style="grid-column: 1/-1; text-align: center; padding: 40px;">WooCommerce не активен. Каталог товаров недоступен.</p>';
+            } else {
+               $args = array(
+                  'post_type' => 'product',
+                  'post_status' => 'publish',
+                  'posts_per_page' => -1,
+                  'no_found_rows' => true,
+                  'ignore_sticky_posts' => true,
+                  'orderby' => array(
+                     'menu_order' => 'ASC',
+                     'title' => 'ASC',
                   ),
-               ),
-            );
+                  'tax_query' => array(
+                     array(
+                        'taxonomy' => 'product_cat',
+                        'field' => 'slug',
+                        'terms' => $category_slug,
+                     ),
+                  ),
+               );
 
-            $products = new WP_Query($args);
+               $products = new WP_Query($args);
 
-            if ($products->have_posts()) {
-               while ($products->have_posts()) {
-                  $products->the_post();
-                  $product = wc_get_product(get_the_ID());
+               if ($products->have_posts()) {
+                  while ($products->have_posts()) {
+                     $products->the_post();
+                     $product = wc_get_product(get_the_ID());
 
-                  if (!$product) {
-                     continue;
-                  }
-
-                  $product_name = $product->get_name();
-
-                  $short_desc = $product->get_short_description();
-                  if (!$short_desc) {
-                     $short_desc = wp_trim_words(wp_strip_all_tags($product->get_description()), 24, '…');
-                  } else {
-                     $short_desc = wp_trim_words(wp_strip_all_tags($short_desc), 24, '…');
-                  }
-
-                  $image_url = has_post_thumbnail() ? get_the_post_thumbnail_url(get_the_ID(), 'medium') : wc_placeholder_img_src('medium');
-
-                  $attribute_items = array();
-                  $attributes = $product->get_attributes();
-                  if (!empty($attributes)) {
-                     foreach ($attributes as $attr) {
-                        if (!($attr instanceof WC_Product_Attribute)) {
-                           continue;
-                        }
-
-                        $attr_name = $attr->get_name();
-                        $attr_value = $product->get_attribute($attr_name);
-
-                        if (!$attr_value) {
-                           continue;
-                        }
-
-                        $attr_label = $attr->get_id() ? wc_attribute_label($attr_name) : $attr_name;
-                        $attr_label = $attr_label ? $attr_label : $attr_name;
-
-                        $attribute_items[] = array(
-                           'position' => (int)$attr->get_position(),
-                           'visible' => (bool)$attr->get_visible(),
-                           'label' => $attr_label,
-                           'value' => $attr_value,
-                        );
+                     if (!$product) {
+                        continue;
                      }
 
-                     usort($attribute_items, static function ($a, $b) {
-                        return $a['position'] <=> $b['position'];
-                     });
-                  }
+                     $product_name = $product->get_name();
 
-                  $visible_items = array_values(array_filter($attribute_items, static function ($item) {
-                     return !empty($item['visible']);
-                  }));
-                  $hidden_items = array_values(array_filter($attribute_items, static function ($item) {
-                     return empty($item['visible']);
-                  }));
+                     $short_desc = $product->get_short_description();
+                     if (!$short_desc) {
+                        $short_desc = wp_trim_words(wp_strip_all_tags($product->get_description()), 24, '…');
+                     } else {
+                        $short_desc = wp_trim_words(wp_strip_all_tags($short_desc), 24, '…');
+                     }
 
-                  $spec_items = array_slice(array_merge($visible_items, $hidden_items), 0, 5);
-         ?>
+                     $image_url = has_post_thumbnail() ? get_the_post_thumbnail_url(get_the_ID(), 'medium') : wc_placeholder_img_src('medium');
+
+                     $attribute_items = array();
+                     $attributes = $product->get_attributes();
+                     if (!empty($attributes)) {
+                        foreach ($attributes as $attr) {
+                           if (!($attr instanceof WC_Product_Attribute)) {
+                              continue;
+                           }
+
+                           $attr_name = $attr->get_name();
+                           $attr_value = $product->get_attribute($attr_name);
+
+                           if (!$attr_value) {
+                              continue;
+                           }
+
+                           $attr_label = $attr->get_id() ? wc_attribute_label($attr_name) : $attr_name;
+                           $attr_label = $attr_label ? $attr_label : $attr_name;
+
+                           $attribute_items[] = array(
+                              'position' => (int)$attr->get_position(),
+                              'visible' => (bool)$attr->get_visible(),
+                              'label' => $attr_label,
+                              'value' => $attr_value,
+                           );
+                        }
+
+                        usort($attribute_items, static function ($a, $b) {
+                           return $a['position'] <=> $b['position'];
+                        });
+                     }
+
+                     $visible_items = array_values(array_filter($attribute_items, static function ($item) {
+                        return !empty($item['visible']);
+                     }));
+                     $hidden_items = array_values(array_filter($attribute_items, static function ($item) {
+                        return empty($item['visible']);
+                     }));
+
+                     $spec_items = array_slice(array_merge($visible_items, $hidden_items), 0, 5);
+            ?>
                   <div class="product-card">
                      <a href="<?php the_permalink(); ?>" class="product-image" style="display: block;">
                         <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($product_name); ?>" loading="lazy" decoding="async">
@@ -1049,17 +1194,17 @@ if ( ! empty( $low_temp_page_ids ) ) {
                      </div>
                   </div>
          <?php
-               }
-               wp_reset_postdata();
-            } else {
-               $term = get_term_by('slug', $category_slug, 'product_cat');
-               if (!$term) {
-                  echo '<p style="grid-column: 1/-1; text-align: center; padding: 40px;">Категория "' . esc_html($category_slug) . '" не найдена. Проверьте slug категории в WooCommerce.</p>';
+                  }
+                  wp_reset_postdata();
                } else {
-                  echo '<p style="grid-column: 1/-1; text-align: center; padding: 40px;">В категории "' . esc_html($term->name) . '" пока нет товаров.</p>';
+                  $term = get_term_by('slug', $category_slug, 'product_cat');
+                  if (!$term) {
+                     echo '<p style="grid-column: 1/-1; text-align: center; padding: 40px;">Категория "' . esc_html($category_slug) . '" не найдена. Проверьте slug категории в WooCommerce.</p>';
+                  } else {
+                     echo '<p style="grid-column: 1/-1; text-align: center; padding: 40px;">В категории "' . esc_html($term->name) . '" пока нет товаров.</p>';
+                  }
                }
             }
-         }
          ?>
       </div>
    </div>
@@ -1103,17 +1248,17 @@ if ( ! empty( $low_temp_page_ids ) ) {
 <section class="seo-section">
    <div class="container">
       <div class="seo-content">
-         <h2>Среднетемпературные агрегаты — особенности выбора и эксплуатации</h2>
+         <h2>Генераторы ледяной воды — принцип работы и подбор</h2>
 
-         <p>Среднетемпературные агрегаты применяются для холодильных камер с режимом примерно от 0°C до +15°C: хранение овощей и фруктов, молочной продукции и гастрономии, напитков, а также складские и логистические помещения. Главная задача — держать стабильную температуру без перемораживания и без лишних энергозатрат.</p>
+         <p>Генератор ледяной воды — это система холодоснабжения, которая обеспечивает потребителей охлаждённой водой (обычно около <strong>+1…+3°C</strong>). Ледяная вода используется в технологических процессах, где важны высокая интенсивность теплообмена, стабильная температура и надёжная подача холода.</p>
 
-         <p>Для точного подбора важны объём и геометрия камеры, тип продукта, частота открытий дверей, теплопритоки (освещение, люди, техника), требуемая влажность, режим оттайки и условия окружающей среды. От этих параметров зависит холодопроизводительность и подбор компонентов.</p>
+         <p>В состав установки обычно входят холодильный агрегат/чиллер, теплообменник (или испаритель), буферный бак, насосная группа, фильтрация, арматура и автоматика. Система может быть выполнена в гигиеническом исполнении (материалы, дренажи, удобная мойка) — это важно для пищевых производств.</p>
 
-         <p>Энергоэффективность обеспечивается корректным запасом мощности, настройкой автоматики, оптимизацией конденсации и регулированием производительности. Перемощненный агрегат часто приводит к коротким циклам работы и повышенному расходу энергии.</p>
+         <p>При подборе учитывают требуемую мощность (кВт) и/или расход (м³/ч), температурный график подачи/обратки, качество воды, условия установки, требования к резервированию и автоматике. Правильно спроектированная установка даёт стабильные параметры ледяной воды и предсказуемую экономику.</p>
 
-         <p>Эксплуатация включает очистку конденсатора, контроль давления и масла, обслуживание фильтров и датчиков, проверку корректности оттайки и профилактику утечек. Для складов и распределительных центров полезны удалённый мониторинг и сигнализация.</p>
+         <p>Эксплуатация включает контроль параметров, обслуживание насосов и фильтров, периодические проверки автоматики и состояния теплообменников. При необходимости выполняется промывка/сервис контура — это сохраняет эффективность и ресурс.</p>
 
-         <p>Заказывая среднетемпературный агрегат у производителя «ТермоСервис», вы получаете инженерный расчёт, подбор комплектации, сборку и испытания, гарантию 2 года, а также услуги по монтажу и сервису. Это снижает риски простоев и помогает удерживать стабильный режим хранения.</p>
+         <p>Заказывая генератор ледяной воды у производителя «ТермоСервис», вы получаете инженерный расчёт, подбор комплектации, сборку и испытания, гарантию 2 года, а также услуги по монтажу и сервису. Это снижает риски простоев и помогает обеспечить стабильный холод для вашего производства.</p>
       </div>
    </div>
 </section>
@@ -1121,8 +1266,8 @@ if ( ! empty( $low_temp_page_ids ) ) {
 <!-- Финальный CTA -->
 <section class="final-cta">
    <div class="container">
-      <h2>Нужно подобрать среднетемпературный агрегат?</h2>
-      <p>Оставьте заявку — подготовим расчёт и коммерческое предложение под ваш режим и объект.</p>
+      <h2>Нужно подобрать генератор ледяной воды?</h2>
+      <p>Оставьте заявку — подготовим расчёт и коммерческое предложение под ваш процесс, температуру подачи/обратки и условия эксплуатации.</p>
 
       <div class="cta-buttons">
          <button class="btn" id="openProposalModal">Получить коммерческое предложение</button>
@@ -1135,14 +1280,14 @@ if ( ! empty( $low_temp_page_ids ) ) {
 <div class="modal-overlay" id="calcModal">
    <div class="modal">
       <button class="modal-close" id="closeCalcModal">&times;</button>
-      <h3>Расчёт стоимости среднетемпературного агрегата</h3>
+      <h3>Расчёт стоимости генератора ледяной воды</h3>
       <div class="modal-product-info">
-         <h4>Страница: Среднетемпературные агрегаты</h4>
-         <p>Подготовим предложение с учётом температуры в камере, продукта, условий установки и требований к автоматике.</p>
+         <h4>Страница: Генераторы ледяной воды</h4>
+         <p>Подготовим предложение с учётом температуры подачи/обратки, расхода/мощности, качества воды и условий установки.</p>
       </div>
       <form id="calcForm" class="form-tel">
-         <input type="hidden" name="formType" value="Расчет среднетемпературного агрегата">
-         <input type="hidden" name="unitType" value="mt">
+         <input type="hidden" name="formType" value="Расчет генератора ледяной воды">
+         <input type="hidden" name="unitType" value="chilled-water-generator">
          <div class="form-group">
             <label for="calcName">Ваше имя *</label>
             <input type="text" id="calcName" name="name" class="form-control" required>
@@ -1156,20 +1301,39 @@ if ( ! empty( $low_temp_page_ids ) ) {
             <input type="email" id="calcEmail" name="email" class="form-control">
          </div>
          <div class="form-group">
-            <label for="calcTemperature">Температура в камере (°C)</label>
-            <input type="text" id="calcTemperature" name="temperature" class="form-control" placeholder="Например: +2…+6">
+            <label for="calcProcess">Процесс / назначение</label>
+            <select id="calcProcess" name="process" class="form-control">
+               <option value="">Выберите вариант</option>
+               <option value="dairy">Молочная промышленность</option>
+               <option value="beverages">Напитки / пивоварение</option>
+               <option value="meat-fish">Мясо / рыба</option>
+               <option value="industry">Производство / технологии</option>
+               <option value="other">Другое</option>
+            </select>
          </div>
          <div class="form-group">
-            <label for="calcVolume">Объем камеры (м³)</label>
-            <input type="text" id="calcVolume" name="volume" class="form-control" placeholder="Например: 120">
-          </div>
+            <label for="calcTemperature">Температурный график (подача/обратка, °C)</label>
+            <input type="text" id="calcTemperature" name="tempSchedule" class="form-control" placeholder="Например: +1/+6">
+         </div>
+         <div class="form-group">
+            <label for="calcFlow">Расход (м³/ч) (если известен)</label>
+            <input type="text" id="calcFlow" name="flow" class="form-control" placeholder="Например: 8">
+         </div>
+         <div class="form-group">
+            <label for="calcMedia">Теплоноситель</label>
+            <input type="text" id="calcMedia" name="media" class="form-control" placeholder="Например: вода или гликоль (концентрация %)">
+         </div>
          <div class="form-group">
             <label for="calcPower">Холодопроизводительность (кВт) (если известна)</label>
             <input type="text" id="calcPower" name="power" class="form-control" placeholder="Например: 12">
          </div>
          <div class="form-group">
+            <label for="calcObject">Объект / участок</label>
+            <input type="text" id="calcObject" name="object" class="form-control" placeholder="Например: молочный цех, пивоварня, линия, участок охлаждения">
+         </div>
+         <div class="form-group">
             <label for="calcComments">Дополнительная информация</label>
-            <textarea id="calcComments" name="message" class="form-control" rows="3" placeholder="Продукт, частота открытий, требования по влажности, оттайка, условия установки (улица/цех), сроки..."></textarea>
+            <textarea id="calcComments" name="message" class="form-control" rows="3" placeholder="График работы, качество воды/фильтрация, текущая система, условия установки (улица/цех), требования к автоматике и гигиене, сроки..."></textarea>
          </div>
          <button type="submit" class="btn">Отправить запрос на расчет</button>
       </form>
@@ -1185,7 +1349,7 @@ if ( ! empty( $low_temp_page_ids ) ) {
          <!-- Сюда будет вставлена информация о товаре через JS -->
       </div>
       <form id="quickOrderForm" class="form-tel">
-         <input type="hidden" name="formType" value="Быстрый заказ: среднетемпературный агрегат">
+         <input type="hidden" name="formType" value="Быстрый заказ: генератор ледяной воды">
          <input type="hidden" id="orderProduct" name="product" value="">
          <input type="hidden" id="orderProductDescription" name="productDescription" value="">
          <input type="hidden" id="orderProductSpecs" name="productSpecs" value="">
@@ -1221,7 +1385,7 @@ if ( ! empty( $low_temp_page_ids ) ) {
       <h3>Получить коммерческое предложение</h3>
       <p>Отправьте запрос, и мы подготовим детальное КП с ценами, сроками и условиями поставки.</p>
       <form id="proposalForm" class="form-tel">
-         <input type="hidden" name="formType" value="Коммерческое предложение: среднетемпературный агрегат">
+         <input type="hidden" name="formType" value="Коммерческое предложение: генератор ледяной воды">
          <div class="form-group">
             <label for="proposalName">Ваше имя *</label>
             <input type="text" id="proposalName" name="name" class="form-control" required>
@@ -1250,7 +1414,7 @@ if ( ! empty( $low_temp_page_ids ) ) {
       <h3>Заказать звонок инженера</h3>
       <p>Наш специалист свяжется с вами в удобное время и ответит на все технические вопросы.</p>
       <form id="callbackForm" class="form-tel">
-         <input type="hidden" name="formType" value="Заказать звонок инженера: среднетемпературные агрегаты">
+         <input type="hidden" name="formType" value="Заказать звонок инженера: генераторы ледяной воды">
          <div class="form-group">
             <label for="callbackName">Ваше имя *</label>
             <input type="text" id="callbackName" name="name" class="form-control" required>
@@ -1328,7 +1492,7 @@ if ( ! empty( $low_temp_page_ids ) ) {
    closeProposalModalBtn.addEventListener('click', () => closeModal(proposalModal));
    closeCallbackModalBtn.addEventListener('click', () => closeModal(callbackModal));
 
-   // Закрытие модальных окон при клике на оверлей
+   // Закрытие модальных о98AAAкон при клике на оверлей
    document.querySelectorAll('.modal-overlay').forEach(modal => {
       modal.addEventListener('click', (e) => {
          if (e.target === modal) {

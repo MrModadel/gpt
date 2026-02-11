@@ -723,7 +723,7 @@ get_header();
       <i class="fas fa-chevron-right"></i>
       <a href="<?php echo esc_url( home_url( '/catalog' ) ); ?>">Каталог</a>
       <i class="fas fa-chevron-right"></i>
-      <a href="<?php echo esc_url( home_url( '/holodilnye-agregaty' ) ); ?>">Холодильные агрегаты</a>
+      <a href="<?php echo esc_url( home_url( '/refrigeration-units' ) ); ?>">Холодильные агрегаты</a>
       <i class="fas fa-chevron-right"></i>
       <span>Агрегаты на компрессорах Frascold</span>
    </div>

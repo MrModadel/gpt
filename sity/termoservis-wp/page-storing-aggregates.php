@@ -29,10 +29,10 @@ $aggregates_page_ids = get_posts(
    )
 );
 
-if ( ! empty( $aggregates_page_ids ) ) {
-   $aggregates_page_url = get_permalink( (int) $aggregates_page_ids[0] );
+if (! empty($aggregates_page_ids)) {
+   $aggregates_page_url = get_permalink((int) $aggregates_page_ids[0]);
 } else {
-   $aggregates_page_url = home_url( '/holodilnye-agregaty' );
+   $aggregates_page_url = home_url('/refrigeration-units');
 }
 
 $medium_temp_page_ids = get_posts(
@@ -49,8 +49,8 @@ $medium_temp_page_ids = get_posts(
    )
 );
 
-if ( ! empty( $medium_temp_page_ids ) ) {
-   $medium_temp_page_url = get_permalink( (int) $medium_temp_page_ids[0] );
+if (! empty($medium_temp_page_ids)) {
+   $medium_temp_page_url = get_permalink((int) $medium_temp_page_ids[0]);
 }
 
 $low_temp_page_ids = get_posts(
@@ -67,7 +67,7 @@ $low_temp_page_ids = get_posts(
    )
 );
 
-if ( empty( $low_temp_page_ids ) ) {
+if (empty($low_temp_page_ids)) {
    $low_temp_page_ids = get_posts(
       array(
          'post_type'              => 'page',
@@ -83,8 +83,8 @@ if ( empty( $low_temp_page_ids ) ) {
    );
 }
 
-if ( ! empty( $low_temp_page_ids ) ) {
-   $low_temp_page_url = get_permalink( (int) $low_temp_page_ids[0] );
+if (! empty($low_temp_page_ids)) {
+   $low_temp_page_url = get_permalink((int) $low_temp_page_ids[0]);
 }
 ?>
 <style>
@@ -796,9 +796,11 @@ if ( ! empty( $low_temp_page_ids ) ) {
 <!-- Хлебные крошки -->
 <div class="breadcrumbs">
    <div class="container">
-      <a href="<?php echo esc_url( home_url( '/' ) ); ?>">Главная</a>
+      <a href="<?php echo esc_url(home_url('/')); ?>">Главная</a>
       <i class="fas fa-chevron-right"></i>
-      <a href="<?php echo esc_url( home_url( '/catalog' ) ); ?>">Каталог</a>
+      <a href="<?php echo esc_url(home_url('/catalog')); ?>">Каталог</a>
+      <i class="fas fa-chevron-right"></i>
+      <a href="<?php echo esc_url(home_url('/refrigeration-units')); ?>">Холодильные агрегаты</a>
       <i class="fas fa-chevron-right"></i>
       <span>Агрегаты для хранения</span>
    </div>
@@ -811,14 +813,14 @@ if ( ! empty( $low_temp_page_ids ) ) {
       <p>Родительский раздел для категории «Холодильные агрегаты». Подбираем и изготавливаем агрегаты для камер хранения, где важны <strong>стабильная температура</strong>, корректная <strong>влажность/вентиляция</strong> и надёжная работа 24/7. Для овощей и фруктов чаще нужны плюсовые режимы (ориентир <strong>+2…+12°C</strong>), для мяса и рыбы — околонулевые (обычно <strong>0…+2°C</strong>, иногда ближе к 0/−1°C). При необходимости организуем и низкотемпературный режим для заморозки.</p>
       <div class="cta-buttons">
          <button class="btn" id="openCalcModal">Рассчитать агрегат для хранения</button>
-         <?php if ( $aggregates_page_url ) : ?>
-            <a class="btn btn-outline" href="<?php echo esc_url( $aggregates_page_url ); ?>">Холодильные агрегаты</a>
+         <?php if ($aggregates_page_url) : ?>
+            <a class="btn btn-outline" href="<?php echo esc_url($aggregates_page_url); ?>">Холодильные агрегаты</a>
          <?php endif; ?>
-         <?php if ( $medium_temp_page_url ) : ?>
-            <a class="btn btn-outline" href="<?php echo esc_url( $medium_temp_page_url ); ?>">Среднетемпературные</a>
+         <?php if ($medium_temp_page_url) : ?>
+            <a class="btn btn-outline" href="<?php echo esc_url($medium_temp_page_url); ?>">Среднетемпературные</a>
          <?php endif; ?>
-         <?php if ( $low_temp_page_url ) : ?>
-            <a class="btn btn-outline" href="<?php echo esc_url( $low_temp_page_url ); ?>">Низкотемпературные</a>
+         <?php if ($low_temp_page_url) : ?>
+            <a class="btn btn-outline" href="<?php echo esc_url($low_temp_page_url); ?>">Низкотемпературные</a>
          <?php endif; ?>
       </div>
    </div>
@@ -839,8 +841,8 @@ if ( ! empty( $low_temp_page_ids ) ) {
             </div>
             <h3>Овощи и фрукты</h3>
             <p>Важно удерживать температуру без «качелей» и работать с влажностью/вентиляцией, чтобы снизить усушку и сохранить качество. Часто применяются плюсовые режимы, зависящие от вида продукта и упаковки.</p>
-            <?php if ( $medium_temp_page_url ) : ?>
-               <a class="btn btn-small btn-outline" href="<?php echo esc_url( $medium_temp_page_url ); ?>">Среднетемпературные решения</a>
+            <?php if ($medium_temp_page_url) : ?>
+               <a class="btn btn-small btn-outline" href="<?php echo esc_url($medium_temp_page_url); ?>">Среднетемпературные решения</a>
             <?php endif; ?>
          </div>
 
@@ -851,11 +853,11 @@ if ( ! empty( $low_temp_page_ids ) ) {
             <h3>Мясо и рыба</h3>
             <p>Для охлаждённого хранения критичны режим 0…+2°C, санитарные требования и резерв по мощности на загрузку/разгрузку. Для длительного хранения может потребоваться заморозка (−18°C и ниже).</p>
             <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:18px;">
-               <?php if ( $medium_temp_page_url ) : ?>
-                  <a class="btn btn-small btn-outline" href="<?php echo esc_url( $medium_temp_page_url ); ?>">Охлаждение</a>
+               <?php if ($medium_temp_page_url) : ?>
+                  <a class="btn btn-small btn-outline" href="<?php echo esc_url($medium_temp_page_url); ?>">Охлаждение</a>
                <?php endif; ?>
-               <?php if ( $low_temp_page_url ) : ?>
-                  <a class="btn btn-small btn-outline" href="<?php echo esc_url( $low_temp_page_url ); ?>">Заморозка</a>
+               <?php if ($low_temp_page_url) : ?>
+                  <a class="btn btn-small btn-outline" href="<?php echo esc_url($low_temp_page_url); ?>">Заморозка</a>
                <?php endif; ?>
             </div>
          </div>
@@ -869,36 +871,36 @@ if ( ! empty( $low_temp_page_ids ) ) {
       <div class="section-title">
          <h2>Какие задачи решают агрегаты для хранения?</h2>
       </div>
-        <div class="problems-grid">
-            <div class="problem-card">
-               <div class="problem-icon">
-                  <i class="fas fa-thermometer-half"></i>
-               </div>
-              <h3>Стабильная температура без «качелей»</h3>
-              <p>Точное поддержание уставки снижает потери качества и риск порчи продукта. Настраиваем автоматику под ваш режим и график работы камеры.</p>
+      <div class="problems-grid">
+         <div class="problem-card">
+            <div class="problem-icon">
+               <i class="fas fa-thermometer-half"></i>
             </div>
-            <div class="problem-card">
-              <div class="problem-icon">
-                <i class="fas fa-tint"></i>
-              </div>
-              <h3>Влажность, усушка и конденсат</h3>
-              <p>Для овощей/фруктов важна влажность, для мяса/рыбы — стабильный микроклимат без «пересушивания». Помогаем подобрать решение по воздухообмену и настройкам.</p>
+            <h3>Стабильная температура без «качелей»</h3>
+            <p>Точное поддержание уставки снижает потери качества и риск порчи продукта. Настраиваем автоматику под ваш режим и график работы камеры.</p>
+         </div>
+         <div class="problem-card">
+            <div class="problem-icon">
+               <i class="fas fa-tint"></i>
             </div>
-            <div class="problem-card">
-               <div class="problem-icon">
-                  <i class="fas fa-truck-fast"></i>
-               </div>
-              <h3>Загрузка/разгрузка и частые открытия</h3>
-              <p>Теплопритоки при логистике могут быстро «сбивать» режим. Закладываем запас по мощности и корректную автоматику, чтобы камера быстрее возвращалась к уставке.</p>
+            <h3>Влажность, усушка и конденсат</h3>
+            <p>Для овощей/фруктов важна влажность, для мяса/рыбы — стабильный микроклимат без «пересушивания». Помогаем подобрать решение по воздухообмену и настройкам.</p>
+         </div>
+         <div class="problem-card">
+            <div class="problem-icon">
+               <i class="fas fa-truck-fast"></i>
             </div>
-            <div class="problem-card">
-               <div class="problem-icon">
-                  <i class="fas fa-shield-alt"></i>
-               </div>
-              <h3>Надёжность, защиты и экономичность</h3>
-              <p>Корректная компоновка и защиты снижают риск аварий, а точный подбор помогает не переплачивать за электроэнергию и сервис. Возможен мониторинг и сигнализация.</p>
+            <h3>Загрузка/разгрузка и частые открытия</h3>
+            <p>Теплопритоки при логистике могут быстро «сбивать» режим. Закладываем запас по мощности и корректную автоматику, чтобы камера быстрее возвращалась к уставке.</p>
+         </div>
+         <div class="problem-card">
+            <div class="problem-icon">
+               <i class="fas fa-shield-alt"></i>
             </div>
-        </div>
+            <h3>Надёжность, защиты и экономичность</h3>
+            <p>Корректная компоновка и защиты снижают риск аварий, а точный подбор помогает не переплачивать за электроэнергию и сервис. Возможен мониторинг и сигнализация.</p>
+         </div>
+      </div>
    </div>
 </section>
 
@@ -913,7 +915,7 @@ if ( ! empty( $low_temp_page_ids ) ) {
       <div class="features-list">
          <div class="feature-item">
             <div class="feature-icon">
-                 <i class="fas fa-thermometer-half"></i>
+               <i class="fas fa-thermometer-half"></i>
             </div>
             <div class="feature-text">
                <h3>Точный контроль температуры</h3>
@@ -922,7 +924,7 @@ if ( ! empty( $low_temp_page_ids ) ) {
          </div>
          <div class="feature-item">
             <div class="feature-icon">
-                 <i class="fas fa-wind"></i>
+               <i class="fas fa-wind"></i>
             </div>
             <div class="feature-text">
                <h3>Вентиляция и влажность</h3>
@@ -931,7 +933,7 @@ if ( ! empty( $low_temp_page_ids ) ) {
          </div>
          <div class="feature-item">
             <div class="feature-icon">
-                 <i class="fas fa-shield-alt"></i>
+               <i class="fas fa-shield-alt"></i>
             </div>
             <div class="feature-text">
                <h3>Надёжность и защиты</h3>
@@ -940,7 +942,7 @@ if ( ! empty( $low_temp_page_ids ) ) {
          </div>
          <div class="feature-item">
             <div class="feature-icon">
-                 <i class="fas fa-leaf"></i>
+               <i class="fas fa-leaf"></i>
             </div>
             <div class="feature-text">
                <h3>Энергоэффективность</h3>
@@ -949,7 +951,7 @@ if ( ! empty( $low_temp_page_ids ) ) {
          </div>
          <div class="feature-item">
             <div class="feature-icon">
-                 <i class="fas fa-network-wired"></i>
+               <i class="fas fa-network-wired"></i>
             </div>
             <div class="feature-text">
                <h3>Мониторинг и сигнализация (опционально)</h3>
@@ -958,7 +960,7 @@ if ( ! empty( $low_temp_page_ids ) ) {
          </div>
          <div class="feature-item">
             <div class="feature-icon">
-                <i class="fas fa-tools"></i>
+               <i class="fas fa-tools"></i>
             </div>
             <div class="feature-text">
                <h3>Поставка, монтаж и сервис</h3>
@@ -1000,9 +1002,9 @@ if ( ! empty( $low_temp_page_ids ) ) {
          </ul>
 
          <p style="margin-top: 15px; color: #666;">Для длительного хранения в заморозке обычно требуется режим −18°C и ниже — подберём низкотемпературное решение отдельно.</p>
-         <?php if ( $low_temp_page_url ) : ?>
+         <?php if ($low_temp_page_url) : ?>
             <div style="text-align: center; margin-top: 20px;">
-               <a class="btn btn-outline" href="<?php echo esc_url( $low_temp_page_url ); ?>">Низкотемпературные агрегаты</a>
+               <a class="btn btn-outline" href="<?php echo esc_url($low_temp_page_url); ?>">Низкотемпературные агрегаты</a>
             </div>
          <?php endif; ?>
       </div>
@@ -1068,93 +1070,93 @@ if ( ! empty( $low_temp_page_ids ) ) {
 
        <div class="products-grid">
            <?php
-          // Укажи slug категории WooCommerce для агрегатов хранения
-          $category_slug = 'storing-aggregates';
+            // Укажи slug категории WooCommerce для агрегатов хранения
+            $category_slug = 'storing-aggregates';
 
-         if (!function_exists('wc_get_product')) {
-            echo '<p style="grid-column: 1/-1; text-align: center; padding: 40px;">WooCommerce не активен. Каталог товаров недоступен.</p>';
-         } else {
-            $args = array(
-               'post_type' => 'product',
-               'post_status' => 'publish',
-               'posts_per_page' => -1,
-               'no_found_rows' => true,
-               'ignore_sticky_posts' => true,
-               'orderby' => array(
-                  'menu_order' => 'ASC',
-                  'title' => 'ASC',
-               ),
-               'tax_query' => array(
-                  array(
-                     'taxonomy' => 'product_cat',
-                     'field' => 'slug',
-                     'terms' => $category_slug,
+            if (!function_exists('wc_get_product')) {
+               echo '<p style="grid-column: 1/-1; text-align: center; padding: 40px;">WooCommerce не активен. Каталог товаров недоступен.</p>';
+            } else {
+               $args = array(
+                  'post_type' => 'product',
+                  'post_status' => 'publish',
+                  'posts_per_page' => -1,
+                  'no_found_rows' => true,
+                  'ignore_sticky_posts' => true,
+                  'orderby' => array(
+                     'menu_order' => 'ASC',
+                     'title' => 'ASC',
                   ),
-               ),
-            );
+                  'tax_query' => array(
+                     array(
+                        'taxonomy' => 'product_cat',
+                        'field' => 'slug',
+                        'terms' => $category_slug,
+                     ),
+                  ),
+               );
 
-            $products = new WP_Query($args);
+               $products = new WP_Query($args);
 
-            if ($products->have_posts()) {
-               while ($products->have_posts()) {
-                  $products->the_post();
-                  $product = wc_get_product(get_the_ID());
+               if ($products->have_posts()) {
+                  while ($products->have_posts()) {
+                     $products->the_post();
+                     $product = wc_get_product(get_the_ID());
 
-                  if (!$product) {
-                     continue;
-                  }
-
-                  $product_name = $product->get_name();
-
-                  $short_desc = $product->get_short_description();
-                  if (!$short_desc) {
-                     $short_desc = wp_trim_words(wp_strip_all_tags($product->get_description()), 24, '…');
-                  } else {
-                     $short_desc = wp_trim_words(wp_strip_all_tags($short_desc), 24, '…');
-                  }
-
-                  $image_url = has_post_thumbnail() ? get_the_post_thumbnail_url(get_the_ID(), 'medium') : wc_placeholder_img_src('medium');
-
-                  $attribute_items = array();
-                  $attributes = $product->get_attributes();
-                  if (!empty($attributes)) {
-                     foreach ($attributes as $attr) {
-                        if (!($attr instanceof WC_Product_Attribute)) {
-                           continue;
-                        }
-
-                        $attr_name = $attr->get_name();
-                        $attr_value = $product->get_attribute($attr_name);
-
-                        if (!$attr_value) {
-                           continue;
-                        }
-
-                        $attr_label = $attr->get_id() ? wc_attribute_label($attr_name) : $attr_name;
-                        $attr_label = $attr_label ? $attr_label : $attr_name;
-
-                        $attribute_items[] = array(
-                           'position' => (int)$attr->get_position(),
-                           'visible' => (bool)$attr->get_visible(),
-                           'label' => $attr_label,
-                           'value' => $attr_value,
-                        );
+                     if (!$product) {
+                        continue;
                      }
 
-                     usort($attribute_items, static function ($a, $b) {
-                        return $a['position'] <=> $b['position'];
-                     });
-                  }
+                     $product_name = $product->get_name();
 
-                  $visible_items = array_values(array_filter($attribute_items, static function ($item) {
-                     return !empty($item['visible']);
-                  }));
-                  $hidden_items = array_values(array_filter($attribute_items, static function ($item) {
-                     return empty($item['visible']);
-                  }));
+                     $short_desc = $product->get_short_description();
+                     if (!$short_desc) {
+                        $short_desc = wp_trim_words(wp_strip_all_tags($product->get_description()), 24, '…');
+                     } else {
+                        $short_desc = wp_trim_words(wp_strip_all_tags($short_desc), 24, '…');
+                     }
 
-                  $spec_items = array_slice(array_merge($visible_items, $hidden_items), 0, 5);
-         ?>
+                     $image_url = has_post_thumbnail() ? get_the_post_thumbnail_url(get_the_ID(), 'medium') : wc_placeholder_img_src('medium');
+
+                     $attribute_items = array();
+                     $attributes = $product->get_attributes();
+                     if (!empty($attributes)) {
+                        foreach ($attributes as $attr) {
+                           if (!($attr instanceof WC_Product_Attribute)) {
+                              continue;
+                           }
+
+                           $attr_name = $attr->get_name();
+                           $attr_value = $product->get_attribute($attr_name);
+
+                           if (!$attr_value) {
+                              continue;
+                           }
+
+                           $attr_label = $attr->get_id() ? wc_attribute_label($attr_name) : $attr_name;
+                           $attr_label = $attr_label ? $attr_label : $attr_name;
+
+                           $attribute_items[] = array(
+                              'position' => (int)$attr->get_position(),
+                              'visible' => (bool)$attr->get_visible(),
+                              'label' => $attr_label,
+                              'value' => $attr_value,
+                           );
+                        }
+
+                        usort($attribute_items, static function ($a, $b) {
+                           return $a['position'] <=> $b['position'];
+                        });
+                     }
+
+                     $visible_items = array_values(array_filter($attribute_items, static function ($item) {
+                        return !empty($item['visible']);
+                     }));
+                     $hidden_items = array_values(array_filter($attribute_items, static function ($item) {
+                        return empty($item['visible']);
+                     }));
+
+                     $spec_items = array_slice(array_merge($visible_items, $hidden_items), 0, 5);
+            ?>
                   <div class="product-card">
                      <a href="<?php the_permalink(); ?>" class="product-image" style="display: block;">
                         <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($product_name); ?>" loading="lazy" decoding="async">
@@ -1180,17 +1182,17 @@ if ( ! empty( $low_temp_page_ids ) ) {
                      </div>
                   </div>
          <?php
-               }
-               wp_reset_postdata();
-            } else {
-               $term = get_term_by('slug', $category_slug, 'product_cat');
-               if (!$term) {
-                  echo '<p style="grid-column: 1/-1; text-align: center; padding: 40px;">Категория "' . esc_html($category_slug) . '" не найдена. Проверьте slug категории в WooCommerce.</p>';
+                  }
+                  wp_reset_postdata();
                } else {
-                  echo '<p style="grid-column: 1/-1; text-align: center; padding: 40px;">В категории "' . esc_html($term->name) . '" пока нет товаров.</p>';
+                  $term = get_term_by('slug', $category_slug, 'product_cat');
+                  if (!$term) {
+                     echo '<p style="grid-column: 1/-1; text-align: center; padding: 40px;">Категория "' . esc_html($category_slug) . '" не найдена. Проверьте slug категории в WooCommerce.</p>';
+                  } else {
+                     echo '<p style="grid-column: 1/-1; text-align: center; padding: 40px;">В категории "' . esc_html($term->name) . '" пока нет товаров.</p>';
+                  }
                }
             }
-         }
          ?>
       </div>
    </div>

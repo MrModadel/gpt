@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Template Name: Компоненты и модули для чиллеров
+ * Template Name:    
  *
  * Профессиональный шаблон страницы каталога компонентов/модулей:
  * - Гидромодули и насосные группы
@@ -1222,94 +1222,6 @@ if ( $components_parent_term && ! is_wp_error( $components_parent_term ) ) {
 		margin-bottom: 5px;
 	}
 
-	/* ===== СТИКИ-ВИДЖЕТ ===== */
-	.sticky-widget {
-		position: fixed;
-		right: 22px;
-		bottom: 22px;
-		width: 360px;
-		background: white;
-		border-radius: 15px;
-		box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-		z-index: 999;
-		overflow: hidden;
-		display: none;
-	}
-
-	.sticky-widget.active {
-		display: block;
-		animation: slideInRight 0.5s ease;
-	}
-
-	@keyframes slideInRight {
-		from {
-			opacity: 0;
-			transform: translateX(100%);
-		}
-		to {
-			opacity: 1;
-			transform: translateX(0);
-		}
-	}
-
-	.widget-header {
-		background: linear-gradient(135deg, var(--ts-primary) 0%, var(--ts-primary-dark) 100%);
-		color: white;
-		padding: 18px 20px;
-		text-align: left;
-		position: relative;
-	}
-
-	.widget-header h4 {
-		color: white;
-		margin: 0 0 6px;
-	}
-
-	.widget-header p {
-		color: white;
-		margin: 0;
-		font-size: 0.92rem;
-		opacity: 0.95;
-	}
-
-	.widget-close {
-		position: absolute;
-		top: 12px;
-		right: 12px;
-		background: none;
-		border: none;
-		color: white;
-		font-size: 1.2rem;
-		cursor: pointer;
-	}
-
-	.widget-content {
-		padding: 18px 20px 22px;
-	}
-
-	.widget-features {
-		margin: 10px 0 14px;
-	}
-
-	.widget-feature {
-		display: flex;
-		align-items: center;
-		gap: 10px;
-		margin-bottom: 8px;
-		color: #555;
-		font-size: 0.9rem;
-	}
-
-	.widget-feature i {
-		color: var(--ts-primary);
-	}
-
-	.widget-content .form-row {
-		grid-template-columns: 1fr;
-		gap: 12px;
-		margin-bottom: 12px;
-	}
-
 	/* ===== ГРУППЫ КОМПОНЕНТОВ ===== */
 	.component-groups {
 		background-color: var(--ts-surface);
@@ -2432,35 +2344,6 @@ if ( $components_parent_term && ! is_wp_error( $components_parent_term ) ) {
 	</div>
 </section>
 
-<!-- СТИКИ-ВИДЖЕТ -->
-<div class="sticky-widget" id="stickyWidget">
-	<div class="widget-header">
-		<button class="widget-close" id="closeWidget" aria-label="Закрыть"><i class="fas fa-times"></i></button>
-		<h4>Нужен быстрый подбор?</h4>
-		<p>Оставьте телефон — инженер перезвонит и уточнит параметры</p>
-	</div>
-	<div class="widget-content">
-		<div class="widget-features">
-			<div class="widget-feature"><i class="fas fa-check"></i> Подбор по расчету и совместимости</div>
-			<div class="widget-feature"><i class="fas fa-check"></i> Аналоги под срок/стоимость</div>
-			<div class="widget-feature"><i class="fas fa-check"></i> Спецификация и КП</div>
-		</div>
-		<form class="form-tel">
-			<input type="hidden" name="formType" value="Компоненты и модули — быстрый звонок">
-			<div class="form-row">
-				<div class="form-group">
-					<label>Телефон *</label>
-					<input class="form-control" type="tel" name="phone" placeholder="+7 (___) ___-__-__" required>
-				</div>
-				<div class="form-group">
-					<label>Комментарий</label>
-					<input class="form-control" type="text" name="message" placeholder="Коротко: что подобрать?">
-				</div>
-			</div>
-			<button type="submit" class="btn" style="width:100%;"><i class="fas fa-phone"></i> Заказать звонок</button>
-		</form>
-	</div>
-</div>
 
 <script>
 	document.addEventListener('DOMContentLoaded', function() {

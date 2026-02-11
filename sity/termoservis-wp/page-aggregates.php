@@ -1227,104 +1227,63 @@ function get_custom_or_term_link($term, $custom_links)
 }
 ?>
 
-<section class="system-nav fade-in">
-    <div class="container">
-        <h2>Полная система холодильного оборудования ТЕРМОСИСТЕМЫ-С</h2>
-        <p class="mb-30" style="color:#666;">Изучите нашу продукцию как единый технологический комплекс. Категории выстроены по принципу от центрального холодоснабжения к конечным применениям. Кликните на любой раздел, чтобы увидеть модели, характеристики и типовые решения.</p>
+<section class="categories-preview fade-in">
+   <div class="container">
+      <h2 style="text-align: center;">Ключевые подкатегории</h2>
+      <p class="mb-30" style="color:#666; max-width:900px; margin:0 auto 30px;">Ниже представлены основные группы нашего каталога с детальными техническими особенностями, областями применения и типовыми схемами внедрения. Для каждой категории мы подготовили руководство по выбору.</p>
 
-        <div class="nav-accordion">
-            <?php
-            // Исключаем категории "Misc" и "Отраслевые решения"
-            $exclude_slugs = array('misc', 'special-way-of-solving');
-            $exclude_ids = array();
+      <div class="categories-grid">
+         <?php
+         // Укажи slug родительской категории — будут показаны ВСЕ её подкатегории
+         $parent_category_slug = 'refrigeration-units';
+         $parent_category = get_term_by('slug', $parent_category_slug, 'product_cat');
 
-            foreach ($exclude_slugs as $slug) {
-                $term = get_term_by('slug', $slug, 'product_cat');
-                if ($term && ! is_wp_error($term)) {
-                    $exclude_ids[] = $term->term_id;
-                }
-            }
-
-            $categories = get_terms(array(
-                'taxonomy' => 'product_cat',
-                'hide_empty' => false,
-                'parent' => 0,
-                'exclude' => ! empty($exclude_ids) ? $exclude_ids : array(),
+         if ($parent_category && ! is_wp_error($parent_category)) {
+            $subcategories = get_terms(array(
+               'taxonomy' => 'product_cat',
+               'parent' => $parent_category->term_id,
+               'hide_empty' => false,
             ));
 
-            if (! empty($categories) && ! is_wp_error($categories)) {
-                foreach ($categories as $category) {
-                    $count = $category->count;
-            ?>
-                    <div class="accordion-item">
-                        <div class="accordion-header">
-                            <?php echo esc_html($category->name); ?>
-                            <span class="accordion-icon"><i class="fas fa-chevron-down"></i></span>
-                        </div>
-                        <div class="accordion-content">
-                            <div class="subcategory-list">
-                                <div class="subcategory-item">
-                                    <a href="<?php echo get_custom_or_term_link($category, $custom_links); ?>">
-                                        <span class="item-count"><?php echo esc_html($count); ?></span>
-                                        <?php echo esc_html($category->name); ?>
-                                    </a>
-                                </div>
-                                <?php
-                                // Получаем подкатегории
-                                $subcategories = get_terms(array(
-                                    'taxonomy' => 'product_cat',
-                                    'parent' => $category->term_id,
-                                    'hide_empty' => false,
-                                ));
-
-                                if (! empty($subcategories) && ! is_wp_error($subcategories)) {
-                                    foreach ($subcategories as $subcat) {
-                                ?>
-                                        <div class="subcategory-item">
-                                            <a href="<?php echo get_custom_or_term_link($subcat, $custom_links); ?>">
-                                                <span class="item-count"><?php echo esc_html($subcat->count); ?></span>
-                                                <?php echo esc_html($subcat->name); ?>
-                                            </a>
-                                        </div>
-                                        <?php
-                                        // Третий уровень
-                                        $sub_subcategories = get_terms(array(
-                                            'taxonomy' => 'product_cat',
-                                            'parent' => $subcat->term_id,
-                                            'hide_empty' => false,
-                                        ));
-
-                                        if (! empty($sub_subcategories) && ! is_wp_error($sub_subcategories)) {
-                                            foreach ($sub_subcategories as $sub_subcat) {
-                                        ?>
-                                                <div class="subcategory-item" style="padding-left: 30px;">
-                                                    <a href="<?php echo get_custom_or_term_link($sub_subcat, $custom_links); ?>">
-                                                        <span class="item-count"><?php echo esc_html($sub_subcat->count); ?></span>
-                                                        <?php echo esc_html($sub_subcat->name); ?>
-                                                    </a>
-                                                </div>
-                                <?php
-                                            }
-                                        }
-                                    }
-                                }
-                                ?>
-                            </div>
-                        </div>
-                    </div>
-                <?php
-                }
+            if (! empty($subcategories) && ! is_wp_error($subcategories)) {
+               foreach ($subcategories as $subcat) {
+                  $image_id = get_woocommerce_term_meta($subcat->term_id, 'thumbnail_id', true);
+                  if (! $image_id) {
+                     $image_id = get_term_meta($subcat->term_id, 'thumbnail_id', true);
+                  }
+                  $image_url = $image_id ? wp_get_attachment_url($image_id) : 'https://images.iimg.live/images/amazing-shot-8342.webp&auto=format&fit=crop&w=600&q=80';
+         ?>
+                  <div class="category-card">
+                     <div class="card-image">
+                        <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($subcat->name); ?>">
+                        <div class="card-badge">ПОДКАТЕГОРИЯ</div>
+                     </div>
+                     <div class="card-content">
+                        <h3><?php echo esc_html($subcat->name); ?></h3>
+                        <p><?php echo wp_kses_post(term_description($subcat->term_id, 'product_cat')); ?></p>
+                        <a href="<?php echo get_page_or_term_link($subcat); ?>" class="btn">Смотреть</a>
+                     </div>
+                  </div>
+               <?php
+               }
             } else {
-                ?>
-                <div style="padding:20px; text-align:center; color:#999;">
-                    <i class="fas fa-box" style="font-size:2rem; margin-bottom:15px; color:#ddd; display:block;"></i>
-                    <p>Категории не найдены. Добавьте категории товаров в WooCommerce.</p>
-                </div>
+               ?>
+               <p style="grid-column: 1 / -1; text-align:center; color:#666;">Подкатегории не найдены.</p>
             <?php
             }
+         } else {
             ?>
-        </div>
-    </div>
+            <p style="grid-column: 1 / -1; text-align:center; color:#666;">
+               Категория не найдена: <?php echo esc_html($parent_category_slug); ?>
+            </p>
+         <?php
+         }
+         ?>
+
+
+
+      </div>
+   </div>
 </section>
 <!-- ОТРАСЛИ -->
 <section id="applications" class="industry-applications fade-in">

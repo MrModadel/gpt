@@ -29,10 +29,10 @@ $aggregates_page_ids = get_posts(
    )
 );
 
-if ( ! empty( $aggregates_page_ids ) ) {
-   $aggregates_page_url = get_permalink( (int) $aggregates_page_ids[0] );
+if (! empty($aggregates_page_ids)) {
+   $aggregates_page_url = get_permalink((int) $aggregates_page_ids[0]);
 } else {
-   $aggregates_page_url = home_url( '/holodilnye-agregaty' );
+   $aggregates_page_url = home_url('/refrigeration-units');
 }
 
 $medium_temp_page_ids = get_posts(
@@ -49,8 +49,8 @@ $medium_temp_page_ids = get_posts(
    )
 );
 
-if ( ! empty( $medium_temp_page_ids ) ) {
-   $medium_temp_page_url = get_permalink( (int) $medium_temp_page_ids[0] );
+if (! empty($medium_temp_page_ids)) {
+   $medium_temp_page_url = get_permalink((int) $medium_temp_page_ids[0]);
 }
 
 $low_temp_page_ids = get_posts(
@@ -67,7 +67,7 @@ $low_temp_page_ids = get_posts(
    )
 );
 
-if ( empty( $low_temp_page_ids ) ) {
+if (empty($low_temp_page_ids)) {
    $low_temp_page_ids = get_posts(
       array(
          'post_type'              => 'page',
@@ -83,8 +83,8 @@ if ( empty( $low_temp_page_ids ) ) {
    );
 }
 
-if ( ! empty( $low_temp_page_ids ) ) {
-   $low_temp_page_url = get_permalink( (int) $low_temp_page_ids[0] );
+if (! empty($low_temp_page_ids)) {
+   $low_temp_page_url = get_permalink((int) $low_temp_page_ids[0]);
 }
 ?>
 <style>
@@ -796,9 +796,11 @@ if ( ! empty( $low_temp_page_ids ) ) {
 <!-- Хлебные крошки -->
 <div class="breadcrumbs">
    <div class="container">
-      <a href="<?php echo esc_url( home_url( '/' ) ); ?>">Главная</a>
+      <a href="<?php echo esc_url(home_url('/')); ?>">Главная</a>
       <i class="fas fa-chevron-right"></i>
-      <a href="<?php echo esc_url( home_url( '/catalog' ) ); ?>">Каталог</a>
+      <a href="<?php echo esc_url(home_url('/catalog')); ?>">Каталог</a>
+      <i class="fas fa-chevron-right"></i>
+      <a href="<?php echo esc_url(home_url('/refrigeration-units')); ?>">Холодильные агрегаты</a>
       <i class="fas fa-chevron-right"></i>
       <span>Промышленные льдоаккумуляторы</span>
    </div>
@@ -811,14 +813,14 @@ if ( ! empty( $low_temp_page_ids ) ) {
       <p>Промышленные льдоаккумуляторы (аккумуляторы холода) позволяют <strong>накопить холод в виде льда</strong> и использовать его в пиковые часы: снизить <strong>пиковую электрическую мощность</strong>, перенести часть нагрузки на <strong>ночной тариф</strong> и получить <strong>резерв холодоснабжения</strong>. Система обычно работает с «ледяной водой» (ориентир <strong>+1…+3°C</strong>) и интегрируется с насосной группой и автоматикой. Раздел является родительским для категории «Холодильные агрегаты».</p>
       <div class="cta-buttons">
          <button class="btn" id="openCalcModal">Рассчитать льдоаккумулятор</button>
-         <?php if ( $aggregates_page_url ) : ?>
-            <a class="btn btn-outline" href="<?php echo esc_url( $aggregates_page_url ); ?>">Холодильные агрегаты</a>
+         <?php if ($aggregates_page_url) : ?>
+            <a class="btn btn-outline" href="<?php echo esc_url($aggregates_page_url); ?>">Холодильные агрегаты</a>
          <?php endif; ?>
-         <?php if ( $medium_temp_page_url ) : ?>
-            <a class="btn btn-outline" href="<?php echo esc_url( $medium_temp_page_url ); ?>">Среднетемпературные</a>
+         <?php if ($medium_temp_page_url) : ?>
+            <a class="btn btn-outline" href="<?php echo esc_url($medium_temp_page_url); ?>">Среднетемпературные</a>
          <?php endif; ?>
-         <?php if ( $low_temp_page_url ) : ?>
-            <a class="btn btn-outline" href="<?php echo esc_url( $low_temp_page_url ); ?>">Низкотемпературные</a>
+         <?php if ($low_temp_page_url) : ?>
+            <a class="btn btn-outline" href="<?php echo esc_url($low_temp_page_url); ?>">Низкотемпературные</a>
          <?php endif; ?>
       </div>
    </div>
@@ -866,9 +868,9 @@ if ( ! empty( $low_temp_page_ids ) ) {
          </div>
       </div>
 
-      <?php if ( $aggregates_page_url ) : ?>
+      <?php if ($aggregates_page_url) : ?>
          <div style="text-align: center; margin-top: 28px;">
-            <a class="btn btn-outline" href="<?php echo esc_url( $aggregates_page_url ); ?>">Перейти в категорию «Холодильные агрегаты»</a>
+            <a class="btn btn-outline" href="<?php echo esc_url($aggregates_page_url); ?>">Перейти в категорию «Холодильные агрегаты»</a>
          </div>
       <?php endif; ?>
    </div>
@@ -881,36 +883,36 @@ if ( ! empty( $low_temp_page_ids ) ) {
          <h2>Какие задачи решают промышленные льдоаккумуляторы?</h2>
       </div>
       <p class="section-intro">Льдоаккумулирование помогает управлять графиком потребления холода и повышать устойчивость системы без «раздувания» установленной мощности.</p>
-        <div class="problems-grid">
-            <div class="problem-card">
-               <div class="problem-icon">
-                  <i class="fas fa-bolt"></i>
-               </div>
-              <h3>Снижение пиковой электрической мощности</h3>
-              <p>Когда выделенная мощность ограничена, льдоаккумулятор покрывает пики потребления холода и снижает требования к мощности компрессоров.</p>
+      <div class="problems-grid">
+         <div class="problem-card">
+            <div class="problem-icon">
+               <i class="fas fa-bolt"></i>
             </div>
-            <div class="problem-card">
-              <div class="problem-icon">
-                <i class="fas fa-coins"></i>
-              </div>
-              <h3>Экономия за счёт ночного тарифа</h3>
-              <p>Производим холод ночью (или в «дешёвые» часы), а днём используем накопленный запас льда — это снижает стоимость кВт⋅ч холода.</p>
+            <h3>Снижение пиковой электрической мощности</h3>
+            <p>Когда выделенная мощность ограничена, льдоаккумулятор покрывает пики потребления холода и снижает требования к мощности компрессоров.</p>
+         </div>
+         <div class="problem-card">
+            <div class="problem-icon">
+               <i class="fas fa-coins"></i>
             </div>
-            <div class="problem-card">
-               <div class="problem-icon">
-                  <i class="fas fa-shield-alt"></i>
-               </div>
-              <h3>Резерв холодоснабжения</h3>
-              <p>Запас холода повышает устойчивость технологии при кратковременных сбоях, росте нагрузки и аварийных ситуациях.</p>
+            <h3>Экономия за счёт ночного тарифа</h3>
+            <p>Производим холод ночью (или в «дешёвые» часы), а днём используем накопленный запас льда — это снижает стоимость кВт⋅ч холода.</p>
+         </div>
+         <div class="problem-card">
+            <div class="problem-icon">
+               <i class="fas fa-shield-alt"></i>
             </div>
-            <div class="problem-card">
-               <div class="problem-icon">
-                  <i class="fas fa-temperature-low"></i>
-               </div>
-              <h3>Стабильная «ледяная вода» для процесса</h3>
-              <p>Стабильная температура подачи (часто +1…+3°C) улучшает повторяемость процесса и качество продукта при пиковых нагрузках.</p>
+            <h3>Резерв холодоснабжения</h3>
+            <p>Запас холода повышает устойчивость технологии при кратковременных сбоях, росте нагрузки и аварийных ситуациях.</p>
+         </div>
+         <div class="problem-card">
+            <div class="problem-icon">
+               <i class="fas fa-temperature-low"></i>
             </div>
-        </div>
+            <h3>Стабильная «ледяная вода» для процесса</h3>
+            <p>Стабильная температура подачи (часто +1…+3°C) улучшает повторяемость процесса и качество продукта при пиковых нагрузках.</p>
+         </div>
+      </div>
    </div>
 </section>
 
@@ -925,7 +927,7 @@ if ( ! empty( $low_temp_page_ids ) ) {
       <div class="features-list">
          <div class="feature-item">
             <div class="feature-icon">
-                 <i class="fas fa-bolt"></i>
+               <i class="fas fa-bolt"></i>
             </div>
             <div class="feature-text">
                <h3>Peak shaving и разгрузка компрессоров</h3>
@@ -934,7 +936,7 @@ if ( ! empty( $low_temp_page_ids ) ) {
          </div>
          <div class="feature-item">
             <div class="feature-icon">
-                 <i class="fas fa-clock"></i>
+               <i class="fas fa-clock"></i>
             </div>
             <div class="feature-text">
                <h3>Перенос нагрузки на ночной тариф</h3>
@@ -943,7 +945,7 @@ if ( ! empty( $low_temp_page_ids ) ) {
          </div>
          <div class="feature-item">
             <div class="feature-icon">
-                 <i class="fas fa-shield-alt"></i>
+               <i class="fas fa-shield-alt"></i>
             </div>
             <div class="feature-text">
                <h3>Резерв и устойчивость системы</h3>
@@ -952,7 +954,7 @@ if ( ! empty( $low_temp_page_ids ) ) {
          </div>
          <div class="feature-item">
             <div class="feature-icon">
-                 <i class="fas fa-tint"></i>
+               <i class="fas fa-tint"></i>
             </div>
             <div class="feature-text">
                <h3>Стабильный температурный график</h3>
@@ -961,7 +963,7 @@ if ( ! empty( $low_temp_page_ids ) ) {
          </div>
          <div class="feature-item">
             <div class="feature-icon">
-                 <i class="fas fa-network-wired"></i>
+               <i class="fas fa-network-wired"></i>
             </div>
             <div class="feature-text">
                <h3>Автоматика и диспетчеризация (опционально)</h3>
@@ -970,7 +972,7 @@ if ( ! empty( $low_temp_page_ids ) ) {
          </div>
          <div class="feature-item">
             <div class="feature-icon">
-                <i class="fas fa-tools"></i>
+               <i class="fas fa-tools"></i>
             </div>
             <div class="feature-text">
                <h3>Проектирование, монтаж и сервис</h3>
@@ -1012,9 +1014,9 @@ if ( ! empty( $low_temp_page_ids ) ) {
          </ul>
 
          <p style="margin-top: 15px; color: #666;">Температуры и длительность заряда/разряда рассчитываются по вашему профилю нагрузки — подготовим технико-экономическое сравнение вариантов.</p>
-         <?php if ( $aggregates_page_url ) : ?>
+         <?php if ($aggregates_page_url) : ?>
             <div style="text-align: center; margin-top: 20px;">
-               <a class="btn btn-outline" href="<?php echo esc_url( $aggregates_page_url ); ?>">Холодильные агрегаты (для заряда)</a>
+               <a class="btn btn-outline" href="<?php echo esc_url($aggregates_page_url); ?>">Холодильные агрегаты (для заряда)</a>
             </div>
          <?php endif; ?>
       </div>
@@ -1080,93 +1082,93 @@ if ( ! empty( $low_temp_page_ids ) ) {
 
        <div class="products-grid">
            <?php
-          // Укажи slug категории WooCommerce для промышленных льдоаккумуляторов
-          $category_slug = 'industrial-ice-storage';
+            // Укажи slug категории WooCommerce для промышленных льдоаккумуляторов
+            $category_slug = 'industrial-ice-storage';
 
-         if (!function_exists('wc_get_product')) {
-            echo '<p style="grid-column: 1/-1; text-align: center; padding: 40px;">WooCommerce не активен. Каталог товаров недоступен.</p>';
-         } else {
-            $args = array(
-               'post_type' => 'product',
-               'post_status' => 'publish',
-               'posts_per_page' => -1,
-               'no_found_rows' => true,
-               'ignore_sticky_posts' => true,
-               'orderby' => array(
-                  'menu_order' => 'ASC',
-                  'title' => 'ASC',
-               ),
-               'tax_query' => array(
-                  array(
-                     'taxonomy' => 'product_cat',
-                     'field' => 'slug',
-                     'terms' => $category_slug,
+            if (!function_exists('wc_get_product')) {
+               echo '<p style="grid-column: 1/-1; text-align: center; padding: 40px;">WooCommerce не активен. Каталог товаров недоступен.</p>';
+            } else {
+               $args = array(
+                  'post_type' => 'product',
+                  'post_status' => 'publish',
+                  'posts_per_page' => -1,
+                  'no_found_rows' => true,
+                  'ignore_sticky_posts' => true,
+                  'orderby' => array(
+                     'menu_order' => 'ASC',
+                     'title' => 'ASC',
                   ),
-               ),
-            );
+                  'tax_query' => array(
+                     array(
+                        'taxonomy' => 'product_cat',
+                        'field' => 'slug',
+                        'terms' => $category_slug,
+                     ),
+                  ),
+               );
 
-            $products = new WP_Query($args);
+               $products = new WP_Query($args);
 
-            if ($products->have_posts()) {
-               while ($products->have_posts()) {
-                  $products->the_post();
-                  $product = wc_get_product(get_the_ID());
+               if ($products->have_posts()) {
+                  while ($products->have_posts()) {
+                     $products->the_post();
+                     $product = wc_get_product(get_the_ID());
 
-                  if (!$product) {
-                     continue;
-                  }
-
-                  $product_name = $product->get_name();
-
-                  $short_desc = $product->get_short_description();
-                  if (!$short_desc) {
-                     $short_desc = wp_trim_words(wp_strip_all_tags($product->get_description()), 24, '…');
-                  } else {
-                     $short_desc = wp_trim_words(wp_strip_all_tags($short_desc), 24, '…');
-                  }
-
-                  $image_url = has_post_thumbnail() ? get_the_post_thumbnail_url(get_the_ID(), 'medium') : wc_placeholder_img_src('medium');
-
-                  $attribute_items = array();
-                  $attributes = $product->get_attributes();
-                  if (!empty($attributes)) {
-                     foreach ($attributes as $attr) {
-                        if (!($attr instanceof WC_Product_Attribute)) {
-                           continue;
-                        }
-
-                        $attr_name = $attr->get_name();
-                        $attr_value = $product->get_attribute($attr_name);
-
-                        if (!$attr_value) {
-                           continue;
-                        }
-
-                        $attr_label = $attr->get_id() ? wc_attribute_label($attr_name) : $attr_name;
-                        $attr_label = $attr_label ? $attr_label : $attr_name;
-
-                        $attribute_items[] = array(
-                           'position' => (int)$attr->get_position(),
-                           'visible' => (bool)$attr->get_visible(),
-                           'label' => $attr_label,
-                           'value' => $attr_value,
-                        );
+                     if (!$product) {
+                        continue;
                      }
 
-                     usort($attribute_items, static function ($a, $b) {
-                        return $a['position'] <=> $b['position'];
-                     });
-                  }
+                     $product_name = $product->get_name();
 
-                  $visible_items = array_values(array_filter($attribute_items, static function ($item) {
-                     return !empty($item['visible']);
-                  }));
-                  $hidden_items = array_values(array_filter($attribute_items, static function ($item) {
-                     return empty($item['visible']);
-                  }));
+                     $short_desc = $product->get_short_description();
+                     if (!$short_desc) {
+                        $short_desc = wp_trim_words(wp_strip_all_tags($product->get_description()), 24, '…');
+                     } else {
+                        $short_desc = wp_trim_words(wp_strip_all_tags($short_desc), 24, '…');
+                     }
 
-                  $spec_items = array_slice(array_merge($visible_items, $hidden_items), 0, 5);
-         ?>
+                     $image_url = has_post_thumbnail() ? get_the_post_thumbnail_url(get_the_ID(), 'medium') : wc_placeholder_img_src('medium');
+
+                     $attribute_items = array();
+                     $attributes = $product->get_attributes();
+                     if (!empty($attributes)) {
+                        foreach ($attributes as $attr) {
+                           if (!($attr instanceof WC_Product_Attribute)) {
+                              continue;
+                           }
+
+                           $attr_name = $attr->get_name();
+                           $attr_value = $product->get_attribute($attr_name);
+
+                           if (!$attr_value) {
+                              continue;
+                           }
+
+                           $attr_label = $attr->get_id() ? wc_attribute_label($attr_name) : $attr_name;
+                           $attr_label = $attr_label ? $attr_label : $attr_name;
+
+                           $attribute_items[] = array(
+                              'position' => (int)$attr->get_position(),
+                              'visible' => (bool)$attr->get_visible(),
+                              'label' => $attr_label,
+                              'value' => $attr_value,
+                           );
+                        }
+
+                        usort($attribute_items, static function ($a, $b) {
+                           return $a['position'] <=> $b['position'];
+                        });
+                     }
+
+                     $visible_items = array_values(array_filter($attribute_items, static function ($item) {
+                        return !empty($item['visible']);
+                     }));
+                     $hidden_items = array_values(array_filter($attribute_items, static function ($item) {
+                        return empty($item['visible']);
+                     }));
+
+                     $spec_items = array_slice(array_merge($visible_items, $hidden_items), 0, 5);
+            ?>
                   <div class="product-card">
                      <a href="<?php the_permalink(); ?>" class="product-image" style="display: block;">
                         <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr($product_name); ?>" loading="lazy" decoding="async">
@@ -1192,17 +1194,17 @@ if ( ! empty( $low_temp_page_ids ) ) {
                      </div>
                   </div>
          <?php
-               }
-               wp_reset_postdata();
-            } else {
-               $term = get_term_by('slug', $category_slug, 'product_cat');
-               if (!$term) {
-                  echo '<p style="grid-column: 1/-1; text-align: center; padding: 40px;">Категория "' . esc_html($category_slug) . '" не найдена. Проверьте slug категории в WooCommerce.</p>';
+                  }
+                  wp_reset_postdata();
                } else {
-                  echo '<p style="grid-column: 1/-1; text-align: center; padding: 40px;">В категории "' . esc_html($term->name) . '" пока нет товаров.</p>';
+                  $term = get_term_by('slug', $category_slug, 'product_cat');
+                  if (!$term) {
+                     echo '<p style="grid-column: 1/-1; text-align: center; padding: 40px;">Категория "' . esc_html($category_slug) . '" не найдена. Проверьте slug категории в WooCommerce.</p>';
+                  } else {
+                     echo '<p style="grid-column: 1/-1; text-align: center; padding: 40px;">В категории "' . esc_html($term->name) . '" пока нет товаров.</p>';
+                  }
                }
             }
-         }
          ?>
       </div>
    </div>
@@ -1511,48 +1513,7 @@ if ( ! empty( $low_temp_page_ids ) ) {
                name: li.querySelector('.spec-name')?.textContent?.trim() || '',
                value: li.querySelector('.spec-value')?.textContent?.trim() || ''
             }))
-            .filter(spec => spec.name || spec.value) : [];rfddddddvfggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg
-
-
-            ']]]]]]]]]]]]]]]]]]]]]]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                          
+            .filter(spec => spec.name || spec.value) : [];
 
          if (productInfoElement) {
             const specsHtml = specs
