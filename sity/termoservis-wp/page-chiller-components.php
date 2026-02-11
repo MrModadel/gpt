@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Template Name:    
+ * Template Name: Компоненты и модули для чиллеров
  *
  * Профессиональный шаблон страницы каталога компонентов/модулей:
  * - Гидромодули и насосные группы
@@ -1222,6 +1222,7 @@ if ( $components_parent_term && ! is_wp_error( $components_parent_term ) ) {
 		margin-bottom: 5px;
 	}
 
+	
 	/* ===== ГРУППЫ КОМПОНЕНТОВ ===== */
 	.component-groups {
 		background-color: var(--ts-surface);
@@ -2512,15 +2513,6 @@ if ( $components_parent_term && ! is_wp_error( $components_parent_term ) ) {
 			});
 		});
 
-		// Sticky widget
-		const stickyWidget = document.getElementById('stickyWidget');
-		const closeWidget = document.getElementById('closeWidget');
-		if (stickyWidget) {
-			setTimeout(() => stickyWidget.classList.add('active'), 900);
-		}
-		closeWidget?.addEventListener('click', function() {
-			stickyWidget?.classList.remove('active');
-		});
 
 		// Многошаговая форма #technicalRequestForm обрабатывается в /js/main.js
 	});
