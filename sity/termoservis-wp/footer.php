@@ -135,9 +135,24 @@
           <div class="footer-bottom">
              <p>&copy; <?php echo date('Y'); ?> «<?php bloginfo('name'); ?>». Все права защищены.</p>
              <p style="margin-top:10px;">
-                <a href="#">Политика конфиденциальности</a> |
-                <a href="#">Пользовательское соглашение</a> |
-                <a href="#">Декларации о соответствии</a>
+                <?php
+                $declaration_url = home_url( '/declaration-of-conformity/' );
+                $declaration_pages = get_pages(
+                   array(
+                      'meta_key'    => '_wp_page_template',
+                      'meta_value'  => 'page-declaration-of-conformity.php',
+                      'number'      => 1,
+                      'post_status' => 'publish',
+                   )
+                );
+
+                if ( ! empty( $declaration_pages ) ) {
+                   $declaration_url = get_permalink( $declaration_pages[0]->ID );
+                }
+                ?>
+                <a href="<?php echo esc_url( home_url( '/__privacy_policy/' ) ); ?>">Политика конфиденциальности</a> |
+                <a href="<?php echo esc_url( home_url( '/__user_agreement/' ) ); ?>">Пользовательское соглашение</a> |
+                <a href="<?php echo esc_url( $declaration_url ); ?>">Декларации о соответствии</a>
              </p>
           </div>
        </div>

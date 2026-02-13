@@ -209,7 +209,8 @@ document.addEventListener('DOMContentLoaded', function () {
       if (!validateStep(5)) return;
 
       const formData = new FormData(technicalForm);
-      formData.append('formType', 'Техническое задание на расчет');
+      const customFormType = technicalForm.querySelector('[name="formType"]')?.value;
+      formData.set('formType', customFormType ? customFormType : 'Техническое задание на расчет');
 
       const requestNumber = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
       formData.append('requestNumber', requestNumber);
