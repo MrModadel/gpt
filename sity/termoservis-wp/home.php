@@ -197,9 +197,9 @@ $custom_links = array(
    <!-- ===== 4. О КОМПАНИИ ===== -->
    <section class="about-section" id="about">
       <div class="container about-container">
-         <div class="about-image">
-            <img src="http://termo63.beget.tech/wp-content/uploads/2026/01/full_OcvEgkXX.webp" alt="Наше производство">
-         </div>
+          <div class="about-image">
+            <img src="<?php echo esc_url( wp_upload_dir( null, false )['baseurl'] . '/2026/01/full_OcvEgkXX.webp' ); ?>" alt="Наше производство">
+          </div>
 
          <div class="about-content">
             <h2>ТЕРМОСИСТЕМЫ-С: холод как точная технология для вашего бизнеса</h2>
@@ -282,7 +282,7 @@ $custom_links = array(
    <!-- ===== 6. FAQ ===== -->
    <section class="faq-section" id="faq">
       <div class="container">
-         <h2>Часто задаваемые вопросы</h2>
+         <h2 style="text-align: center;">Часто задаваемые вопросы</h2>
          <p class="mb-40" style="color:#666; font-size:1.1rem; max-width:800px;">
             Мы собрали ответы на самые популярные вопросы о подборе, производстве и обслуживании промышленных холодильных систем.
          </p>
@@ -368,7 +368,7 @@ $custom_links = array(
    <!-- ===== 7. ПРОЕКТЫ ===== -->
    <section class="projects-section" id="projects">
       <div class="container">
-         <h2>Реализованные проекты</h2>
+         <h2 style="text-align:center;">Реализованные проекты</h2>
          <p class="mb-40" style="color:#666; font-size:1.1rem; max-width:800px;">
             Ознакомьтесь с примерами наших работ в различных отраслях промышленности.
          </p>
@@ -380,6 +380,13 @@ $custom_links = array(
                'post_type' => 'post',
                'orderby' => 'date',
                'order' => 'DESC',
+               'tax_query' => array(
+                  array(
+                     'taxonomy' => 'category',
+                     'field' => 'slug',
+                     'terms' => 'kejsy-i-obzory'
+                  )
+               )
             );
             $projects_query = new WP_Query($args);
 
@@ -439,7 +446,12 @@ $custom_links = array(
          </div>
       </div>
    </section>
-
+<style>
+   #contacts h2::after{
+      left: 0;
+      transform: none;
+   }
+</style>
    <!-- ===== 9. SEO-ТЕКСТ ===== -->
    <section class="seo-section">
       <div class="container seo-content">

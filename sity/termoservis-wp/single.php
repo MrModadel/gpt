@@ -185,31 +185,91 @@ get_header();
 		text-decoration: underline;
 	}
 
-	.post-nav {
-		margin-top: 26px;
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 14px;
+	.post-fields {
+		margin: 0 0 18px;
+		border: 1px solid var(--border);
+		border-radius: 16px;
+		padding: 18px;
+		background:
+			radial-gradient(900px 520px at 20% 20%, rgba(0, 163, 255, 0.12), transparent 60%),
+			radial-gradient(900px 520px at 90% 10%, rgba(0, 86, 184, 0.08), transparent 60%),
+			#ffffff;
+		box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
 	}
 
-	.post-nav a {
-		display: block;
-		background: rgba(0, 86, 184, 0.06);
-		border: 1px solid rgba(0, 86, 184, 0.18);
-		border-radius: 14px;
-		padding: 14px;
+	.post-fields-header {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		margin-bottom: 12px;
+		font-weight: 900;
+		color: #1f2a3a;
+	}
+
+	.post-fields-header i {
 		color: var(--primary);
+	}
+
+	.post-fields-grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 12px 14px;
+		margin: 0;
+	}
+
+	.post-field {
+		border: 1px solid rgba(0, 86, 184, 0.14);
+		background: rgba(0, 86, 184, 0.03);
+		border-radius: 14px;
+		padding: 12px 14px;
+	}
+
+	.post-field dt {
+		margin: 0;
+		color: #1f2a3a;
+		font-weight: 900;
+		font-size: 0.92rem;
+		letter-spacing: 0.01em;
+	}
+
+	.post-field dd {
+		margin: 8px 0 0;
+		color: var(--muted);
+		line-height: 1.65;
+		word-break: break-word;
+	}
+
+	.post-field dd a {
+		color: var(--primary);
+		text-decoration: underline;
 		font-weight: 800;
-		text-decoration: none;
 	}
 
-	.post-nav a:hover {
-		background: rgba(0, 86, 184, 0.10);
-		box-shadow: 0 12px 26px rgba(0, 86, 184, 0.10);
+	.post-field dd ul,
+	.post-field dd ol {
+		margin: 0;
+		padding-left: 1.1rem;
+		display: grid;
+		gap: 6px;
 	}
 
-	.post-nav .nav-next {
-		text-align: right;
+	.post-field dd li {
+		margin: 0;
+	}
+
+	.post-field dd p {
+		margin: 0;
+	}
+
+	.post-field-list {
+		margin: 0;
+		padding-left: 1.1rem;
+		display: grid;
+		gap: 6px;
+	}
+
+	.post-field-list li {
+		margin: 0;
 	}
 
 	@media (max-width: 760px) {
@@ -217,12 +277,8 @@ get_header();
 			padding: 76px 0 52px;
 		}
 
-		.post-nav {
+		.post-fields-grid {
 			grid-template-columns: 1fr;
-		}
-
-		.post-nav .nav-next {
-			text-align: left;
 		}
 	}
 </style>
@@ -277,18 +333,182 @@ get_header();
 							</div>
 						<?php endif; ?>
 
+						<?php
+						$raw_meta = get_post_meta( get_the_ID() );
+
+						$excluded_meta_prefixes = array(
+							'rank_math_',
+							'aioseo_',
+							'yoast_wpseo_',
+						);
+
+						$flatten_meta = static function ( $value ) use ( &$flatten_meta ) {
+							if ( is_array( $value ) ) {
+								$all = array();
+								foreach ( $value as $nested ) {
+									$all = array_merge( $all, $flatten_meta( $nested ) );
+								}
+								return $all;
+							}
+
+							if ( is_object( $value ) ) {
+								if ( method_exists( $value, '__toString' ) ) {
+									return array( (string) $value );
+								}
+
+								return array( wp_json_encode( $value ) );
+							}
+
+							return array( $value );
+						};
+
+						$format_meta_key = static function ( $key ) {
+							$label = trim( preg_replace( '/\\s+/', ' ', str_replace( array( '_', '-' ), ' ', (string) $key ) ) );
+							if ( $label === '' ) {
+								return '';
+							}
+
+							if ( function_exists( 'mb_strtoupper' ) && function_exists( 'mb_substr' ) ) {
+								$first = mb_substr( $label, 0, 1 );
+								$rest  = mb_substr( $label, 1 );
+								return mb_strtoupper( $first ) . $rest;
+							}
+
+							return ucfirst( $label );
+						};
+
+						$format_meta_value_html = static function ( $value ) {
+							if ( is_bool( $value ) ) {
+								$value = $value ? 'Да' : 'Нет';
+							}
+
+							if ( is_null( $value ) ) {
+								return '';
+							}
+
+							$value = trim( (string) $value );
+							if ( $value === '' ) {
+								return '';
+							}
+
+							if ( preg_match( '/<[^>]+>/', $value ) ) {
+								return wp_kses_post( $value );
+							}
+
+							if ( is_email( $value ) ) {
+								return '<a href="mailto:' . esc_attr( $value ) . '">' . esc_html( $value ) . '</a>';
+							}
+
+							if ( preg_match( '#^https?://#i', $value ) ) {
+								$path = wp_parse_url( $value, PHP_URL_PATH );
+								$name = is_string( $path ) && $path !== '' ? basename( $path ) : $value;
+								return '<a href="' . esc_url( $value ) . '" target="_blank" rel="noopener"><i class="fas fa-link"></i> ' . esc_html( $name ) . '</a>';
+							}
+
+							if ( preg_match( '#^/wp-content/uploads/#', $value ) ) {
+								$url  = home_url( $value );
+								$name = basename( $value );
+								return '<a href="' . esc_url( $url ) . '" target="_blank" rel="noopener"><i class="fas fa-file-download"></i> ' . esc_html( $name ) . '</a>';
+							}
+
+							if ( ctype_digit( $value ) ) {
+								$attachment_id = (int) $value;
+								$attachment    = get_post( $attachment_id );
+								if ( $attachment && $attachment->post_type === 'attachment' ) {
+									$url  = wp_get_attachment_url( $attachment_id );
+									$name = get_the_title( $attachment_id );
+									if ( ! $name && is_string( $url ) ) {
+										$name = basename( wp_parse_url( $url, PHP_URL_PATH ) );
+									}
+
+									if ( is_string( $url ) && $url !== '' ) {
+										return '<a href="' . esc_url( $url ) . '" target="_blank" rel="noopener"><i class="fas fa-file-download"></i> ' . esc_html( (string) $name ) . '</a>';
+									}
+								}
+							}
+
+							return nl2br( esc_html( $value ) );
+						};
+
+						$display_meta = array();
+						foreach ( (array) $raw_meta as $meta_key => $meta_values ) {
+							$meta_key = (string) $meta_key;
+							if ( $meta_key === '' || $meta_key[0] === '_' ) {
+								continue;
+							}
+
+							foreach ( $excluded_meta_prefixes as $prefix ) {
+								if ( stripos( $meta_key, $prefix ) === 0 ) {
+									continue 2;
+								}
+							}
+
+							$formatted_key = $format_meta_key( $meta_key );
+							if ( $formatted_key === '' ) {
+								continue;
+							}
+
+							$values = array();
+							foreach ( (array) $meta_values as $meta_value ) {
+								$meta_value = maybe_unserialize( $meta_value );
+								foreach ( $flatten_meta( $meta_value ) as $flat_value ) {
+									if ( is_array( $flat_value ) || is_object( $flat_value ) ) {
+										continue;
+									}
+
+									$flat_value = trim( (string) $flat_value );
+									if ( $flat_value !== '' ) {
+										$values[] = $flat_value;
+									}
+								}
+							}
+
+							$values = array_values( array_unique( $values ) );
+							if ( empty( $values ) ) {
+								continue;
+							}
+
+							$display_meta[] = array(
+								'key'   => $formatted_key,
+								'raw'   => $meta_key,
+								'value' => $values,
+							);
+						}
+						?>
+
+						<?php if ( ! empty( $display_meta ) ) : ?>
+							<div class="post-fields" aria-label="Произвольные поля">
+								<div class="post-fields-header">
+									<i class="fas fa-sliders-h"></i>
+									<span>Дополнительные параметры</span>
+								</div>
+								<dl class="post-fields-grid">
+									<?php foreach ( $display_meta as $meta_item ) : ?>
+										<div class="post-field">
+											<dt><?php echo esc_html( $meta_item['key'] ); ?></dt>
+											<dd>
+												<?php if ( count( $meta_item['value'] ) > 1 ) : ?>
+													<ul class="post-field-list">
+														<?php foreach ( $meta_item['value'] as $item_value ) : ?>
+															<?php $html_value = $format_meta_value_html( $item_value ); ?>
+															<?php if ( $html_value !== '' ) : ?>
+																<li><?php echo $html_value; ?></li>
+															<?php endif; ?>
+														<?php endforeach; ?>
+													</ul>
+												<?php else : ?>
+													<?php echo $format_meta_value_html( $meta_item['value'][0] ); ?>
+												<?php endif; ?>
+											</dd>
+										</div>
+									<?php endforeach; ?>
+								</dl>
+							</div>
+						<?php endif; ?>
+
 						<div class="post-body">
 							<?php the_content(); ?>
 							<?php wp_link_pages(); ?>
-						</div>
-
-						<div class="post-nav">
-							<div class="post-nav-prev">
-								<?php previous_post_link( '%link', '<i class="fas fa-chevron-left"></i> %title' ); ?>
-							</div>
-							<div class="post-nav-next">
-								<?php next_post_link( '%link', '%title <i class="fas fa-chevron-right"></i>' ); ?>
-							</div>
 						</div>
 					</div>
 				</div>

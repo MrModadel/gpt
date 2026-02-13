@@ -58,9 +58,56 @@
              </div>
              <button type="submit" class="btn" style="width:100%;"><i class="fas fa-phone"></i> Заказать звонок</button>
           </form>
-       </div>
+    </div>
     </div>
     <!-- ===== ПОДВАЛ ===== -->
+    <?php
+    $contacts_url   = home_url( '/contacts/' );
+    $contacts_pages = get_pages(
+       array(
+          'meta_key'    => '_wp_page_template',
+          'meta_value'  => 'page-contacts.php',
+          'number'      => 1,
+          'post_status' => 'publish',
+       )
+    );
+
+    if ( ! empty( $contacts_pages ) ) {
+       $contacts_url = get_permalink( $contacts_pages[0]->ID );
+    }
+
+    $blog_url   = home_url( '/blog/' );
+    $blog_pages = get_pages(
+       array(
+          'meta_key'    => '_wp_page_template',
+          'meta_value'  => 'page-blog.php',
+          'number'      => 1,
+          'post_status' => 'publish',
+       )
+    );
+
+    if ( ! empty( $blog_pages ) ) {
+       $blog_url = get_permalink( $blog_pages[0]->ID );
+    }
+
+    $declaration_url   = home_url( '/declaration-of-conformity/' );
+    $declaration_pages = get_pages(
+       array(
+          'meta_key'    => '_wp_page_template',
+          'meta_value'  => 'page-declaration-of-conformity.php',
+          'number'      => 1,
+          'post_status' => 'publish',
+       )
+    );
+
+    if ( ! empty( $declaration_pages ) ) {
+       $declaration_url = get_permalink( $declaration_pages[0]->ID );
+    }
+
+    $termoservis_address   = get_theme_mod( 'termoservis_address', 'г. Самара, ул. Заводская, 42' );
+    $termoservis_phone_raw = get_theme_mod( 'termoservis_phone', '+7 (927) 001-38-85' );
+    $termoservis_phone_tel = preg_replace( '/[^\d+]/', '', $termoservis_phone_raw );
+    ?>
     <footer class="main-footer">
        <div class="container">
           <div class="footer-content">
@@ -96,27 +143,40 @@
 
              <div class="footer-links">
                 <h4>Разделы сайта</h4>
-                <?php
-                  wp_nav_menu(array(
-                     'theme_location' => 'footer',
-                     'menu_class'     => '',
-                     'container'      => false,
-                     'fallback_cb'    => false,
-                     'depth'          => 1,
-                  ));
-                  ?>
+                <?php if ( has_nav_menu( 'footer' ) ) : ?>
+                   <?php
+                     wp_nav_menu(
+                        array(
+                           'theme_location' => 'footer',
+                           'menu_class'     => 'footer-menu',
+                           'container'      => false,
+                           'fallback_cb'    => false,
+                           'depth'          => 1,
+                        )
+                     );
+                     ?>
+                <?php else : ?>
+                   <ul class="footer-menu">
+                      <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>">Главная</a></li>
+                      <li><a href="<?php echo esc_url( home_url( '/catalog/' ) ); ?>">Каталог</a></li>
+                      <li><a href="<?php echo esc_url( home_url( '/uslugi/' ) ); ?>">Услуги</a></li>
+                      <li><a href="<?php echo esc_url( home_url( '/o-kompanii/' ) ); ?>">О компании</a></li>
+                      <li><a href="<?php echo esc_url( $blog_url ); ?>">Блог / Статьи</a></li>
+                      <li><a href="<?php echo esc_url( $contacts_url ); ?>">Контакты</a></li>
+                   </ul>
+                <?php endif; ?>
              </div>
 
              <div class="footer-contacts">
                 <h4>Контакты</h4>
                 <p>
                    <i class="fas fa-map-marker-alt"></i>
-                   <?php echo get_theme_mod('termoservis_address', 'г. Самара, ул. Заводская, 42'); ?>
+                   <a href="<?php echo esc_url( $contacts_url . '#map' ); ?>"><?php echo esc_html( $termoservis_address ); ?></a>
                 </p>
                 <p>
                    <i class="fas fa-phone"></i>
-                   <a href="tel:<?php echo get_theme_mod('termoservis_phone', '+79270013885'); ?>">
-                      <?php echo get_theme_mod('termoservis_phone', '+7 (927) 001-38-85'); ?>
+                   <a href="tel:<?php echo esc_attr( $termoservis_phone_tel ); ?>">
+                      <?php echo esc_html( $termoservis_phone_raw ); ?>
                    </a>
                 </p>
                 <p>
@@ -135,21 +195,6 @@
           <div class="footer-bottom">
              <p>&copy; <?php echo date('Y'); ?> «<?php bloginfo('name'); ?>». Все права защищены.</p>
              <p style="margin-top:10px;">
-                <?php
-                $declaration_url = home_url( '/declaration-of-conformity/' );
-                $declaration_pages = get_pages(
-                   array(
-                      'meta_key'    => '_wp_page_template',
-                      'meta_value'  => 'page-declaration-of-conformity.php',
-                      'number'      => 1,
-                      'post_status' => 'publish',
-                   )
-                );
-
-                if ( ! empty( $declaration_pages ) ) {
-                   $declaration_url = get_permalink( $declaration_pages[0]->ID );
-                }
-                ?>
                 <a href="<?php echo esc_url( home_url( '/__privacy_policy/' ) ); ?>">Политика конфиденциальности</a> |
                 <a href="<?php echo esc_url( home_url( '/__user_agreement/' ) ); ?>">Пользовательское соглашение</a> |
                 <a href="<?php echo esc_url( $declaration_url ); ?>">Декларации о соответствии</a>
