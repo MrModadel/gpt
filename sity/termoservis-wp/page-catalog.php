@@ -26,15 +26,13 @@ get_header();
         </div>
     </div>
 </section>
-
-<!-- 2. БЫСТРЫЕ ФИЛЬТРЫ (SMART-ПАНЕЛЬ) -->
+<!-- 
 <section id="filters" class="smart-filters fade-in">
     <div class="container">
         <h2>Быстрый подбор по ключевым параметрам</h2>
         <p class="mb-30" style="color:#666;">Сэкономьте время. Если вы знаете основные критерии — выберите нужные параметры, чтобы сразу перейти к подходящим решениям. Или воспользуйтесь полной системной навигацией ниже.</p>
 
         <div id="dynamicFilters" class="dynamic-filters-container">
-            <!-- Фильтры загружаются динамически через JavaScript -->
             <div style="text-align:center; padding:20px; color:#666;">
                 <i class="fas fa-spinner fa-spin"></i> Загрузка фильтров...
             </div>
@@ -43,7 +41,6 @@ get_header();
         <div class="filter-results">
             <div class="active-filters" id="activeFilters"></div>
 
-            <!-- Кнопки действий для фильтров -->
             <div class="filter-actions" id="filterActions" style="display:none;">
                 <button class="btn" id="showResultsBtn">
                     <i class="fas fa-eye"></i> Показать товары
@@ -53,7 +50,6 @@ get_header();
                 </a>
             </div>
 
-            <!-- Сетка для отображения отфильтрованных товаров -->
             <div id="filteredProducts" class="products-grid" style="display:none;"></div>
 
             <div class="clear-filters" id="clearFilters">
@@ -61,7 +57,7 @@ get_header();
             </div>
         </div>
     </div>
-</section>
+</section> -->
 
 <?php
 // Массив кастомных ссылок: 'slug' => '/путь/на/сайте/'
@@ -84,6 +80,10 @@ function get_custom_or_term_link( $term, $custom_links = array() ) {
         $slug = (string) $term;
     }
 
+    if ( $slug === '' ) {
+        return '#';
+    }
+
     // 1) кастомная ссылка (заданы в массиве)
     if ( isset( $custom_links[ $slug ] ) && $custom_links[ $slug ] !== '' ) {
         return home_url( $custom_links[ $slug ] );
@@ -93,6 +93,27 @@ function get_custom_or_term_link( $term, $custom_links = array() ) {
     $page = get_page_by_path( $slug );
     if ( $page && ! is_wp_error( $page ) ) {
         return get_permalink( $page );
+    }
+
+    // 2.1) если страница стала дочерней (изменился путь), ищем по slug без учета иерархии
+    $pages = get_posts( array(
+        'post_type'      => 'page',
+        'post_status'    => 'publish',
+        'name'           => $slug,
+        'posts_per_page' => 2,
+    ) );
+    if ( ! empty( $pages ) ) {
+        $chosen_page = null;
+        foreach ( $pages as $candidate ) {
+            if ( (int) $candidate->post_parent === 0 ) {
+                $chosen_page = $candidate;
+                break;
+            }
+        }
+        if ( ! $chosen_page ) {
+            $chosen_page = $pages[0];
+        }
+        return get_permalink( $chosen_page->ID );
     }
 
     // 3) fallback — простая ссылка по slug в корне сайта

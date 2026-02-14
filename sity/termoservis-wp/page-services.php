@@ -2217,11 +2217,18 @@ $termoservis_phone_tel = preg_replace('/[^\d+]/', '', $termoservis_phone_raw);
 
          <div class="projects-grid">
             <?php
-            $args = array(
+             $args = array(
                'posts_per_page' => 3,
                'post_type' => 'post',
                'orderby' => 'date',
                'order' => 'DESC',
+               'tax_query' => array(
+                  array(
+                     'taxonomy' => 'category',
+                     'field' => 'slug',
+                     'terms' => 'kejsy-i-obzory'
+                  )
+               )
             );
             $projects_query = new WP_Query($args);
 

@@ -366,11 +366,39 @@ add_filter('template_include', function($template) {
 // Если есть страница с таким же slug, как у категории — ведём на неё
 function get_page_or_term_link( $term ) {
 
-    // Ищем страницу с таким же slug
-    $page = get_page_by_path( $term->slug );
+    if ( ! is_object( $term ) || ! isset( $term->slug ) || $term->slug === '' ) {
+        return '#';
+    }
+
+    $slug = (string) $term->slug;
+
+    // Ищем страницу с таким же slug (сначала как путь, потом как slug в любом месте иерархии)
+    $page = get_page_by_path( $slug );
 
     if ( $page ) {
         return esc_url( get_permalink( $page->ID ) );
+    }
+
+    $pages = get_posts( array(
+        'post_type'      => 'page',
+        'post_status'    => 'publish',
+        'name'           => $slug,
+        'posts_per_page' => 2,
+    ) );
+
+    if ( ! empty( $pages ) ) {
+        $chosen_page = null;
+        foreach ( $pages as $candidate ) {
+            if ( (int) $candidate->post_parent === 0 ) {
+                $chosen_page = $candidate;
+                break;
+            }
+        }
+        if ( ! $chosen_page ) {
+            $chosen_page = $pages[0];
+        }
+
+        return esc_url( get_permalink( $chosen_page->ID ) );
     }
 
     // Иначе — обычная ссылка на категорию

@@ -15,6 +15,10 @@ function get_custom_or_term_link($term, $custom_links = array())
       $slug = (string) $term;
    }
 
+   if ($slug === '') {
+      return '#';
+   }
+
    // 1) кастомная ссылка (заданы в массиве)
    if (isset($custom_links[$slug]) && $custom_links[$slug] !== '') {
       return home_url($custom_links[$slug]);
@@ -24,6 +28,27 @@ function get_custom_or_term_link($term, $custom_links = array())
    $page = get_page_by_path($slug);
    if ($page && ! is_wp_error($page)) {
       return get_permalink($page);
+   }
+
+   // 2.1) если страница стала дочерней (изменился путь), ищем по slug без учета иерархии
+   $pages = get_posts(array(
+      'post_type'      => 'page',
+      'post_status'    => 'publish',
+      'name'           => $slug,
+      'posts_per_page' => 2,
+   ));
+   if (! empty($pages)) {
+      $chosen_page = null;
+      foreach ($pages as $candidate) {
+         if ((int) $candidate->post_parent === 0) {
+            $chosen_page = $candidate;
+            break;
+         }
+      }
+      if (! $chosen_page) {
+         $chosen_page = $pages[0];
+      }
+      return get_permalink($chosen_page->ID);
    }
 
    // 3) fallback — простая ссылка по slug в корне сайта
@@ -154,7 +179,7 @@ $custom_links = array(
                            foreach ($subcategories as $subcat) {
                               if ($sub_count >= 4) break;
                         ?>
-                              <a href="<?php echo get_custom_or_term_link($subcat->slug, $custom_links); ?>" class="card-link">
+                              <a href="<?php echo esc_url(get_custom_or_term_link($subcat, $custom_links)); ?>" class="card-link">
                                  <?php echo esc_html($subcat->name); ?>
                               </a>
                         <?php
@@ -482,9 +507,6 @@ $custom_links = array(
 
       // Smooth scrolling for anchor links
       initSmoothScroll();
-
-      // Mobile menu functionality
-      initMobileMenu();
    });
 
    /**
@@ -532,63 +554,4 @@ $custom_links = array(
          });
       });
    }
-
-   /**
-    * Initialize mobile menu functionality
-    */
-   function initMobileMenu() {
-      if (window.innerWidth <= 768) {
-         const dropdownParents = document.querySelectorAll('.has-dropdown');
-
-         dropdownParents.forEach(parent => {
-            const link = parent.querySelector('a');
-
-            if (link) {
-               link.addEventListener('click', function(e) {
-                  if (window.innerWidth <= 768) {
-                     e.preventDefault();
-                     e.stopPropagation();
-
-                     // Close other menus
-                     dropdownParents.forEach(otherParent => {
-                        if (otherParent !== parent) {
-                           const otherMenu = otherParent.querySelector('.dropdown-menu');
-                           if (otherMenu) {
-                              otherMenu.classList.remove('active');
-                           }
-                        }
-                     });
-
-                     // Toggle current menu
-                     const menu = parent.querySelector('.dropdown-menu');
-                     if (menu) {
-                        menu.classList.toggle('active');
-                     }
-                  }
-               });
-            }
-         });
-
-         // Close menu when clicking outside
-         document.addEventListener('click', function(e) {
-            if (!e.target.closest('.has-dropdown')) {
-               document.querySelectorAll('.dropdown-menu.active').forEach(menu => {
-                  menu.classList.remove('active');
-               });
-            }
-         });
-      }
-   }
-
-   /**
-    * Handle window resize
-    */
-   window.addEventListener('resize', function() {
-      if (window.innerWidth > 768) {
-         // Remove active class on desktop
-         document.querySelectorAll('.dropdown-menu.active').forEach(menu => {
-            menu.classList.remove('active');
-         });
-      }
-   });
 </script>

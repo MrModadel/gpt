@@ -421,10 +421,82 @@ if (projectModal && closeProjectModalButton) {
    // Sticky widget
    const stickyWidget = document.getElementById('stickyWidget');
    const closeWidget = document.getElementById('closeWidget');
-   if (stickyWidget) {
-      setTimeout(() => stickyWidget.classList.add('active'), 900);
+   function activateStickyWidget() {
+      if (window.innerWidth >= 1024 && stickyWidget) {
+         setTimeout(() => stickyWidget.classList.add('active'), 900);
+      }
    }
+
+   // initial check
+   activateStickyWidget();
+
+   // re-check on resize
+   window.addEventListener('resize', activateStickyWidget);
+
    closeWidget?.addEventListener('click', function () {
       stickyWidget?.classList.remove('active');
    });
 })();
+
+
+document.addEventListener('DOMContentLoaded', function () {
+
+
+   initMobileMenu();
+});
+
+function initMobileMenu() {
+   if (window.innerWidth <= 768) {
+      const dropdownParents = document.querySelectorAll('.has-dropdown');
+
+      dropdownParents.forEach(parent => {
+         const link = parent.querySelector('a');
+
+         if (link) {
+            link.addEventListener('click', function (e) {
+               if (window.innerWidth <= 768) {
+                  e.preventDefault();
+                  e.stopPropagation();
+
+                  // Close other menus
+                  dropdownParents.forEach(otherParent => {
+                     if (otherParent !== parent) {
+                        const otherMenu = otherParent.querySelector('.dropdown-menu');
+                        if (otherMenu) {
+                           otherMenu.classList.remove('active');
+                        }
+                     }
+                  });
+
+                  // Toggle current menu
+                  const menu = parent.querySelector('.dropdown-menu');
+                  if (menu) {
+                     menu.classList.toggle('active');
+                  }
+               }
+            });
+         }
+      });
+
+      // Close menu when clicking outside
+      document.addEventListener('click', function (e) {
+         if (!e.target.closest('.has-dropdown')) {
+            document.querySelectorAll('.dropdown-menu.active').forEach(menu => {
+               menu.classList.remove('active');
+            });
+         }
+      });
+   }
+}
+
+/**
+ * Handle window resize
+ */
+window.addEventListener('resize', function () {
+   if (window.innerWidth > 768) {
+      // Remove active class on desktop
+      document.querySelectorAll('.dropdown-menu.active').forEach(menu => {
+         menu.classList.remove('active');
+      });
+   }
+});
